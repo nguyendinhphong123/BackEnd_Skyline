@@ -55,8 +55,7 @@
                                 <h2 class="text-white"> $1,753.<span class="h5">00</span>
                                 </h2>
                             </div>
-                            <i
-                                class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
+                            <i class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
                         </div>
                         <h6 class="text-white">67.98% Since last month</h6>
                     </div>
@@ -346,8 +345,7 @@
                     </ul>
                 </div>
                 <div class="add-items d-flex flex-wrap flex-sm-nowrap">
-                    <input type="text" class="form-control todo-list-input flex-grow"
-                        placeholder="Add task name" />
+                    <input type="text" class="form-control todo-list-input flex-grow" placeholder="Add task name" />
                     <button class="add btn btn-primary font-weight-regular text-nowrap" id="add-task"> Add Task
                     </button>
                 </div>
@@ -555,8 +553,8 @@
                     <span class="d-flex justify-content-between">
                         <span>Activity</span>
                         <span class="dropdown dropleft d-block">
-                            <span id="dropdownMenuButton1" data-toggle="dropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">
+                            <span id="dropdownMenuButton1" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                aria-expanded="false">
                                 <span><i class="mdi mdi-dots-horizontal"></i></span>
                             </span>
                             <span class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -594,8 +592,7 @@
                         <p class="text-muted">2h ago</p>
                     </li>
                 </ul>
-                <a class="text-black mt-3 mb-0 d-block h6" href="#">View all <i
-                        class="mdi mdi-chevron-right"></i></a>
+                <a class="text-black mt-3 mb-0 d-block h6" href="#">View all <i class="mdi mdi-chevron-right"></i></a>
             </div>
         </div>
         <!--activity ends-->

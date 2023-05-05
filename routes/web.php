@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.master');
 });
-Route::resource('category',\App\Http\Controllers\CategoryController::class);
+
+Route::resource('categories',\App\Http\Controllers\CategoryController::class);
+Route::resource('rooms',\App\Http\Controllers\RoomController::class);
 
