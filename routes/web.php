@@ -15,15 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('layouts.master');
 });
 
-Route::prefix('rooms')->group(function () {
-    Route::get('/', [RoomController::class, 'index'])->name('room.index');
-    Route::get('/create', [RoomController::class, 'create'])->name('room.create');
-    Route::post('/store', [RoomController::class, 'store'])->name('room.store');
-    Route::get('/edit/{id}', [RoomController::class, 'edit'])->name('room.edit');
-    Route::put('/update/{id}', [RoomController::class, 'update'])->name('room.update');
-    Route::delete('/destroy/{id}', [RoomController::class, 'destroy'])->name('room.destroy');
+Route::resource('categories',\App\Http\Controllers\CategoryController::class);
+Route::resource('rooms',\App\Http\Controllers\RoomController::class);
 
-});
