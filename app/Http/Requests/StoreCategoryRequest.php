@@ -11,7 +11,7 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,16 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:rooms',
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên phòng bắt buộc phải nhập!',
+            'name.unique' => 'Tên phòng đã tồn tại!',
         ];
     }
 }
