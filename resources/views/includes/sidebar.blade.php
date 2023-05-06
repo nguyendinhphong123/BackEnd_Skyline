@@ -28,6 +28,7 @@
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
           <span class="menu-title">Quản lý phòng</span>
+          <span class="menu-title">TRANG THỂ LOẠI PHÒNG </span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic">
@@ -37,6 +38,10 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/ui-features/dropdowns.html">Thùng rác</a>
+              <a class="nav-link" href={{route('categories.index')}}>THỂ LOẠI</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/ui-features/dropdowns.html">THÙNG RÁC</a>
             </li>
             
           </ul>

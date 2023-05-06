@@ -11,7 +11,10 @@ use App\Services\Interfaces\UserServiceInterface;
 use App\Services\RoomService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
-
+use App\Repositories\Eloquents\CategoryRepository;
+use App\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Services\Interfaces\CategoryServiceInterface;
+use App\Services\CategoryService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,13 +29,24 @@ class AppServiceProvider extends ServiceProvider
         */
         /* Binding Services*/
         $this->app->singleton(UserServiceInterface::class, UserService::class);
+
         $this->app->singleton(RoomServiceInterface::class, RoomService::class);
 
+        // Category
+        $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
 
-        
+
+
+
         /* Binding Repositories*/
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
+
+        // Category
+        $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+
+
     }
 
     /**
