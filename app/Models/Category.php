@@ -9,14 +9,13 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function products()
-    {
-    return $this->hasMany(Room::class);
+
     protected $table = 'categories';
     protected $fillable = ['id','name'];
-    public function products()
+
+    public function rooms()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Room::class);
     }
     public function scopeSearch($query, $term)
     {
