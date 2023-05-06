@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Repositories\Eloquents\RoomRepository;
 use App\Repositories\Eloquents\UserRepository;
+use App\Repositories\Interfaces\RoomRepositoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
+use App\Services\RoomService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquents\CategoryRepository;
@@ -25,15 +29,23 @@ class AppServiceProvider extends ServiceProvider
         */
         /* Binding Services*/
         $this->app->singleton(UserServiceInterface::class, UserService::class);
+
+        $this->app->singleton(RoomServiceInterface::class, RoomService::class);
+
         // Category
         $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
 
 
 
+
         /* Binding Repositories*/
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+
+        $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
+
         // Category
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+
 
     }
 
