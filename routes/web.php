@@ -21,4 +21,5 @@ Route::get('/', function () {
 Route::resource('categories',\App\Http\Controllers\CategoryController::class);
 Route::resource('rooms',\App\Http\Controllers\RoomController::class);
 Route::get('/customer', [CustomerController::class, 'index'])->name('customers.index');
+Route::resource('users',\App\Http\Controllers\UserController::class);
 

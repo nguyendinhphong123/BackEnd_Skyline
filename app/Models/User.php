@@ -21,6 +21,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'created_at',
+        'address',
+        'image',
+        'phone',
+        'gender',
+        'birthday',
+        'group_id'
     ];
 
     /**
@@ -41,4 +48,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
+    public function HasPermissions($role_name)
+    {
+        $user_roles = isset($this->group->roles) ? $this->group->roles->pluck('name')->toArray() : [];
+        if (in_array($role_name, $user_roles)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where('name', 'like', '%' . $term . '%')
+                ->orWhere('id', 'like', '%' . $term . '%');
+        }
+        return $query;
+    }
 }
