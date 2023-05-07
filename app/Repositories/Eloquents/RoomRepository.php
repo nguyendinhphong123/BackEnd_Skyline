@@ -2,11 +2,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Room;
-use App\Models\RoomImage;
 use App\Repositories\Interfaces\RoomRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class RoomRepository extends EloquentRepository implements RoomRepositoryInterface

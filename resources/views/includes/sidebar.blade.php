@@ -64,6 +64,12 @@
           <span class="menu-title">Quản lý khách hàng</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('orders.index')}}">
+          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">Quản lý đặt phòng</span>
+        </a>
+      </li>
       <li class="nav-item sidebar-actions">
         <div class="nav-link">
           <div class="mt-4">
