@@ -60,7 +60,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $search = $request->key;
             $rooms = $rooms->Search($search);
         }
-        return $rooms->orderBy('id','DESC')->paginate(5);
+        return $rooms->orderBy('id','DESC')->paginate(2);
     }
     
 }

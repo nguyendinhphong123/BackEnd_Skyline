@@ -12,9 +12,15 @@ use App\Services\RoomService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquents\CategoryRepository;
+use App\Repositories\Eloquents\CustomerRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\CategoryService;
+use App\Services\CustomerService;
+use App\Services\Interfaces\CustomerServiceInterface;
+use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -34,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
 
         // Category
         $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
+        // Customer
+        $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
+
+
+
 
 
 
@@ -45,6 +56,8 @@ class AppServiceProvider extends ServiceProvider
 
         // Category
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+        // Customer
+        $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
 
 
     }
@@ -54,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFive();
+         Paginator::useBootstrapFour();
     }
 }
