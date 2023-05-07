@@ -41,6 +41,23 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <span class="menu-title">TRANG NHÂN VIÊN </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" href={{route('users.index')}}>NHÂN VIÊN </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/ui-features/dropdowns.html">THÙNG RÁC</a>
+            </li>
+          </ul>
+        </div>
+      </li>
       <li class="nav-item sidebar-actions">
         <div class="nav-link">
           <div class="mt-4">

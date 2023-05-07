@@ -27,13 +27,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(UserServiceInterface::class, UserService::class);
         // Category
         $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
-
-
-
+        
         /* Binding Repositories*/
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
         // Category
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
+
 
     }
 

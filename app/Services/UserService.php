@@ -18,19 +18,17 @@ class UserService implements UserServiceInterface
     /* Triển khai các phương thức trong PostServiceInterface */
     public function all($request){
         return $this->userRepository->all($request);
-        // dd(__METHOD__);
-        // echo __METHOD__;
     }
     public function find($id){
-        echo __METHOD__;
+        return $this->userRepository->find($id);
     }
     public function store($request){
-        echo __METHOD__;
+        return $this->userRepository->store($request);
     }
-    public function update($request, $id){
-        echo __METHOD__;
+    public function update($id,$data){
+        return $this->userRepository->update($id, $data);
     }
     public function destroy($id){
-        echo __METHOD__;
+        return $this->userRepository->destroy($id);
     }
 }

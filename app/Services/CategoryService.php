@@ -16,19 +16,24 @@ class CategoryService implements CategoryServiceInterface
     }
 
 
-    public function all($request){
+    public function all($request)
+    {
         return $this->CategoryRepository->all($request);
     }
-    public function find($id){
+    public function find($id)
+    {
         return $this->CategoryRepository->find($id);
     }
-    public function store($request){
+    public function store($request)
+    {
         return $this->CategoryRepository->store($request);
     }
-    public function update($id,$data){
+    public function update($id, $data)
+    {
         return $this->CategoryRepository->update($id, $data);
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         return $this->CategoryRepository->destroy($id);
     }
 }

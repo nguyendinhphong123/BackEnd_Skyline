@@ -41,7 +41,7 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function store($data)
     {
-
+        //    dd($data);
         return $this->model->create($data);
     }
 
