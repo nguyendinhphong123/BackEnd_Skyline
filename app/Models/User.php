@@ -50,14 +50,23 @@ class User extends Authenticatable
     ];
     public function group()
     {
-        return $this->belongsTo(Group::class,'group_id','id');
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
-    public function HasPermissions($role_name){
+    public function HasPermissions($role_name)
+    {
         $user_roles = isset($this->group->roles) ? $this->group->roles->pluck('name')->toArray() : [];
-        if( in_array($role_name,$user_roles) ){
+        if (in_array($role_name, $user_roles)) {
             return true;
-        }else{
+        } else {
             return false;
         }
-}
+    }
+    public function scopeSearch($query, $term)
+    {
+        if ($term) {
+            $query->where('name', 'like', '%' . $term . '%')
+                ->orWhere('id', 'like', '%' . $term . '%');
+        }
+        return $query;
+    }
 }

@@ -23,6 +23,7 @@ class UserService implements UserServiceInterface
         return $this->userRepository->find($id);
     }
     public function store($request){
+       
         return $this->userRepository->store($request);
     }
     public function update($id,$data){

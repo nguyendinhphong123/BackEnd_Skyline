@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Models\Group;
 
@@ -32,20 +34,16 @@ class UserController extends Controller
     {
         $items = User::all();
         $groups = Group::all();
-
         return view('users.create', compact('items', 'groups'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        // dd($request->file('image'));
-        // // $request['group_id']=5;
-        //    dd(($request->all()));
         $data = $request->except(['_token', '_method']);
-        // dd($data);
+        // dd($request);
         $this->userService->store($data);
         return redirect()->route('users.index');
     }
@@ -62,15 +60,25 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $groups = Group::all();
+        $item = $this->userService->find($id);
+        // dd($item);
+        return view('users.edit', compact('item','groups'));
     }
 
 
-    public function update($request, $id)
+    public function update(UpdateUserRequest $request,$id)
     {
+        $data = $request->except(['_token','_method']);
+        $this->userService->update($id,$data);
+            return redirect()->route('users.index');
+
     }
 
 
     public function destroy($id)
     {
+        $this->userService->destroy($id);
+        return redirect()->route('users.index');
     }
 }

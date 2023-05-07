@@ -11,7 +11,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,27 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+                'name' => 'required|unique:users',
+                'email' => 'required',
+                'password' => 'required',
+                'created_at' => 'required',
+                'address' => 'required',
+                'phone' => 'required',
+                'birthday' => 'required',
+                'group_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Vui lòng nhập tên!',
+            'email.required' => 'vui lòng nhập email!',
+            'password.required' => 'vui lòng nhập passwoud!',
+            'created_at.required' => 'vui lòng nhập ngày tháng!',
+            'address.required' => 'vui lòng nhập địa chỉ!',
+            'phone.required' => 'vui lòng nhập phone!',
+            'birthday.required' => 'vui lòng nhập ngày sinh!',
+            'group_id.required' => 'vui lòng cấp quyền!',
         ];
     }
 }

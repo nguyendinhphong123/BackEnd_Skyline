@@ -66,7 +66,6 @@ class CategoryController extends Controller
         $this->categoryService->update($id,$data);
             return redirect()->route('categories.index');
     }
-
     /**
      * Remove the specified resource from storage.
      */

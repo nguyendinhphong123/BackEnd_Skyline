@@ -80,7 +80,6 @@
 
                         <div class="mb-3">
                             <label class="form-label">Trao quyền</label>
-                            {{--  <select name="group_id" id="" class="form-control">  --}}
                                 <select name="group_id" id="" class="form-control">
                                     <option value="">--Vui lòng chọn--</option>
                                 @foreach ($groups as $group)
@@ -95,7 +94,6 @@
                         </div>
                         <div class="mb-3">
                             <label for="Inputimage" class="form-label">Ảnh</label>
-                            {{--  <input type="file" class="form-control" name="image" id="Inputimage">  --}}
                             <input type="file" name="image"id="Inputimage"class="form-control file ">
                         </div>
                         @error('group_id')
