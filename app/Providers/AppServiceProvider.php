@@ -12,12 +12,10 @@ use App\Repositories\Eloquents\CustomerRepository;
 
 use App\Repositories\Eloquents\OrderRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
-use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 
 use App\Repositories\Eloquents\GroupRepository;
 use App\Repositories\Eloquents\RoomRepository;
-use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\Interfaces\GroupRepositoryInterface;
 use App\Repositories\Interfaces\RoomRepositoryInterface;
