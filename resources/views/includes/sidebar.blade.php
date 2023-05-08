@@ -19,9 +19,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/">
           <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">Trang chủ</span>
         </a>
       </li>
      <li class="nav-item">
@@ -65,6 +65,11 @@
         </a>
       </li>
       <li class="nav-item">
+
+        <a class="nav-link" href="{{route('orders.index')}}">
+          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">Quản lý đặt phòng</span>
+
         <a class="nav-link" href="{{route('users.index')}}">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">Quản lý nhân viên </span>

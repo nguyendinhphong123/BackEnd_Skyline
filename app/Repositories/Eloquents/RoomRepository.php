@@ -2,11 +2,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Room;
-use App\Models\RoomImage;
 use App\Repositories\Interfaces\RoomRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class RoomRepository extends EloquentRepository implements RoomRepositoryInterface
@@ -37,7 +34,9 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $path = $data['image']->store('public/rooms');
             $url = Storage::url($path);
             $data['image'] = $url;
+            
         }
+        
         return $this->model->create($data);
     }
 
@@ -60,7 +59,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $search = $request->key;
             $rooms = $rooms->Search($search);
         }
-        return $rooms->orderBy('id','DESC')->paginate(2);
+        return $rooms->orderBy('id','DESC')->paginate(4);
     }
     
 }

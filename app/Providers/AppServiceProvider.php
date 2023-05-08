@@ -9,17 +9,28 @@ use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquents\CategoryRepository;
 use App\Repositories\Eloquents\CustomerRepository;
+
+use App\Repositories\Eloquents\OrderRepository;
+use App\Repositories\Interfaces\CategoryRepositoryInterface;
+use App\Repositories\Interfaces\CustomerRepositoryInterface;
+use App\Repositories\Interfaces\OrderRepositoryInterface;
+
 use App\Repositories\Eloquents\GroupRepository;
 use App\Repositories\Eloquents\RoomRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\CustomerRepositoryInterface;
 use App\Repositories\Interfaces\GroupRepositoryInterface;
 use App\Repositories\Interfaces\RoomRepositoryInterface;
+
 use App\Services\Interfaces\CategoryServiceInterface;
 use App\Services\CategoryService;
 use App\Services\CustomerService;
 use App\Services\GroupService;
 use App\Services\Interfaces\CustomerServiceInterface;
+
+use App\Services\Interfaces\OrderServiceInterface;
+use App\Services\OrderService;
+
 use App\Services\Interfaces\GroupServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\RoomService;
@@ -43,10 +54,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryServiceInterface::class, CategoryService::class);
         // Customer
         $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
+        // Order
+        $this->app->singleton(OrderServiceInterface::class, OrderService::class);
         // room
         $this->app->singleton(RoomServiceInterface::class, RoomService::class);
         // groups
         $this->app->singleton(GroupServiceInterface::class, GroupService::class);
+
 
 
         /* Binding Repositories*/
@@ -55,9 +69,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CategoryRepositoryInterface::class, CategoryRepository::class);
         // Customer
         $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
+        // Order
+        $this->app->singleton(OrderRepositoryInterface::class, OrderRepository::class);
         // room
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
-        // room
+        // group
         $this->app->singleton(GroupRepositoryInterface::class, GroupRepository::class);
 
 

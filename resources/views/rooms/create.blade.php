@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
 <main class="page-content" id="main">
     <div class="container">
         <div class="col-12 col-lg-12 d-flex">
