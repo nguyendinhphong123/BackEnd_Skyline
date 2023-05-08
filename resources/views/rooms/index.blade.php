@@ -28,7 +28,7 @@
                     <a href="{{route('rooms.show',$item['id'])}}">
                         <img  style="width:120px; height:100px" src="{{ $item->image }}" alt=""class="image_photo">
                     </a>
-                    
+
                 </td>
                 <td>
                     <form action="{{route('rooms.destroy',[$item->id])}}" method="post">

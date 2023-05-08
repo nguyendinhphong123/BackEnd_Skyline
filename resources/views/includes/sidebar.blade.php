@@ -27,16 +27,16 @@
      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-          <span class="menu-title">TRANG THỂ LOẠI PHÒNG </span>
+          <span class="menu-title">Quản lý loại phòng </span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href={{route('categories.index')}}>THỂ LOẠI</a>
+              <a class="nav-link" href={{route('categories.index')}}>Thể loại </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/dropdowns.html">THÙNG RÁC</a>
+              <a class="nav-link" href="pages/ui-features/dropdowns.html">Thùng rác</a>
             </li>
           </ul>
         </div>
@@ -53,7 +53,7 @@
               <a class="nav-link" href={{route('rooms.index')}}>Danh sách</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-features/dropdowns.html">THÙNG RÁC</a>
+              <a class="nav-link" href="pages/ui-features/dropdowns.html">Thùng rác</a>
             </li>
           </ul>
         </div>
@@ -65,9 +65,14 @@
         </a>
       </li>
       <li class="nav-item">
+
         <a class="nav-link" href="{{route('orders.index')}}">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">Quản lý đặt phòng</span>
+
+        <a class="nav-link" href="{{route('users.index')}}">
+          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">Quản lý nhân viên </span>
         </a>
       </li>
       <li class="nav-item sidebar-actions">
