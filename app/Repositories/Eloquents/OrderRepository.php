@@ -17,11 +17,11 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
     }
     public function all($request)
     {
-        $customers = $this->model->select('*');
+        $orders = $this->model->select('*');
         if (!empty($request->key)) {
             $search = $request->key;
-            $customers = $customers->Search($search);
+            $orders = $orders->Search($search);
         }
-        return $customers->orderBy('id','DESC')->paginate(1);
+        return $orders->orderBy('id','DESC')->paginate(2);
     }
 }

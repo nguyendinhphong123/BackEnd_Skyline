@@ -8,13 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+    }
+    public function products()
+    {
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
 
     public function scopeSearch($query, $term)
     {
         if ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('id', 'like', '%' . $term . '%');
+            $query->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->where('customers.name', 'like', '%' . $term . '%')
+            ->orWhere('orders.id', 'like', '%' . $term . '%')
+            ->select('orders.*');
         }
         return $query;
 

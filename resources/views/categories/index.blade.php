@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@include('sweetalert::alert')
 <h3>Danh sách thể loại</h3>
 <div class="container">
     <table class="table" style="text-align:center">

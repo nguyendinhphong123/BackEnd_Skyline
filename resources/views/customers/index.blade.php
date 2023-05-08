@@ -5,6 +5,7 @@
     
     <table class="table" style="text-align:center">
         <thead>
+            <h2 style="text-align: center">Danh Sách Khách Hàng</h2><br>
             <tr>
                 <th>STT</th>
                 <th>Tên Khách Hàng</th>

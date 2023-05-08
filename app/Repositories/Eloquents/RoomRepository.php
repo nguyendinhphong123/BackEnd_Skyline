@@ -34,7 +34,9 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $path = $data['image']->store('public/rooms');
             $url = Storage::url($path);
             $data['image'] = $url;
+            
         }
+        
         return $this->model->create($data);
     }
 
@@ -57,7 +59,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $search = $request->key;
             $rooms = $rooms->Search($search);
         }
-        return $rooms->orderBy('id','DESC')->paginate(2);
+        return $rooms->orderBy('id','DESC')->paginate(4);
     }
     
 }
