@@ -13,7 +13,12 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Category::class=> CategoryPolicy::class,
+        Customer::class=> CustomerPolicy::class,
+        Group::class=> GroupPolicy::class,
+        Order::class=> OrderPolicy::class,
+        Product::class=> ProductPolicy::class,
+        User::class=> UserPolicy::class,
     ];
 
     /**
@@ -21,6 +26,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }

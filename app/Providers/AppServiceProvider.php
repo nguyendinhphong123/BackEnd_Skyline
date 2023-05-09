@@ -49,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(GroupServiceInterface::class, GroupService::class);
 
 
+
         /* Binding Repositories*/
         $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
         // Category
@@ -57,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CustomerRepositoryInterface::class, CustomerRepository::class);
         // room
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
-        // room
+        // Groups
         $this->app->singleton(GroupRepositoryInterface::class, GroupRepository::class);
 
 
