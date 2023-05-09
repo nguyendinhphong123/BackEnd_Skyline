@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+@include('sweetalert::alert')
 <div class="container">
 
     <table class="table" style="text-align:center">

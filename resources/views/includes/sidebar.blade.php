@@ -7,21 +7,21 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="profile" />
+            <img src="{{asset(auth()->user()->image)}}" alt="profile" />
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
           <div class="nav-profile-text d-flex flex-column pr-3">
-            <span class="font-weight-medium mb-2">Henry Klein</span>
-            <span class="font-weight-normal">$8,753.00</span>
+            <span class="font-weight-medium mb-2">{{auth()->user()->name}}</span>
+            <span class="font-weight-normal">{{auth()->user()->group->name}}</span>
           </div>
-          <span class="badge badge-danger text-white ml-3 rounded">3</span>
+          
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/">
           <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">Trang chủ</span>
         </a>
       </li>
      <li class="nav-item">
@@ -71,6 +71,9 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{route('orders.index')}}">
+          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">Quản lý đặt phòng</span>
         <a class="nav-link" href="{{route('users.index')}}">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">Quản lý nhân viên </span>
@@ -80,7 +83,8 @@
         <div class="nav-link">
           <div class="mt-4">
             <ul class="mt-4 pl-0">
-              <li>Sign Out</li>
+              <a class="dropdown-item" href="{{route('logout')}}">
+                <li class="mdi mdi-logout mr-2">Signout</li></a>
             </ul>
           </div>
         </div>
@@ -194,13 +198,13 @@
                 </li>
                 <li class="nav-item nav-profile dropdown border-0">
                   <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                    <img class="nav-profile-img mr-2" alt="" src="{{asset('assets/images/faces/face1.jpg')}}" />
-                    <span class="profile-name">Henry Klein</span>
+                    <img class="nav-profile-img mr-2" alt="" src="{{asset(auth()->user()->image)}}" />
+                    <span class="profile-name">{{auth()->user()->name}}</span>
                   </a>
                   <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="#">
                       <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{route('logout')}}">
                       <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                   </div>
                 </li>

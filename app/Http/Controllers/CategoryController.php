@@ -37,6 +37,7 @@ class CategoryController extends Controller
         // $this->authorize('create', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->store($data);
+        alert()->success('Thêm thành công!');
         return redirect()->route('categories.index');
     }
 
@@ -67,6 +68,7 @@ class CategoryController extends Controller
         // $this->authorize('update', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->update($id,$data);
+        alert()->success('Sửa thành công!');
             return redirect()->route('categories.index');
     }
 

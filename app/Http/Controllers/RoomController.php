@@ -43,6 +43,7 @@ class RoomController extends Controller
     {
         $data = $request->except(['_token','_method']);
         $this->roomService->store($data);
+        alert()->success('Thêm phòng thành công!');
         return redirect()->route('rooms.index');
     }
 
@@ -74,6 +75,7 @@ class RoomController extends Controller
     {
         $data = $request->except(['_token','_method']);
         $this->roomService->update($id,$data);
+        alert()->success('Sửa phòng thành công!');
         return redirect()->route('rooms.index');
     }
 
