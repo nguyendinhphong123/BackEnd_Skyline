@@ -1,5 +1,15 @@
 @extends('layouts.master')
 @section('content')
+<style>
+ .list-role{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    margin:  10px 0 10px 0;
+ }
+
+
+</style>
 <main class="page-content">
     <div class="container">
         <section class="wrapper">
@@ -11,14 +21,14 @@
                                 <h1 class="offset-4">Chức Vụ</h1>
                             </div>
                             <div class="page-section">
-                                <form method="post" action="{{ route('group.group_detail', $items->id) }}">
+                                <form method="post" action="{{ route('group.group_detail', $group->id) }}">
                                     @csrf
                                     @method('PUT')
                                     <div class="card">
                                         <div class="card-body">
                                             <hr>
                                             <div class="form-group">
-                                                <label for="tf1">Tên Quyền:</label> {{ $items->name }}
+                                                <label for="tf1">Tên Quyền:</label> {{ $group->name }}
                                             </div><br>
                                             <div class="form-group">
 
@@ -26,30 +36,31 @@
                                                     value="Quyền hạn">
                                                 <label class="w3-button w3-blue">{{ __('Cấp toàn bộ quyền') }}
                                                     <div class="row">
-                                                        @foreach ($group_names as $group_name => $roles)
-                                                            <div class="col-lg-6">
+                                                        {{--  @foreach ($roles as $role)  --}}
+                                                            <div class="col-lg-10">
                                                                 <div class="list-group-header"
                                                                     style="color:rgb(2, 6, 249) ;">
-                                                                    <h5> Nhóm: {{ __($group_name) }}</h5>
+                                                                    <h5> Nhóm: {{ __($group->name) }}</h5>
                                                                 </div>
                                                                 @foreach ($roles as $role)
                                                                     <div
-                                                                        class="list-group-item d-flex justify-content-between align-items-center">
+                                                                        class="list-role">
                                                                         <span
-                                                                            style="color: rgb(4, 5, 5) ;">{{ __($role['name']) }}</span>
+                                                                            style="color: rgb(4, 5, 5) ;">{{ __($role ->name) }}</span>
                                                                         <!-- .switcher-control -->
-                                                                        <label class="form-check form-switch ">
+                                                                        <label class=" ">
                                                                             <input type="checkbox"
-                                                                                @checked(in_array($role['id'], $userRoles))
+                                                                                @checked(in_array($role ->id ,[1,2,3,4,5] ))
                                                                                 name="roles[]"
-                                                                                class="checkItem form-check-input checkItem"
-                                                                                value="{{ $role['id'] }}">
+                                                                                class=" form-check-input "
+                                                                                value="{{ $role->id }}">
                                                                             <span class="switcher-indicator"></span>
                                                                         </label>
                                                                     </div>
+
                                                                 @endforeach
                                                             </div>
-                                                        @endforeach
+                                                        {{--  @endforeach  --}}
                                                     </div>
                                             </div>
                                             <div class="form-actions">

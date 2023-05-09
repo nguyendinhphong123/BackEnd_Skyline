@@ -73,8 +73,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoomRepositoryInterface::class, RoomRepository::class);
         // group
         $this->app->singleton(GroupRepositoryInterface::class, GroupRepository::class);
-
-
     }
 
     /**

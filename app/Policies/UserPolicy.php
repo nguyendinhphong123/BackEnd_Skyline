@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class CategoryPolicy
+class UserPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -16,68 +16,59 @@ class CategoryPolicy
 
     public function viewAny(User $user)
     {
-        return $user->HasPermissions('Category_viewAny');
-        
+        return $user->HasPermissions('User_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user): bool
+    public function view(User $user,  $post)
     {
-        return $user->HasPermissions('Category_view');
-
+        return $user->HasPermissions('User_viewAny');
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
-        return $user->HasPermissions('Category_create');
-
+        return $user->HasPermissions('User_create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user): bool
+    public function update(User $user,$post)
     {
-        return $user->HasPermissions('Category_update');
-
-
+        return $user->HasPermissions('User_update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user): bool
+    public function delete(User $user, $post)
     {
-        return $user->HasPermissions('Category_delete');
-
-
+        return $user->HasPermissions('User_delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user): bool
+    public function restore(User $user, $post)
     {
-        return $user->HasPermissions('Category_restore');
-
+        return $user->HasPermissions('User_restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user): bool
+    public function forceDelete(User $user, $post)
     {
-        return $user->HasPermissions('Category_forceDelete');
-
+        return $user->HasPermissions('User_forceDelete');
     }
     public function viewtrash(User $user)
     {
-        return $user->hasPermission('Category_viewtrash');
-        //
+        return $user->hasPermission('User_viewtrash');
+
     }
 }
