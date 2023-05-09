@@ -22,7 +22,7 @@ class GroupController extends Controller
     }
     public function index(Request $request)
     {
-        $this->authorize('viewAny', Group::class);
+        // $this->authorize('viewAny', Group::class);
         $items = $this->GroupService->all($request);
         return view('groups.index', compact('items'));
     }
