@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Room;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
 class RoomPolicy
@@ -11,9 +12,11 @@ class RoomPolicy
     /**
      * Determine whether the user can view any models.
      */
+    use HandlesAuthorization;
+
     public function viewAny(User $user): bool
     {
-        //
+        return $user->HasPermissions('Room_viewAny');
     }
 
     /**
@@ -21,7 +24,7 @@ class RoomPolicy
      */
     public function view(User $user, Room $room): bool
     {
-        //
+        return $user->HasPermissions('Room_view');
     }
 
     /**
@@ -29,7 +32,7 @@ class RoomPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->HasPermissions('Room_create');
     }
 
     /**
@@ -37,7 +40,7 @@ class RoomPolicy
      */
     public function update(User $user, Room $room): bool
     {
-        //
+        return $user->HasPermissions('Room_update');
     }
 
     /**
@@ -45,7 +48,7 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room): bool
     {
-        //
+        return $user->HasPermissions('Room_delete');
     }
 
     /**
@@ -53,7 +56,7 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room): bool
     {
-        //
+        return $user->HasPermissions('Room_restore');
     }
 
     /**
@@ -61,6 +64,12 @@ class RoomPolicy
      */
     public function forceDelete(User $user, Room $room): bool
     {
-        //
+        return $user->HasPermissions('Room_forceDelete');
+    }
+    
+    public function viewtrash(User $user)
+    {
+        return $user->hasPermission('Room_viewtrash');
+
     }
 }

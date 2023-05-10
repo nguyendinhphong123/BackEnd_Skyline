@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoomController;
 // use App\Http\Controllers\GroupController;
@@ -58,6 +59,13 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     //     Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
     //     Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
     // });
+
+Route::resource('users',\App\Http\Controllers\UserController::class);
+Route::resource('groups',\App\Http\Controllers\GroupController::class);
+Route::group(['prefix'=>'groups'], function(){
+    Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
+    Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
+});
 
 });
 
