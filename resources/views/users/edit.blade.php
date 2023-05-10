@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Ngày tham gia </label>
-            <input type="text" name="created_at" value='{{$item->created_at}}' class="form-control">
+            <input type="date" name="created_at" value='{{$item->created_at}}' class="form-control">
         </div>
         <div class="mb-3">
             <label class="form-label">Địa chỉ</label>
@@ -30,7 +30,7 @@
             <label for="exampleInputPassword1" class="form-label">Ảnh</label>
             <input type="file" class="form-control" name="image" value='{{$item->image}}'>
             <img type="hidden" width="120px" height="120px" id="blah1"
-                                src="{{ asset('storage/users/' . $item->image) }}" alt="" />
+                                src="{{ $item->image}}" alt="" />
         </div>
         <div class="mb-3">
             <label class="form-label">Giới tính</label>

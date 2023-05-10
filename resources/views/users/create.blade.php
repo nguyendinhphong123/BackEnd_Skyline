@@ -30,25 +30,22 @@
                         @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        @error('email')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
-                            <input type="phone" class="form-control" name="phone" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input type="phone" class="form-control" name="phone" >
                         </div>
                         @error('phone')
                         <div class="text text-danger ">{{ $message }}</div>
                         @enderror
                         <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" >
+                        </div>
+                        @error('email')
+                        <div class="text text-danger ">{{ $message }}</div>
+                        @enderror
+                        <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input type="password" class="form-control" name="password" >
                         </div>
                         @error('password')
                         <div class="text text-danger ">{{ $message }}</div>

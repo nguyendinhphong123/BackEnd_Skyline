@@ -42,7 +42,7 @@
                             <label for="exampleInputPassword1" class="form-label">Ảnh</label>
                             <input type="file" class="form-control" name="image" value='{{$items->image}}'>
                             <img type="hidden" width="120px" height="120px" id="blah1"
-                                                src="{{ asset('storage/rooms/' . $items->image) }}" alt="" />
+                                                src="{{$items->image }}" alt="" />
                           </div>
                           <input type="submit" value="Cập nhật" class="btn btn-primary">
                           <a href="{{route('rooms.index')}}" class="btn btn-danger">Huỷ</a>

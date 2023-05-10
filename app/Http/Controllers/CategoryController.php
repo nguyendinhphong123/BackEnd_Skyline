@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Services\Interfaces\CategoryServiceInterface;
+use Illuminate\Support\Facades\Log;
+
 class CategoryController extends Controller
 {
     protected $categoryService;
@@ -74,7 +76,39 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->categoryService->destroy($id);
+        $items = $this->categoryService->destroy($id);
+        alert()->success('Phòng đã được đưa vào thùng rác!');
         return redirect()->route('categories.index');
     }
+    public function getTrashed()
+    {
+        $items = $this->categoryService->getTrashed();
+        $softs = Category::onlyTrashed()->paginate(3);
+        return view('categories.trash', compact('softs'));
+    }
+    public function restore($id)
+    {
+        try {
+            $items = $this->categoryService->restore($id);
+            toast('Khôi phục Phòng Thành Công!', 'success', 'top-right');
+            return redirect()->route('categories.index');
+        } catch (\exception $e) {
+            Log::error($e->getMessage());
+            toast('Có Lỗi Xảy Ra!', 'error', 'top-right');
+            return redirect()->route('categories.index');
+        }
+    }
+    public function deleteforever($id)
+    {
+
+        try {
+            $items = $this->categoryService->deleteforever($id);
+            toast('Xóa Vĩnh Viễn Sản Phẩm Thành Công!', 'success', 'top-right');
+            return redirect()->route('categories.index');
+        } catch (\exception $e) {
+            Log::error($e->getMessage());
+            toast('Có Lỗi Xảy Ra!', 'error', 'top-right');
+            return redirect()->route('categories.index');
+        }
+}
 }
