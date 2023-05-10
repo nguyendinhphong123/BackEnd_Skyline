@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
     <div class="container-scroller">

@@ -15,15 +15,15 @@ class CustomerPolicy
     use HandlesAuthorization;
     public function viewAny(User $user)
     {
-        return $user->HasPermissions('Customer_viewAny');
+        return $user->hasPermission('Customer_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, $post)
+    public function view(User $user)
     {
-          return $user->HasPermissions('Customer_viewAny');
+        return $user->hasPermission('Customer_view');
     }
 
     /**
@@ -31,44 +31,43 @@ class CustomerPolicy
      */
     public function create(User $user)
     {
-        return $user->HasPermissions('Customer_create');
+        return $user->hasPermission('Customer_create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, $post)
+    public function update(User $user)
     {
-        return $user->HasPermissions('Customer_update');
+        return $user->hasPermission('Customer_update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, $post)
+    public function delete(User $user)
     {
-        return $user->HasPermissions('Customer_delete');
+        return $user->hasPermission('Customer_delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user,  $post)
+    public function restore(User $user)
     {
-        return $user->HasPermissions('Customer_restore');
+        return $user->hasPermission('Customer_restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, $post)
+    public function forceDelete(User $user)
     {
-        return $user->HasPermissions('Customer_forceDelete');
+        return $user->hasPermission('Customer_forceDelete');
     }
 
     public function viewtrash(User $user)
     {
         return $user->hasPermission('Customer_viewtrash');
-        //
     }
 }

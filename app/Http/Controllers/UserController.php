@@ -23,6 +23,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', User::class);
         $items = $this->userService->all($request);
         return view('users.index', compact('items'));
     }
@@ -32,6 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
         $items = User::all();
         $groups = Group::all();
         return view('users.create', compact('items', 'groups'));
@@ -43,8 +45,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->except(['_token', '_method']);
-        // dd($request);
         $this->userService->store($data);
+        alert()->success('Thêm thành công!');
         return redirect()->route('users.index');
     }
 
@@ -53,32 +55,34 @@ class UserController extends Controller
     {
         $Users = User::get();
         $items = $this->userService->find($id);
-        // dd($Users);
         return view('users.show', compact('items', 'Users'));
     }
 
 
     public function edit($id)
     {
+        $this->authorize('update', User::class);
         $groups = Group::all();
         $item = $this->userService->find($id);
-        // dd($item);
-        return view('users.edit', compact('item','groups'));
+        return view('users.edit', compact('item', 'groups'));
     }
 
 
-    public function update(UpdateUserRequest $request,$id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $data = $request->except(['_token','_method']);
-        $this->userService->update($id,$data);
-            return redirect()->route('users.index');
-
+       
+        $data = $request->except(['_token', '_method']);
+        $this->userService->update($id, $data);
+        alert()->success('Sửa thành công!');
+        return redirect()->route('users.index');
     }
 
 
     public function destroy($id)
     {
+        $this->authorize('delete', User::class);
         $this->userService->destroy($id);
+        alert()->success('xóa thành công!');
         return redirect()->route('users.index');
     }
 }

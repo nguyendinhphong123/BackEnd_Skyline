@@ -1,20 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\StoreGroupRequest;
-use App\Http\Requests\UpdateGroupRequest;
-use App\Repositories\Interfaces\GroupRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Role;
+use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
+use App\Models\Category;
+use App\Repositories\Interfaces\GroupRepositoryInterface;
 use Illuminate\Support\Facades\Log;
-
 class GroupController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     protected $GroupService;
     public function __construct(GroupRepositoryInterface $GroupService)
     {
@@ -22,7 +18,8 @@ class GroupController extends Controller
     }
     public function index(Request $request)
     {
-        // $this->authorize('viewAny', Group::class);
+
+        $this->authorize('viewAny', Group::class);
         $items = $this->GroupService->all($request);
         return view('groups.index', compact('items'));
     }
@@ -41,9 +38,10 @@ class GroupController extends Controller
      */
     public function store(StoreGroupRequest $request)
     {
-
+        $this->authorize('create', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->store($data);
+        alert()->success('Thêm thành công!');
         return redirect()->route('groups.index');
     }
 
@@ -66,9 +64,10 @@ class GroupController extends Controller
      */
     public function update(UpdateGroupRequest $request, $id)
     {
-
+        $this->authorize('update', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->update($id, $data);
+        alert()->success('Sửa thành công!');
         return redirect()->route('groups.index');
     }
 
@@ -79,27 +78,30 @@ class GroupController extends Controller
     {
         $this->authorize('delete', Group::class);
         $this->GroupService->destroy($id);
+        alert()->success('xóa thành công!');
         return redirect()->route('groups.index');
     }
     public function show(string $id)
     {
-        $group =  $this->GroupService->show($id);
         $roles = Role::get();
         $group = $this->GroupService->find($id);
+        $active_roles = $group->roles->pluck('id')->toArray();
         $params = [
             'group' => $group,
-            'roles'   => $roles
+            'roles'   => $roles,
+            'active_roles'   => $active_roles,
         ];
 
         return view('groups.show', $params);
     }
 
 
-    public function group_detail(Request $request, $id)
+    public function updateRoles(Request $request, $id)
     {
 
         try {
-            $this->GroupService->group_detail($id, $request);
+            $this->GroupService->updateRoles($id, $request);
+            alert()->success('Cấp quyền thành công!');
             return redirect()->route('groups.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());

@@ -25,6 +25,8 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
+
+        $this->authorize('viewAny', Room::class);
         $items = $this->roomService->all($request);
         $categories = Category::get();
         return view('rooms.index', compact('items', 'categories'));
@@ -35,6 +37,7 @@ class RoomController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Room::class);
         $categories = Category::all();
         return view('rooms.create', compact('categories'));
 
@@ -45,6 +48,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
+        $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);
         $this->roomService->store($data);
         alert()->success('Thêm phòng thành công!');
@@ -66,6 +70,7 @@ class RoomController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Room::class);
         $items = $this->roomService->find($id);
         $categories = Category::all();
         $room = $this->roomService->find($id);
@@ -77,6 +82,7 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, $id)
     {
+        $this->authorize('update', Room::class);
         $data = $request->except(['_token','_method']);
         $this->roomService->update($id,$data);
         alert()->success('Sửa phòng thành công!');
@@ -88,6 +94,7 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', Room::class);
         $items = $this->roomService->destroy($id);
         alert()->success('Phòng đã được đưa vào thùng rác!');
         return redirect()->route('rooms.index');
