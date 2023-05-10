@@ -15,7 +15,7 @@ class CategoryController extends Controller
     }
     public function index(Request $request)
     {
-        // $this->authorize('viewAny', Category::class);
+        $this->authorize('viewAny', Category::class);
         $items = $this->categoryService->all($request);
         return view('categories.index', compact('items'));
     }
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // $this->authorize('create', Category::class);
+        $this->authorize('create', Category::class);
         return view('categories.create');
     }
 
@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // $this->authorize('create', Category::class);
+        $this->authorize('create', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->store($data);
         alert()->success('Thêm thành công!');
@@ -54,7 +54,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        // $this->authorize('update', Category::class);
+        $this->authorize('update', Category::class);
         $item = $this->categoryService->find($id);
         return view('categories.edit', compact('item'));
 
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request,$id)
     {
-        // $this->authorize('update', Category::class);
+        $this->authorize('update', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->update($id,$data);
         alert()->success('Sửa thành công!');

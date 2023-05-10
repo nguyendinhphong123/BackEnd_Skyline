@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $table ='users';
     /**
      * The attributes that are mass assignable.
      *
@@ -52,8 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Group::class, 'group_id', 'id');
     }
-    public function HasPermissions($role_name)
+    public function hasPermission($role_name)
     {
+        // dd('model user');
         $user_roles = isset($this->group->roles) ? $this->group->roles->pluck('name')->toArray() : [];
         if (in_array($role_name, $user_roles)) {
             return true;

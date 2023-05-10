@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <h3>Danh sách nhóm quyền</h3>
+@include('sweetalert::alert')
 <div class="container">
     <table class="table" style="text-align:center">
         <a href="{{route('groups.create')}}" class="btn btn-info">Thêm mới</a>
@@ -8,6 +9,7 @@
             <tr>
                 <th>STT</th>
                 <th>Tên</th>
+                <th>Người đảm nhận </th>
                 <th>Quản lý</th>
             </tr>
         </thead>
@@ -16,6 +18,7 @@
             <tr>
                 <td>{{++$key}}</td>
                 <td>{{$item->name}}</td>
+                <td>Hiện có {{ count($item->users) }} người</td>
                 <td>
                     <form action="{{route('groups.destroy',[$item->id])}}" method="post">
                         @method('DELETE')

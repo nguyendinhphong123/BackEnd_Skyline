@@ -41,12 +41,13 @@ Route::group(['prefix' => 'orders'], function () {
     Route::get('/detail/{id}', [OrderController::class, 'show'])->name('orders.detail');
 });
 
+
 Route::resource('users',\App\Http\Controllers\UserController::class);
 Route::resource('groups',\App\Http\Controllers\GroupController::class);
-// group
+
 Route::group(['prefix'=>'groups'], function(){
-    Route::put('/group_detail/{id}', [GroupController::class, 'group_detail'])->name('group.group_detail');
-    Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('group.detail');
+    Route::put('/updateRoles/{id}', [GroupController::class, 'updateRoles'])->name('groups.updateRoles');
+    // Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('groups.detail');
 });
 
 });

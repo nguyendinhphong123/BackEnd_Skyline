@@ -16,34 +16,35 @@ class CategoryPolicy
 
     public function viewAny(User $user)
     {
-        return $user->HasPermissions('Category_viewAny');
-        
+        // dd('category policy');
+        return $user->hasPermission('Category_viewAny');
+
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user): bool
+    public function view(User $user)
     {
-        return $user->HasPermissions('Category_view');
+        return $user->hasPermission('Category_view');
 
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
-        return $user->HasPermissions('Category_create');
+        return $user->hasPermission('Category_create');
 
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user): bool
+    public function update(User $user)
     {
-        return $user->HasPermissions('Category_update');
+        return $user->hasPermission('Category_update');
 
 
     }
@@ -51,7 +52,7 @@ class CategoryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user): bool
+    public function delete(User $user)
     {
         return $user->HasPermissions('Category_delete');
 
@@ -61,23 +62,23 @@ class CategoryPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user): bool
+    public function restore(User $user)
     {
-        return $user->HasPermissions('Category_restore');
+        return $user->hasPermission('Category_restore');
 
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user): bool
+    public function forceDelete(User $user)
     {
-        return $user->HasPermissions('Category_forceDelete');
+        return $user->hasPermission('Category_forceDelete');
 
     }
     public function viewtrash(User $user)
     {
-        return $user->hasPermission('Category_viewtrash');
+        return $user->hasPermission('Category_trash');
         //
     }
 }

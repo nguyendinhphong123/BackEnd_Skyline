@@ -18,12 +18,12 @@ class OrderController extends Controller
         $this->orderService = $orderService;
     }
     public function index(Request $request){
+        $this->authorize('viewAny', Order::class);
         $items = $this->orderService->all($request);
         return view('orders.index',compact('items'));
     }
     public function show($id){
-
-        
+        $this->authorize('viewAny', Order::class);
         $data = DB::table('orders')
         ->join('rooms', 'orders.room_id', '=', 'rooms.id')
         ->select('orders.*', 'rooms.name as room_name', 'rooms.image', 'rooms.price')

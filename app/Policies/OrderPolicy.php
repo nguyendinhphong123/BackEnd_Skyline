@@ -16,15 +16,15 @@ class OrderPolicy
 
     public function viewAny(User $user)
     {
-        return $user->HasPermissions('Oder_viewAny');
+        return $user->hasPermission('Order_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, $post)
+    public function view(User $user)
     {
-        return $user->HasPermissions('Oder_viewAny');
+        return $user->hasPermission('Order_viewAny');
 
     }
 
@@ -33,49 +33,49 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        return $user->HasPermissions('Oder_create');
+        return $user->hasPermission('Order_create');
 
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, $post)
+    public function update(User $user)
     {
-        return $user->HasPermissions('Oder_update');
+        return $user->hasPermission('Order_update');
 
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, $post)
+    public function delete(User $user)
     {
-        return $user->HasPermissions('Oder_viewAny');
+        return $user->hasPermission('Order_delete');
 
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user,  $post)
+    public function restore(User $user)
     {
-        return $user->HasPermissions('Oder_viewAny');
+        return $user->hasPermission('Order_restore');
 
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, $post)
+    public function forceDelete(User $user)
     {
-        return $user->HasPermissions('Oder_viewAny');
+        return $user->hasPermission('Order_forceDelete');
 
     }
 
     public function viewtrash(User $user)
     {
-        return $user->hasPermission('Customer_viewtrash');
+        return $user->hasPermission('Order_trash');
 
     }
 }

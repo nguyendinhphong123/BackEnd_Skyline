@@ -14,62 +14,63 @@ class RoomPolicy
      */
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(User $user)
     {
-        return $user->HasPermissions('Room_viewAny');
+        return $user->hasPermission('room_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Room $room): bool
+    public function view(User $user)
     {
-        return $user->HasPermissions('Room_view');
+        return $user->hasPermission('room_viewAny');
+
     }
 
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user)
     {
-        return $user->HasPermissions('Room_create');
+        return $user->hasPermission('room_view');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Room $room): bool
+    public function update(User $user)
     {
-        return $user->HasPermissions('Room_update');
+        return $user->hasPermission('room_update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Room $room): bool
+    public function delete(User $user)
     {
-        return $user->HasPermissions('Room_delete');
+        return $user->hasPermission('room_delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Room $room): bool
+    public function restore(User $user)
     {
-        return $user->HasPermissions('Room_restore');
+        return $user->hasPermission('room_restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Room $room): bool
+    public function forceDelete(User $user)
     {
-        return $user->HasPermissions('Room_forceDelete');
+        return $user->hasPermission('room_forceDelete');
     }
-    
+
     public function viewtrash(User $user)
     {
-        return $user->hasPermission('Room_viewtrash');
+        return $user->hasPermission('room_trash');
 
     }
 }
