@@ -31,4 +31,13 @@ class RoomService implements RoomServiceInterface
     public function destroy($id){
         return $this->roomRepository->destroy($id);
     }
+    public function getTrashed(){
+        return $this->roomRepository->getTrashed();
+    }
+    public function restore($id){
+        return $this->roomRepository->restore($id);
+    }
+    public function deleteforever($id){
+        return $this->roomRepository->deleteforever($id);
+    }
 }

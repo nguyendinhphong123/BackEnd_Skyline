@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 @include('sweetalert::alert')
-<h3>Danh sách thể loại</h3>
+<h3 style="text-align: center">Danh sách thể loại</h3>
 <div class="container">
     <table class="table" style="text-align:center">
         <a href="{{route('categories.create')}}" class="btn btn-info">Thêm mới</a>
@@ -23,7 +23,7 @@
                         @method('DELETE')
                         @csrf
                         <a href="{{ route('categories.edit',$item['id']) }}" class="btn btn-warning">Sửa</a>
-                        <button onclick="return confirm('Bạn có muốn xóa  này không?');"
+                        <button onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không?');"
                             class="btn btn-danger">Xóa</button>
 
                         </form>

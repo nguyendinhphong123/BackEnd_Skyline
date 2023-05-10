@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
-<h3>Danh sách nhân viên</h3>
 @include('sweetalert::alert')
+<h3 style="text-align: center">Danh sách nhân viên</h3>
 <div class="container">
     <table class="table" style="text-align:center">
         <a href="{{route('users.create')}}" class="btn btn-info">Thêm mới</a>
