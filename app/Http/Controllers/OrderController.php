@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersExport;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Room;
@@ -9,6 +10,7 @@ use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -33,5 +35,9 @@ class OrderController extends Controller
         $checkout = Carbon::parse($data->checkout);
         $numberOfDays = $checkout->diffInDays($checkin);
         return view('orders.show',compact('data','numberOfDays'));
+    }
+    public function export()
+    {
+        return Excel::download(new OrdersExport, 'orders.xlsx');
     }
 }

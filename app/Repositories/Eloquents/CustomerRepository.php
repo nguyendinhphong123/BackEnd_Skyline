@@ -22,6 +22,7 @@ class CustomerRepository extends EloquentRepository implements CustomerRepositor
             $search = $request->key;
             $customers = $customers->Search($search);
         }
-        return $customers->orderBy('id','DESC')->paginate(2);
+
+        return $customers->orderBy('id','DESC')->paginate(3);
     }
 }

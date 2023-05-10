@@ -5,6 +5,7 @@
 
     <table class="table" style="text-align:center">
         <a href="{{route('rooms.create')}}" class="btn btn-info">Thêm mới</a>
+        <a href="{{ route('rooms.export') }}" class="btn btn-warning">Xuất file excel</a>
         <thead>
             <tr>
                 <th>STT</th>

@@ -9,6 +9,8 @@ use App\Models\Room;
 use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RoomsExport;
 
 class RoomController extends Controller
 {
@@ -127,5 +129,10 @@ class RoomController extends Controller
             toast('Có Lỗi Xảy Ra!', 'error', 'top-right');
             return redirect()->route('rooms.index');
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new RoomsExport, 'rooms.xlsx');
     }
 }
