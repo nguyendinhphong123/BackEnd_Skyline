@@ -20,6 +20,7 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
 
     public function all($request)
     {
+        // dd('repository');
         $Groups = $this->model->select('*');
 
         if (!empty($request->key)) {
@@ -30,14 +31,14 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
     }
     public function show($id)
     {
-        $group = Group::find($id);
+        $group = $this->find($id);
 
         $current_user = Auth::user();
         $userRoles = $group->roles->pluck('id', 'name')->toArray();
         $roles = Role::all()->toArray();
         $group_names = [];
 
-        /////lấy tên nhóm quyền
+        // /////lấy tên nhóm quyền
         foreach ($roles as $role) {
             $group_names[$role['group_name']][] = $role;
         }
@@ -49,9 +50,14 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
         ];
         return $params;
     }
-    public function group_detail($id, $request)
+    public function update($id, $data)
     {
-        $group = Group::find($id);
+        return $this->find($id)->update($data);
+    }
+    public function updateRoles($id, $request)
+    {
+
+        $group = $this->find($id);
         $group->roles()->detach();
         $group->roles()->attach($request->roles);
     }

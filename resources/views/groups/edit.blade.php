@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 {{--  <main id="main">  --}}
-    {{--  @include('sweetalert::alert')  --}}
+    @include('sweetalert::alert')
     <form  action="{{route('groups.update',[$item->id])}}" method="POST" enctype="multipart/form-data">
         <h2 style="color: black" class="offset-5">Chỉnh sửa</h2>
         @method('PUT')

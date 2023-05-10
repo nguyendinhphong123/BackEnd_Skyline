@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
+
+    use HasFactory;
+    protected $table ='categories';
     use HasFactory,SoftDeletes;
-
-
-    protected $table = 'categories';
     protected $fillable = ['id','name'];
 
     public function rooms()

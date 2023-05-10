@@ -31,4 +31,7 @@ class GroupService implements GroupServiceInterface
     public function destroy($id){
         return $this->GroupRepository->destroy($id);
     }
+    public function updateRoles($id){
+        return $this->GroupRepository->updateRoles($id);
+    }
 }
