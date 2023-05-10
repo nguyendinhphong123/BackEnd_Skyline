@@ -61,5 +61,30 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         }
         return $rooms->orderBy('id','DESC')->paginate(4);
     }
+
+    public function delete($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
+    public function getTrashed()
+    {
+        $result = $this->model->onlyTrashed()->get();
+        return $result;
+    }
+    public function restore($id)
+    {
+        $result = $this->model->withTrashed()->find($id)->restore();
+        return $result;
+    }
+
+    public function deleteforever($id)
+    {
+        // try {
+
+            $result = $this->model->onlyTrashed()->find($id);
+            $result->forceDelete();
+            return $result;
+        
+    }
     
 }

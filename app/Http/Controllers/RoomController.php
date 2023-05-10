@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Category;
+use App\Models\Room;
 use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RoomController extends Controller
 {
@@ -85,7 +87,38 @@ class RoomController extends Controller
     public function destroy($id)
     {
         $items = $this->roomService->destroy($id);
+        alert()->success('Phòng đã được đưa vào thùng rác!');
         return redirect()->route('rooms.index');
+    }
+    public function getTrashed()
+    {
+        $items = $this->roomService->getTrashed();
+        $softs = Room::onlyTrashed()->paginate(3);
+        return view('rooms.trash', compact('softs'));
+    }
+    public function restore($id)
+    {
+        try {
+            $items = $this->roomService->restore($id);
+            toast('Khôi phục Phòng Thành Công!', 'success', 'top-right');
+            return redirect()->route('rooms.index');
+        } catch (\exception $e) {
+            Log::error($e->getMessage());
+            toast('Có Lỗi Xảy Ra!', 'error', 'top-right');
+            return redirect()->route('rooms.index');
+        }
+    }
+    public function deleteforever($id)
+    {
 
+        try {
+            $items = $this->roomService->deleteforever($id);
+            toast('Xóa Vĩnh Viễn Sản Phẩm Thành Công!', 'success', 'top-right');
+            return redirect()->route('rooms.index');
+        } catch (\exception $e) {
+            Log::error($e->getMessage());
+            toast('Có Lỗi Xảy Ra!', 'error', 'top-right');
+            return redirect()->route('rooms.index');
+        }
     }
 }

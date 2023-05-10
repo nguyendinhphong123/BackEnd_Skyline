@@ -26,4 +26,24 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
         }
         return $categories->orderBy('id','DESC')->paginate(5);
     }
+    public function getTrashed()
+    {
+        $result = $this->model->onlyTrashed()->get();
+        return $result;
+    }
+    public function restore($id)
+    {
+        $result = $this->model->withTrashed()->find($id)->restore();
+        return $result;
+    }
+
+    public function deleteforever($id)
+    {
+        // try {
+
+            $result = $this->model->onlyTrashed()->find($id);
+            $result->forceDelete();
+            return $result;
+        
+    }
 }

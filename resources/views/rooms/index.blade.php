@@ -23,7 +23,7 @@
                 <td>{{$item->name}}</td>
                 <td>{{number_format( $item->price) }} VND</td>
                 <td>{{$item->quantity}}</td>
-                <td>{{$item->category->name}}</td>
+                <td>{{$item->category ->name}}</td>
                 <td>
                     <a href="{{route('rooms.show',$item['id'])}}">
                         <img  style="width:120px; height:100px" src="{{ $item->image }}" alt=""class="image_photo">
@@ -35,7 +35,7 @@
                         @method('DELETE')
                         @csrf
                         <a href="{{route('rooms.edit',[$item->id])}}" class="btn btn-warning">Sửa</a>
-                        <button onclick="return confirm('Bạn có muốn xóa  này không?');"
+                        <button onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không?');"
                             class="btn btn-danger">Xóa</button>
                     </form>
                 </td>
