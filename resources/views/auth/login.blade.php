@@ -5,7 +5,7 @@ body {
   background-image:url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/ca/38/3a/au-lac-charner-hotel.jpg?w=1200&h=-1&s=1');
   background-position:center;
   background-size:cover;
-  
+
   -webkit-font-smoothing: antialiased;
   font: normal 14px Roboto,arial,sans-serif;
   font-family: 'Dancing Script', cursive!important;
@@ -40,8 +40,8 @@ body {
 h1{
     color:white!important;
 }
-h4 { 
- border:0 solid #fff; 
+h4 {
+ border:0 solid #fff;
  border-bottom-width:1px;
  padding-bottom:10px;
  text-align: center;
@@ -106,6 +106,12 @@ h4 {
                 @error('password')
                 <div class="text text-danger">{{ $message }}</div>
             @enderror <br>
+            <div class="row mb-4">
+                <div class="nho-dang-nhap">
+                    <label><input type="checkbox" name=""> Nhớ Đăng Nhập</label>
+                    <a href="{{route('forget-password')}}">Quên Mật Khẩu</a>
+                </div>
+            </div>
                 <div class="wrapper">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </div>
