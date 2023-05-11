@@ -16,9 +16,7 @@ class CategoryPolicy
 
     public function viewAny(User $user)
     {
-        // dd('category policy');
         return $user->hasPermission('Category_viewAny');
-
     }
 
     /**
@@ -79,6 +77,5 @@ class CategoryPolicy
     public function viewtrash(User $user)
     {
         return $user->hasPermission('Category_trash');
-        //
     }
 }
