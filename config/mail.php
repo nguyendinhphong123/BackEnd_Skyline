@@ -40,7 +40,7 @@ return [
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('huyentran221100@gmail.com'),
-            'password' => env('Huyentranthiheo221100'),
+            'password' => env('qwertyuiop'),
             'timeout' => null,
             'local_domain' => null,
         ],

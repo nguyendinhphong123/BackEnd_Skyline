@@ -42,16 +42,16 @@
                           <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><b><i>Hãy Dùng Mã Này Để Cấp Quyền Truy Cập Tài Khoản Của Bạn</i></b><br>
                             <b><i>Chúc Bạn Một Ngày Làm Việc Vui Vẻ!.</i></b><br>
                             <b><i>Thân Ái!.</i></b><br>
-                            <h4><i>Mai Xuan Cuong (Mr.)</i></h4></p>
-                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Email Liên Hệ: <a href="mailto:maixuancuong2906@gamil.com" style="color:rgb(17,85,204)"
-                            target="_blank">maixuancuong2906@gamil.com</a></a></p>
+                            <h4><i>NGUYEN DINH PHONG (Mr.)</i></h4></p>
+                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Email Liên Hệ: <a href="mailto:huyentran221100@gmail.com" style="color:rgb(17,85,204)"
+                            target="_blank">huyentran221100@gmail.com</a></a></p>
                         </td>
                         <td style="width:20px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
                         <td style="width:260px;padding:0;vertical-align:top;color:#153643;">
                           <p style="margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><img src="https://bigdata-vn.com/wp-content/uploads/2021/11/1637008447_164_Nhung-hinh-anh-thac-mac.jpg" alt="" width="260" style="height:auto;display:block;" /></p>
                           <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><b><i>Bạn Đã Gửi Một Yêu Cầu Thay Đổi Mật Khẩu Vì Vậy!.</i></b><br>
                             <b><i>Chúng Tôi Gửi Mã Xác Minh Đến Email Của Bạn Để Chắc Chắn Rằng Người Yêu Cầu Chính Là Bạn?.</i></b><br></p></p>
-                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">XC-Shop Xác Minh</a></p>
+                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Hotel-Booking Xác Nhận</a></p>
                         </td>
                       </tr>
                     </table>
@@ -66,7 +66,7 @@
                 <tr>
                   <td style="padding:0;width:50%;" align="left">
                     <p style="margin:0;font-size:14px;line-height:16px;font-family:Arial,sans-serif;color:#ffffff;">
-                      &reg; XC-Shop, limited 2022<br/>
+                      &reg; Hotel-Booking, limited 2023<br/>
                     </p>
                   </td>
                   <td style="padding:0;width:50%;" align="right">

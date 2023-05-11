@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 // use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 //Login
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/checklogin', [AuthController::class, 'postLogin'])->name('admin.checklogin');
+Route::get('/forget-password', [UserController::class, 'forget_password'])->name('forget-password');
+Route::post('/changepassmail', [UserController::class, 'changepassmail'])->name('changepassmail');
 
 Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::get('admin', [AuthController::class, 'home'])->name('trangchu');
@@ -36,7 +37,11 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
         });
     // Category
     Route::resource('categories',\App\Http\Controllers\CategoryController::class);
-    
+    Route::group(['prefix' => 'categories'], function () {
+    Route::get('/trash', [CategoryController::class, 'getTrashed'])->name('categories.trash');
+    Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('categories.restore');
+    Route::delete('/deleteforever/{id}', [CategoryController::class, 'deleteforever'])->name('categories.deleteforever');
+    });
     // Rooms
     Route::group(['prefix' => 'rooms'], function () {
         Route::get('/trash', [RoomController::class, 'getTrashed'])->name('rooms.trash');
@@ -47,13 +52,8 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     Route::resource('rooms',\App\Http\Controllers\RoomController::class);
     // thùng rác
     Route::get('/export-rooms', [RoomController::class, 'export'])->name('rooms.export');
-
-    
     // Customers
     Route::get('/customer', [CustomerController::class, 'index'])->name('customers.index');
-    // Route::post('/customer/changepassmail', [CustomerController::class, 'changepassmail'])->name('customer.changepassmail');
-    // Route::post('/user/changepassmail', [UserController::class, 'changepassmail'])->name('users.changepassmail');
-
     // Orders
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('orders.index');
@@ -65,9 +65,8 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     Route::resource('groups',\App\Http\Controllers\GroupController::class);
     Route::group(['prefix'=>'groups'], function(){
     Route::put('/updateRoles/{id}', [GroupController::class, 'updateRoles'])->name('groups.updateRoles');
-    // Route::get('/detail/{id}', [GroupController::class, 'detail'])->name('groups.detail');
-});
 
+});
 });
 
 
