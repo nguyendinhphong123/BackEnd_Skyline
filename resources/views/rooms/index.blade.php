@@ -4,6 +4,7 @@
 <div class="container">
 
     <table class="table" style="text-align:center">
+        <h2 style="text-align: center">Danh Sách Phòng</h2><br>
         <a href="{{route('rooms.create')}}" class="btn btn-info">Thêm mới</a>
         <a href="{{ route('rooms.export') }}" class="btn btn-warning">Xuất file excel</a>
         <thead>
@@ -24,7 +25,7 @@
                 <td>{{$item->name}}</td>
                 <td>{{number_format( $item->price) }} VND</td>
                 <td>{{$item->quantity}}</td>
-                <td>{{$item->category ->name}}</td>
+                <td>{{$item->category->name}}</td>
                 <td>
                     <a href="{{route('rooms.show',$item['id'])}}">
                         <img  style="width:120px; height:100px" src="{{ $item->image }}" alt=""class="image_photo">

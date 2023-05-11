@@ -29,25 +29,26 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     Route::get('admin', [AuthController::class, 'home'])->name('trangchu');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/trash', [CategoryController::class, 'getTrashed'])->name('categories.trash');
+        Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('categories.restore');
+        Route::delete('/deleteforever/{id}', [CategoryController::class, 'deleteforever'])->name('categories.deleteforever');
+        });
     // Category
     Route::resource('categories',\App\Http\Controllers\CategoryController::class);
-    Route::group(['prefix' => 'categories'], function () {
-    Route::get('/trash', [CategoryController::class, 'getTrashed'])->name('categories.trash');
-    Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('categories.restore');
-    Route::delete('/deleteforever/{id}', [CategoryController::class, 'deleteforever'])->name('categories.deleteforever');
-    });
-    // Rooms
     
-        Route::resource('rooms',\App\Http\Controllers\RoomController::class);
+    // Rooms
+    Route::group(['prefix' => 'rooms'], function () {
+        Route::get('/trash', [RoomController::class, 'getTrashed'])->name('rooms.trash');
+        Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
+        Route::delete('/deleteforever/{id}', [RoomController::class, 'deleteforever'])->name('rooms.deleteforever');
+         //xuất file excel
+        });
+    Route::resource('rooms',\App\Http\Controllers\RoomController::class);
     // thùng rác
     Route::get('/export-rooms', [RoomController::class, 'export'])->name('rooms.export');
 
-    Route::group(['prefix' => 'rooms'], function () {
-    Route::get('/trash', [RoomController::class, 'getTrashed'])->name('rooms.trash');
-    Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
-    Route::delete('/deleteforever/{id}', [RoomController::class, 'deleteforever'])->name('rooms.deleteforever');
-     //xuất file excel
-    });
+    
     // Customers
     Route::get('/customer', [CustomerController::class, 'index'])->name('customers.index');
     // Route::post('/customer/changepassmail', [CustomerController::class, 'changepassmail'])->name('customer.changepassmail');

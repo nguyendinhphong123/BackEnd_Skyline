@@ -18,13 +18,17 @@ class Room extends Model
     }
 
     public function scopeSearch($query, $term)
-    {
-        if ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('price', 'like', '%' . $term . '%')
-                ->orWhere('quantity', 'like', '%' . $term . '%')
-                ->orWhere('id', 'like', '%' . $term . '%');
-        }
-        return $query;
+{
+    if ($term) {
+        $query
+            ->join('categories', 'rooms.category_id', '=', 'categories.id')
+            ->where('rooms.name', 'like', '%' . $term . '%')
+            ->orWhere('rooms.price', 'like', '%' . $term . '%')
+            ->orWhere('rooms.quantity', 'like', '%' . $term . '%')
+            ->orWhere('rooms.id', 'like', '%' . $term . '%')
+            ->orWhere('categories.name', 'like', '%' . $term . '%')
+            ->select('rooms.*');
     }
+    return $query;
+}
 }
