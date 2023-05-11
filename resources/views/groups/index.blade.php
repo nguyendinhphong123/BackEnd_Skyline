@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<h3>Danh sách nhóm quyền</h3>
+<h3 style="text-align:center">Danh sách nhóm quyền</h3>
 @include('sweetalert::alert')
 <div class="container">
     <table class="table" style="text-align:center">

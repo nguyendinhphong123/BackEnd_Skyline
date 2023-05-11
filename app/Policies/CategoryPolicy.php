@@ -54,7 +54,7 @@ class CategoryPolicy
      */
     public function delete(User $user)
     {
-        return $user->HasPermissions('Category_delete');
+        return $user->hasPermission('Category_delete');
 
 
     }

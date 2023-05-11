@@ -84,7 +84,7 @@
           <div class="mt-4">
             <ul class="mt-4 pl-0">
               <a class="dropdown-item" href="{{route('logout')}}">
-                <li class="mdi mdi-logout mr-2">Signout</li></a>
+                <li class="mdi mdi-logout mr-2">Đăng xuất</li></a>
             </ul>
           </div>
         </div>
@@ -172,7 +172,7 @@
                 <li class="nav-item nav-search border-0 ml-1 ml-md-3 ml-lg-5 d-none d-md-flex">
                   <form class="nav-link form-inline mt-2 mt-md-0">
                     <div class="input-group">
-                      <input type="text" name="key" class="form-control" value="{{ request()->key}}" placeholder="Search" />
+                      <input type="text" name="key" class="form-control" value="{{ request()->key}}" placeholder="Tìm kiếm" />
                       <div class="input-group-append">
                         <span class="input-group-text">
                         <input type="submit" value="" id="confirmn-search" hidden>
@@ -188,7 +188,7 @@
               <ul class="navbar-nav navbar-nav-right ml-lg-auto">
                 <li class="nav-item dropdown d-none d-xl-flex border-0">
                   <a class="nav-link dropdown-toggle" id="languageDropdown" href="#" data-toggle="dropdown">
-                    <i class="mdi mdi-earth"></i> English </a>
+                    <i class="mdi mdi-earth"></i> Tiếng Việt </a>
                   <div class="dropdown-menu navbar-dropdown" aria-labelledby="languageDropdown">
                     <a class="dropdown-item" href="#"> French </a>
                     <a class="dropdown-item" href="#"> Spain </a>
@@ -203,9 +203,9 @@
                   </a>
                   <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="#">
-                      <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
+                      <i class="mdi mdi-cached mr-2 text-success"></i> Đang hoạt động </a>
                     <a class="dropdown-item" href="{{route('logout')}}">
-                      <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                      <i class="mdi mdi-logout mr-2 text-primary"></i> Đăng xuất </a>
                   </div>
                 </li>
               </ul>
