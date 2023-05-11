@@ -20,7 +20,7 @@
             <tr>
                 <td>{{  ++$key }}</td>
                 <td>{{ $item->name}}</td>
-                <td><a href="{{ route('users.show', $item->id) }}"><img id="avt" src="{{asset( $item->image)}}" alt=""></a></td>
+                <td><a href="{{ route('users.show', $item->id) }}"><img style="width:120px; height:100px" src="{{asset( $item->image)}}" alt=""></a></td>
                 <td>{{ $item->phone}}</td>
                 <td> {{ isset($item->group->name) ? $item->group->name : 'chưa phân quyền'  }}</td>
                 <td>
