@@ -21,7 +21,7 @@ class OrderSeeder extends Seeder
                 'price' => 322214,
                 'room_id' => 2,
                 'customer_id' => 3,
-                'created_at'=>'2022-1-27',
+                'created_at'=>'2022-1-27'
             ],
         ]);
     }

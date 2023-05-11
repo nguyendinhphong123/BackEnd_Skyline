@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
@@ -70,7 +69,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, $id)
     {
-       
+
         $data = $request->except(['_token', '_method']);
         $this->userService->update($id, $data);
         alert()->success('Sửa thành công!');
@@ -85,4 +84,7 @@ class UserController extends Controller
         alert()->success('xóa thành công!');
         return redirect()->route('users.index');
     }
+    // public function changepassmail(ChangePassWordByMailRequest $request){
+
+    // }
 }

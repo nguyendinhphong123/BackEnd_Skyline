@@ -61,4 +61,15 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
         $group->roles()->detach();
         $group->roles()->attach($request->roles);
     }
+    public function showGroup($id){
+        $roles = Role::get();
+        $group = $this->model->find($id);
+        $active_roles = $group->roles->pluck('id')->toArray();
+        $params = [
+            'group' => $group,
+            'roles'   => $roles,
+            'active_roles'   => $active_roles,
+        ];
+        return $params;
+    }
 }

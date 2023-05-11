@@ -38,7 +38,7 @@ abstract class EloquentRepository implements RepositoryInterface
     }
 
     public function store($data)
-    { 
+    {
         return $this->model->create($data);
     }
 
@@ -51,4 +51,5 @@ abstract class EloquentRepository implements RepositoryInterface
     {
         return $this->model->where('id',$id)->delete();
     }
+
 }
