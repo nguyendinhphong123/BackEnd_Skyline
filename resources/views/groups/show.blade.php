@@ -2,18 +2,14 @@
 @section('content')
 <style>
     .list-role {
-        width: 250px;
+        width: 888px;
         display: flex;
         justify-content: space-between;
         margin: 10px 0 10px 0;
       }
 
       .list-container {
-        display: flex;
-        flex-wrap: wrap;
-        max-height: 300px;
-        overflow-y: auto;
-        gap: 20px;
+
       }
 
       .list-group-header {
@@ -27,7 +23,7 @@
       }
 
       .checkbox-header {
-        
+
         display: flex;
         align-items: center;
         gap: 10px;
@@ -41,6 +37,7 @@
       .checkbox-all {
         margin-right: 5px;
       }
+
 </style>
 <main class="page-content">
     <div class="container">
@@ -65,27 +62,34 @@
                                             <div class="form-group">
                                                 <input type="checkbox" id="checkAll" class="form-check-input"
                                                     value="Quyền hạn">
-                                                <label class="w3-button w3-blue">{{ __('Cấp toàn bộ quyền') }}
+                                                    <label class="w3-button w3-blue"  for="checkAll">{{ __('Cấp toàn bộ quyền') }}</label>
                                                     <div class="row">
                                                         {{-- @foreach ($group_names as $group_name) --}}
-                                                        <div class="col-lg-10">
+                                                        <div class="col-lg-12">
                                                             <div class="list-group-header"
                                                                 style="color:rgb(2, 6, 249) ;">
                                                                 <h5> Nhóm: {{ __($group->name) }}</h5>
                                                             </div>
                                                             <div class="list-container">
                                                                 @foreach ($roles as $role)
-                                                                <div class="list-role">
-                                                                    <span style="color: rgb(4, 5, 5) ;">{{ __($role
-                                                                        ->name) }}</span>
-                                                                    <label class=" ">
-                                                                        <input type="checkbox" @checked(in_array($role
-                                                                            ->id ,$active_roles )) name="roles[]"
-                                                                        class="form-check-input check-role" value="{{
-                                                                        $role->id }}">
-                                                                        <span class="switcher-indicator"></span>
-                                                                    </label>
-                                                                </div>
+                                                                    @if($role->group_key == 0)
+                                                                        <label>
+                                                                            <div>{{$role->group_name}}
+                                                                                <input type="checkbox" class="checker" value="{{$role->group_name}}" id="" >
+                                                                            </div>
+                                                                        </label>
+                                                                    @endif
+                                                                    <div class="list-role">
+                                                                        @if($role->group_key != 0)
+                                                                            <span style="color: rgb(4, 5, 5) ;">{{ __($role->name) }}</span>
+
+                                                                            <label class=" ">
+                                                                                <input  type="checkbox" @checked(in_array($role->id ,$active_roles )) name="roles[]"
+                                                                                        class="form-check-input check-role {{$role->group_name}}" value="{{$role->id }}">
+                                                                                <span class="switcher-indicator"></span>
+                                                                            </label>
+                                                                        @endif
+                                                                    </div>
                                                                 @endforeach
                                                             </div>
                                                         </div>
@@ -107,8 +111,14 @@
                     console.log(this.checked)
                     $('.check-role').prop('checked', this.checked);
                 });
+                document.querySelectorAll('.checker').forEach(function(el){
+                    el.onclick = function(){
+                        $('.'+el.value).prop('checked', this.checked);
+                    }
+                })
             </script>
         </section>
     </div>
 </main>
 @endsection
+

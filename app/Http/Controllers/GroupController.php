@@ -83,15 +83,7 @@ class GroupController extends Controller
     }
     public function show(string $id)
     {
-        $roles = Role::get();
-        $group = $this->GroupService->find($id);
-        $active_roles = $group->roles->pluck('id')->toArray();
-        $params = [
-            'group' => $group,
-            'roles'   => $roles,
-            'active_roles'   => $active_roles,
-        ];
-
+        $params = $this->GroupService->showGroup($id);
         return view('groups.show', $params);
     }
 

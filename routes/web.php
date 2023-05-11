@@ -50,6 +50,8 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     });
     // Customers
     Route::get('/customer', [CustomerController::class, 'index'])->name('customers.index');
+    // Route::post('/customer/changepassmail', [CustomerController::class, 'changepassmail'])->name('customer.changepassmail');
+    // Route::post('/user/changepassmail', [UserController::class, 'changepassmail'])->name('users.changepassmail');
 
     // Orders
     Route::group(['prefix' => 'orders'], function () {
