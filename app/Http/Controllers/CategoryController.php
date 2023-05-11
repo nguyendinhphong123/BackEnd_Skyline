@@ -79,16 +79,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $items = $this->categoryService->destroy($id);
-        alert()->success('Phòng đã được đưa vào thùng rác!');
         $this->authorize('delete', Category::class);
+        $item = $this->categoryService->destroy($id);
         $this->categoryService->destroy($id);
+        alert()->success('Phòng đã được đưa vào thùng rác!');
         return redirect()->route('categories.index');
     }
     public function getTrashed()
     {
-        $items = $this->categoryService->getTrashed();
-        $softs = Category::onlyTrashed()->paginate(3);
+        $softs = $this->categoryService->getTrashed();
+        // $softs = Category::onlyTrashed()->paginate(3);
         return view('categories.trash', compact('softs'));
     }
     public function restore($id)
@@ -106,6 +106,7 @@ class CategoryController extends Controller
     public function deleteforever($id)
     {
 
+        $this->authorize('deleteforever', Category::class);
         try {
             $items = $this->categoryService->deleteforever($id);
             toast('Xóa Vĩnh Viễn Sản Phẩm Thành Công!', 'success', 'top-right');

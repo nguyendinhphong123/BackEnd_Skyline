@@ -21,8 +21,16 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->category);
         return [
-            //
+            'name' => 'required|unique:categories,id,'.$this->category,
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên thể loại bắt buộc phải nhập!',
+            'name.unique' => 'Tên thể loại đã tồn tại!',
         ];
     }
 }

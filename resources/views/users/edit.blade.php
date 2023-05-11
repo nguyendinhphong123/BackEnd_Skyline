@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Ngày tham gia </label>
-            <input type="date" name="created_at" value='{{$item->created_at}}' class="form-control">
+            <input type="date" name="created_at" value='{{$item->created}}' class="form-control">
         </div>
         <div class="mb-3">
             <label class="form-label">Địa chỉ</label>
@@ -34,10 +34,10 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Giới tính</label>
-            <select name="gender" id="" value="{{ $item->gender }}" class="form-control">
-                <option value="1">Nam</option>
-                <option value="2">Nữ</option>
-                <option value="Khác">Khác</option>
+            <select name="gender" id="" class="form-control">
+                <option value="1" @selected($item->gender == 1)>Nam</option>
+                <option value="2" @selected($item->gender == 2)>Nữ</option>
+                <option value="3"@selected($item->gender == 3)>Khác</option>
             </select>
         </div>
         <div class="mb-3">

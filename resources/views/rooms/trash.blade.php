@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
- 
+
     <table class="table" style="text-align:center">
         <h2 style="text-align:center">Thùng Rác</h2>
         <thead>
@@ -21,7 +21,7 @@
                 <td style="width:5%">{{ $key + 1 }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ number_format($item->price) }}</td>
-                <td>{{ $item->category->name }}</td>
+                <td>{{ $item->category ? $item->category->name :'' }}</td>
                 <td>
                     <a href="{{route('rooms.show',$item['id'])}}">
                         <img  style="width:120px; height:100px" src="{{ $item->image }}" alt=""class="image_photo">
@@ -45,7 +45,7 @@
             </tbody>
 
         </table>
-        
+
         {{ $softs->links() }}
     </div>
 @endsection

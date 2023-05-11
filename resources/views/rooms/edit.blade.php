@@ -32,7 +32,7 @@
                               <option value="">--Vui lòng chọn--</option>
                               @foreach ($categories as $category)
                               <option
-                                  <?= $category->id == $items->category_id ? 'selected' : '' ?>
+                                  @selected($category->id == $items->category_id)
                                   value="{{ $category->id }}">
                                   {{ $category->name }}</option>
                           @endforeach

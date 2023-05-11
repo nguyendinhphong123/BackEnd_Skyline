@@ -28,8 +28,8 @@ class StoreGroupRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên phòng bắt buộc phải nhập!',
-            'name.unique' => 'Tên phòng đã tồn tại!',
+            'name.required' => 'Tên quyền bắt buộc phải nhập!',
+            'name.unique' => 'Tên quyền đã tồn tại!',
         ];
     }
 }

@@ -8,12 +8,12 @@
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Tên Sản Phẩm</th>
+                <th>Tên thể loại </th>
                 <th>Thao tác</th>
             </tr>
         </thead>
         <tbody>
-          
+
             @foreach($items as $key => $item)
             <tr>
                 <td>{{++$key}}</td>

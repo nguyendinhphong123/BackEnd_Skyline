@@ -17,13 +17,16 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
         return $result;
     }
 
-public function store($data)
+    public function store($data)
     {
         if( isset( $data['image']) && $data['image']->isValid() ){
             $path = $data['image']->store('public/users');
             $url = Storage::url($path);
             $data['image'] = $url;
         }
+        if( isset( $data['password'])) {
+            $data['password']=bcrypt($data['password']);
+        };
         return $this->model->create($data);
     }
 
@@ -34,6 +37,9 @@ public function store($data)
             $url = Storage::url($path);
             $data['image'] = $url;
         }
+        if( isset( $data['password'])) {
+            $data['password']=bcrypt($data['password']);
+        };
         return $this->model->where('id',$id)->update($data);
     }
     public function all($request)
@@ -45,5 +51,12 @@ public function store($data)
             $users = $users->Search($search);
         }
         return $users->orderBy('id','DESC')->paginate(3);
+    }
+    public function find($id)
+    {
+        $item = $this->model->find($id);
+        $item->created = date('Y-m-d',strtotime($item->created_at));
+        // dd($item);
+        return $item;
     }
 }

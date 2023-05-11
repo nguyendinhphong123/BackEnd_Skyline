@@ -22,7 +22,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:rooms',
+            'name' => 'required|unique:categories',
         ];
     }
 
@@ -30,8 +30,8 @@ class StoreCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên phòng bắt buộc phải nhập!',
-            'name.unique' => 'Tên phòng đã tồn tại!',
+            'name.required' => 'Tên thể loại bắt buộc phải nhập!',
+            'name.unique' => 'Tên thể loại đã tồn tại!',
         ];
     }
 }

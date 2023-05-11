@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\UserServiceInterface;
+// use App\Repositories\Interfaces\GroupServiceInterface;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -16,10 +18,15 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     protected $userService;
+    // protected $groupService;
 
-    public function __construct(UserServiceInterface $userService)
+    public function __construct(
+        UserServiceInterface $userService
+        // GroupServiceInterface $groupService
+    )
     {
         $this->userService = $userService;
+        // $this->groupService = $groupService;
     }
     /**
      * Display a listing of the resource.

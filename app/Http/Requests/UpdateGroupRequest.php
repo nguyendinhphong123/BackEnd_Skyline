@@ -22,7 +22,14 @@ class UpdateGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|unique:groups',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên quyền bắt buộc phải nhập!',
+            'name.unique' => 'Tên quyền đã tồn tại!',
         ];
     }
 }
