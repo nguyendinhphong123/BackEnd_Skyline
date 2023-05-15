@@ -1,72 +1,68 @@
 @extends('layouts.master')
 @section('content')
-<main class="page-content" id="main">
-    <div class="container">
-        <div class="col-12 col-lg-12 d-flex">
-            <div class="card border shadow-none w-100">
-                <div class="card-body">
-                    <form action="{{ route('rooms.store') }}" method='post' enctype="multipart/form-data">
-                        <h2 style="color: black" class="offset-5">Thêm Phòng</h2>
-                        @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Tên phòng</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+<div class="page-header">
+    <h3 class="page-title">Thêm mới sản phẩm</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Thêm mới sản phẩm </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label for="exampleInputName1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1"
+                            placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail3"
+                            placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword4">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword4"
+                            placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleSelectGender">Gender</label>
+                        <select class="form-control" id="exampleSelectGender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            <input type="text" class="form-control file-upload-info" disabled=""
+                                placeholder="Upload Image">
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="button">
+                                    Upload </button>
+                            </span>
                         </div>
-                        @error('name')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Giá</label>
-                            <input type="text" class="form-control" name="price" id="exampleInputPassword1">
-                        </div>
-                        @error('price')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Số Lượng</label>
-                            <input type="text" class="form-control" name="quantity" id="exampleInputPassword1">
-                        </div>
-                        @error('quantity')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Mô Tả</label>
-                            <textarea class="form-control" placeholder="Mô tả" id="editor" name="description" rows="4"
-                                cols="4"></textarea>
-                        </div>
-                        @error('description')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Thể Loại</label>
-                            <select name="category_id" id="" class="form-control">
-                                <option value="">--Vui lòng chọn--</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        @error('category_id')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Ảnh</label>
-                            <input type="file" class="form-control" name="image" id="exampleInputPassword1">
-                        </div>
-                        @error('image')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="d-grid">
-                            <button class="btn btn-info" type="submit">Thêm</button>
-                            <a href="{{route('rooms.index')}}" class="btn btn-warning">Quay lại</a>
-
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputCity1">City</label>
+                        <input type="text" class="form-control" id="exampleInputCity1"
+                            placeholder="Location">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Textarea</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2"> Submit </button>
+                    <button class="btn btn-light">Cancel</button>
+                </form>
             </div>
         </div>
     </div>
-</main>
+</div>
 
 @endsection
