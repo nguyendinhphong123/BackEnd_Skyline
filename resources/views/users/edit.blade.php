@@ -64,7 +64,7 @@
         <h3 class="page-title">Chỉnh Sửa nhân viên </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> Chỉnh Sửa nhân viên </li>
                 <form  action="{{route('users.update',[$item->id])}}" method="POST" enctype="multipart/form-data">
             </ol>
