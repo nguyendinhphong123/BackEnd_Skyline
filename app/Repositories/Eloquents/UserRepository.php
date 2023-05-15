@@ -50,7 +50,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             $search = $request->key;
             $users = $users->Search($search);
         }
-        return $users->orderBy('id','DESC')->paginate(3);
+        return $users->orderBy('id','DESC')->paginate(2);
     }
     public function find($id)
     {

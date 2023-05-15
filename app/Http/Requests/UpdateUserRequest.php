@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
                 'created_at' => 'required',
                 'address' => 'required',
                 'phone' => 'required',
-                // 'birthday' => 'required',
+                'gender' => 'required',
                 'group_id' => 'required',
         ];
     }
@@ -37,9 +37,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name.required' => 'Vui lòng nhập tên!',
-            'name.unique' => 'Vui lòng nhập tên!',
             'email.required' => 'vui lòng nhập email!',
-            // 'password.required' => 'vui lòng nhập passwoud!',
+            'password.required' => 'Vui lòng nhập mật khẩu!',
+            'gender.required' => 'vui lòng chọn giới tính   !',
             'created_at.required' => 'vui lòng nhập ngày tháng!',
             'address.required' => 'vui lòng nhập địa chỉ!',
             'phone.required' => 'vui lòng nhập phone!',
