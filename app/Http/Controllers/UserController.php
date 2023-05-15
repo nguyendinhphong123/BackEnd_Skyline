@@ -57,7 +57,7 @@ class UserController extends Controller
 
         $data = $request->except(['_token', '_method']);
         $this->userService->store($data);
-        alert()->success('Thêm thành công!');
+        toast('thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -85,7 +85,7 @@ class UserController extends Controller
         // dd(123);
         $data = $request->except(['_token', '_method']);
         $this->userService->update($id, $data);
-        alert()->success('Sửa thành công!');
+        toast('sửa Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -94,7 +94,7 @@ class UserController extends Controller
     {
         $this->authorize('delete', User::class);
         $this->userService->destroy($id);
-        alert()->success('xóa thành công!');
+        toast('Xóa Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
