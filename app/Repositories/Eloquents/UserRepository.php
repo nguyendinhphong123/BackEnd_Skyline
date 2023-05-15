@@ -44,13 +44,17 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     }
     public function all($request)
     {
-        $users = $this->model->select('*');
-
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $users = $users->Search($search);
+        $query = $this->model->select('*');
+        if ( $request->category_id ) {
+            $query->where('category_id',$request->category_id);
         }
-        return $users->orderBy('id','DESC')->paginate(3);
+        if ( $request->name ) {
+            $query->where('name','like','%'.$request->name.'%');
+        }
+        if ( $request->id ) {
+            $query->where('id',$request->id);
+        }
+        return $query->orderBy('id','DESC')->paginate(4);
     }
     public function find($id)
     {
