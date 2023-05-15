@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="page-header">
-    <h3 class="page-title">Chi tiết phòng</h3>
+    <h3 class="page-title">Chi tiết phòng </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
@@ -9,46 +9,50 @@
         </ol>
     </nav>
 </div>
-<div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-header">
-                    <div class="row mb-2">
-                        <div class="col">
-                            <a href="{{route('rooms.index')}}" class="btn btn-primary"> Quay lại </a>
+<div class="card">
+    <div class="card-body">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center">
+                    <div style=" margin-top: 24px;" class="main_image">
+                        <img src="{{ $items->image }}" id="main_product_image" height="300" width="412">
+                    </div><br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-3 right-side">
+                    <div class="product-info-tabs">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>{{ $items->id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tên phòng</td>
+                                            <td>{{ $items->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giá</td>
+                                            <td>{{number_format($items->price)}} vnd</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Số lượng</td>
+                                            <td>{{ $items->quantity }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mô tả</td>
+                                            <td>{!!$items->description!!}</td>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                                <br>
+                                <a href="{{ route('rooms.index') }}" class="btn btn-primary">Quay lại</a>
+                            </div>
                         </div>
                     </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                        <tr>
-                            <td>ID: </td>
-                            <td>{{$items->id}}</td>
-                        </tr>
-                        <tr>
-                            <td>Tên phòng: </td>
-                            <td>{{$items->name}}</td>
-                        </tr>
-                        <tr>
-                            <td>Giá: </td>
-                            <td>{{number_format($items->price)}} vnd</td>
-                        </tr>
-                        <tr>
-                            <td>Số lượng: </td>
-                            <td>{{$items->quantity}}</td>
-                        </tr>
-                        <tr>
-                            <td>Mô tả: </td>
-                            <td>{!!$items->description!!}</td>
-                        </tr>
-                        <tr>
-                            <td>Ảnh: </td>
-                            <td><img  style="width:120px; height:100px" src="{{ $items->image }}" alt=""class="image_photo"></td>
-                        </tr>
-                    </tbody>
-                    </table>
                 </div>
             </div>
         </div>
