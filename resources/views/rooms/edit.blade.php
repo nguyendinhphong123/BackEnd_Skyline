@@ -24,12 +24,10 @@
                   <div class="form-group">
                       <label for="exampleInputEmail3">Giá</label>
                       <input type="text" class="form-control" name="price" value='{{$items->price}}'>
-                      @error('price')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword4">Số lượng</label>
                       <input type="text" class="form-control" name="quantity" value='{{$items->quantity}}'>
-                      @error('quantity')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label for="exampleSelectGender">Thể loại</label>
@@ -41,7 +39,6 @@
                                   {{ $category->name }}</option>
                           @endforeach
                       </select>
-                      @error('category_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label>Ảnh</label>
@@ -51,7 +48,6 @@
                   <div class="form-group">
                       <label for="exampleTextarea1">Mô tả</label>
                       <textarea class="form-control" rows="4" name="description">{{$items->description}}</textarea>
-                      @error('description')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <input type="submit" value="Cập nhật" class="btn btn-primary">
                   <a href="{{route('rooms.index')}}" class="btn btn-warning">Quay lại</a>
