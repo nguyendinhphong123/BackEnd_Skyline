@@ -24,22 +24,23 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="text" placeholder="Nhập ID" class="form-control">
+                            <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
                         </div>
                         <div class="col">
-                            <input type="text" placeholder="Nhập tên" class="form-control">
+                            <input type="text" placeholder="Nhập tên" class="form-control" value="{{ request()->name }}" name="name">
                         </div>
                         <div class="col">
-                            <select class="form-control">
+                            <select class="form-control" name="category_id" >
                                 <option value="">Tất cả danh mục</option>
                                 @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
+                                        <option @selected(request()->category_id == $category->id)
+                                            value="{{ $category->id }}">{{ $category->name }} </option>
+                                    @endforeach
                             </select>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-info"> Tìm </button>
-                            <button type="button" class="btn btn-secondary "> Đặt lại </button>
+                            <button type="submit" class="btn btn-info"> Tìm </button>
+                            <a href="{{ route('rooms.index') }}" type="submit" class="btn btn-secondary">Đặt lại</a>
                         </div>
                     </div>
                 </form>

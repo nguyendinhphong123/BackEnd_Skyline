@@ -54,12 +54,17 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
 
     public function all($request)
     {
-        $rooms = $this->model->select('*');
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $rooms = $rooms->Search($search);
+        $query = $this->model->select('*');
+        if ( $request->category_id ) {
+            $query->where('category_id',$request->category_id);
         }
-        return $rooms->orderBy('id','DESC')->paginate(4);
+        if ( $request->name ) {
+            $query->where('name','like','%'.$request->name.'%');
+        }
+        if ( $request->id ) {
+            $query->where('id',$request->id);
+        }
+        return $query->orderBy('id','DESC')->paginate(4);
     }
 
     public function delete($id)

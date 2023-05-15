@@ -14,34 +14,11 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
-                <form action="" method="get">
                     <div class="row mb-2">
                         <div class="col">
                             <a href="{{route('rooms.index')}}" class="btn btn-primary"> Quay lại </a>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <input type="text" placeholder="Nhập ID" class="form-control">
-                        </div>
-                        <div class="col">
-                            <input type="text" placeholder="Nhập tên" class="form-control">
-                        </div>
-                        <div class="col">
-                            <select class="form-control">
-                                <option value="">Tất cả danh mục</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-info"> Tìm </button>
-                            <button type="button" class="btn btn-secondary "> Đặt lại </button>
-                        </div>
-                    </div>
-                </form>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
