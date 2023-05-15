@@ -46,7 +46,7 @@
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
         aria-controls="ui-basic">
         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-        <span class="menu-title">Quản lý sản phẩm</span>
+        <span class="menu-title">Quản lý phòng</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
@@ -55,7 +55,7 @@
             <a class="nav-link" href="{{route('rooms.index')}}">Danh sách</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/index.html">Thùng rác</a>
+            <a class="nav-link" href="{{route('rooms.trash')}}">Thùng rác</a>
           </li>
         </ul>
       </div>
@@ -70,6 +70,9 @@
       <a class="nav-link" href="{{route('users.index')}}">
         <i class="mdi mdi-contacts menu-icon"></i>
         <span class="menu-title">Quản lý nhân viên </span>
+      <a class="nav-link" href="{{route('customers.index')}}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Quản lý khách hàng</span>
       </a>
     </li>
   </ul>
