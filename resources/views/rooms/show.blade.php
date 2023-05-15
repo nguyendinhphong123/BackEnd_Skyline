@@ -12,9 +12,9 @@
             <tr> <th style="display: inline-block">Mô tả :{!!$items->description!!} </th></tr>
             <tr> <th>Thể loại :{{$items->category->name}} </th></tr>
             <tr> Ảnh  : <img  style="width:120px; height:100px" src="{{ $items->image }}" alt=""class="image_photo">   </tr>
-                
+
         </thead>
-        
+
         </table>
         <a href="{{ route('rooms.index') }}" class="btn btn-danger">Trở lại</a>
     </div>
