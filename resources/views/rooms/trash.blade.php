@@ -1,51 +1,97 @@
 @extends('layouts.master')
 @section('content')
 
-<div class="container">
+<div class="page-header">
+    <h3 class="page-title">Thùng rác</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Thùng rác phòng </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-header">
+                <form action="" method="get">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <a href="{{route('rooms.index')}}" class="btn btn-primary"> Quay lại </a>
+                        </div>
+                    </div>
 
-    <table class="table" style="text-align:center">
-        <h2 style="text-align:center">Thùng Rác</h2>
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên Sản Phẩm</th>
-                <th>Giá</th>
-                <th>Thể loại</th>
-                <th>Ảnh</th>
-                <th>Thao tác</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($softs as $key => $item)
-            <tr data-expanded="true" class="item-{{ $item->id }}">
-                <td style="width:5%">{{ $key + 1 }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ number_format($item->price) }}</td>
-                <td>{{ $item->category ? $item->category->name :'' }}</td>
-                <td>
-                    <a href="{{route('rooms.show',$item['id'])}}">
-                        <img  style="width:120px; height:100px" src="{{ $item->image }}" alt=""class="image_photo">
-                    </a>
-                </td>
-
-                <td>
-
-                    <form action="{{ route('rooms.deleteforever', [$item->id]) }}"
-                        method="post">
-                        @method('DELETE')
-                        @csrf
-                        <a href="{{ route('rooms.restore', [$item->id]) }}"
-                            class="btn btn-primary">Khôi phục</a>
-                        <button onclick="return confirm('Bạn có chắc chắn xóa không?');"
-                            class="btn btn-danger">Xóa vĩnh viễn</button>
-                    </form>
-                </td>
-                    @endforeach
-                </tr>
-            </tbody>
-
-        </table>
-
-        {{ $softs->links() }}
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" placeholder="Nhập ID" class="form-control">
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Nhập tên" class="form-control">
+                        </div>
+                        <div class="col">
+                            <select class="form-control">
+                                <option value="">Tất cả danh mục</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-info"> Tìm </button>
+                            <button type="button" class="btn btn-secondary "> Đặt lại </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thể loại</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($softs  as $key => $item)
+                            <tr>
+                                <td>{{++$key}}</td>
+                                <td class="py-1">
+                                    <a href="{{route('rooms.show',$item['id'])}}">
+                                        <img src="{{ $item->image }}" alt="image">
+                                    </a>
+                                </td>
+                                <td>{{$item->name}}</td>
+                                <td>{{number_format( $item->price) }} VND</td>
+                                <td>{{$item->quantity}}</td>
+                                <td>{{$item->category ->name}}</td>
+                                <td>
+                                    <form action="{{route('rooms.deleteforever',[$item->id])}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="{{route('rooms.restore',[$item->id])}}" class="btn btn-info">Khôi phục</a>
+                                        <button onclick="return confirm('Bạn có chắc chắn muốn xóa không?');"
+                                            class="btn btn-danger">Xóa</button>
+                                    </form>
+                                </td>
+                                @endforeach
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <nav class="float-right">
+                    {{ $softs->links() }}
+                  </nav>
+            </div>
+        </div>
     </div>
+</div>
 @endsection

@@ -51,7 +51,7 @@ class RoomController extends Controller
         $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);
         $this->roomService->store($data);
-        alert()->success('Thêm phòng thành công!');
+        toast('Thêm Mới Phòng Thành Công!', 'success', 'top-right');
         return redirect()->route('rooms.index');
     }
 
@@ -82,10 +82,11 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, $id)
     {
+
         $this->authorize('update', Room::class);
         $data = $request->except(['_token','_method']);
         $this->roomService->update($id,$data);
-        alert()->success('Sửa phòng thành công!');
+        toast('Sửa Phòng Thành Công!', 'success', 'top-right');
         return redirect()->route('rooms.index');
     }
 
@@ -96,14 +97,15 @@ class RoomController extends Controller
     {
         $this->authorize('delete', Room::class);
         $items = $this->roomService->destroy($id);
-        alert()->success('Phòng đã được đưa vào thùng rác!');
+        toast('Phòng Đã Được Đưa Vào Thùng Rác!', 'success', 'top-right');
         return redirect()->route('rooms.index');
     }
     public function getTrashed()
     {
         $items = $this->roomService->getTrashed();
         $softs = Room::onlyTrashed()->paginate(3);
-        return view('rooms.trash', compact('softs'));
+        $categories = Category::get();
+        return view('rooms.trash', compact('softs','categories'));
     }
     public function restore($id)
     {

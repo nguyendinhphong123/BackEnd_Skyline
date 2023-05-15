@@ -22,26 +22,7 @@ class UpdateRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:rooms',
-            'category_id' => 'required',
-            'quantity' => 'required|min:1',
-            'price' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'name.required' => 'Tên phòng bắt buộc phải nhập!',
-            'name.unique' => 'Tên phòng đã tồn tại!',
-            'category_id.required' => 'Loại phòng bắt buộc phải nhập!',
-            'quantity.required' => 'Số lượng phòng bắt buộc nhập',
-            'quantity.min' => 'Số lượng phòng phải lớn hơn hoặc bằng 1',
-            'price.required' => 'Giá phòng bắt buộc nhập',
-            'description.required' => 'Mô tả phòng bắt buộc nhập',
-            'image.required' => 'Ảnh phòng bắt buộc nhập',
+            //
         ];
     }
 }
