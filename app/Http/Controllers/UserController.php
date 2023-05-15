@@ -54,6 +54,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
         $data = $request->except(['_token', '_method']);
         $this->userService->store($data);
         alert()->success('Thêm thành công!');
@@ -74,13 +75,14 @@ class UserController extends Controller
         $this->authorize('update', User::class);
         $groups = Group::all();
         $item = $this->userService->find($id);
+        // dd($item);
         return view('users.edit', compact('item', 'groups'));
     }
 
 
     public function update(UpdateUserRequest $request, $id)
     {
-
+        // dd(123);
         $data = $request->except(['_token', '_method']);
         $this->userService->update($id, $data);
         alert()->success('Sửa thành công!');
