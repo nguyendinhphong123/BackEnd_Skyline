@@ -40,4 +40,25 @@ class OrderController extends Controller
     {
         return Excel::download(new OrdersExport, 'orders.xlsx');
     }
+
+    public function create()
+    {
+        $this->authorize('create', Room::class);
+        $rooms = Room::all();
+        $customers = Customer::all();
+        return view('orders.create', compact('customers','rooms'));
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $this->authorize('create', Room::class);
+        $data = $request->except(['_token','_method']);
+        $this->orderService->store($data);
+        alert()->success('Thêm phòng thành công!');
+        return redirect()->route('orders.index');
+    }
 }

@@ -58,6 +58,8 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('orders.index');
         Route::get('/detail/{id}', [OrderController::class, 'show'])->name('orders.detail');
+        Route::get('/create', [OrderController::class, 'create'])->name('orders.create');
+        Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
     });
     Route::get('/export-orders', [OrderController::class, 'export'])->name('orders.export');
 

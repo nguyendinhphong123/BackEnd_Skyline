@@ -24,4 +24,8 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
         }
         return $orders->orderBy('id','DESC')->paginate(2);
     }
+    public function store($data)
+    {
+        return $this->model->create($data);
+    }
 }

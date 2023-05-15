@@ -6,6 +6,7 @@
         <table class="table" style="text-align:center">
             <thead>
                 <h2 style="text-align: center">Danh Sách Đơn Đặt Phòng</h2><br>
+                <a href="{{route('orders.create')}}" class="btn btn-info">Thêm mới</a>
                 <a href="{{ route('orders.export') }}" class="btn btn-warning">Xuất file excel</a>
                 <tr>
                     <th>STT</th>
