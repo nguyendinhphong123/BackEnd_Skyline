@@ -58,7 +58,7 @@ class OrderController extends Controller
         $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);
         $this->orderService->store($data);
-        alert()->success('Thêm phòng thành công!');
+        toast('Thêm đơn đặt phòng thành công', 'success', 'top-right');
         return redirect()->route('orders.index');
     }
 }
