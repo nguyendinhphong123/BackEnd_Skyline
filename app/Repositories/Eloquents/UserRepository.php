@@ -55,6 +55,7 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             $query->where('id',$request->id);
         }
         return $query->orderBy('id','DESC')->paginate(4);
+        
     }
     public function find($id)
     {

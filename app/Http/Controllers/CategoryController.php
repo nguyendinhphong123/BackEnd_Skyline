@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $this->authorize('create', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->store($data);
-        alert()->success('Thêm thành công!');
+        toast('thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('categories.index');
     }
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
         $this->authorize('update', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->update($id,$data);
-        alert()->success('Sửa thành công!');
+        toast('sửa Thành Công!', 'success', 'top-right');
             return redirect()->route('categories.index');
     }
 
@@ -80,22 +80,20 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->authorize('delete', Category::class);
-        $item = $this->categoryService->destroy($id);
         $this->categoryService->destroy($id);
-        alert()->success('Phòng đã được đưa vào thùng rác!');
+        toast('Xóa Thành Công!', 'success', 'top-right');
         return redirect()->route('categories.index');
     }
     public function getTrashed()
     {
-        $softs = $this->categoryService->getTrashed();
-        // $softs = Category::onlyTrashed()->paginate(3);
-        return view('categories.trash', compact('softs'));
+        $items = $this->categoryService->getTrashed();
+        return view('categories.trash', compact('items'));
     }
     public function restore($id)
     {
         try {
             $items = $this->categoryService->restore($id);
-            toast('Khôi phục Phòng Thành Công!', 'success', 'top-right');
+            toast('Khôi phục Thành Công!', 'success', 'top-right');
             return redirect()->route('categories.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());
@@ -106,10 +104,10 @@ class CategoryController extends Controller
     public function deleteforever($id)
     {
 
-        $this->authorize('deleteforever', Category::class);
+        // $this->authorize('deleteforever', Category::class);
         try {
             $items = $this->categoryService->deleteforever($id);
-            toast('Xóa Vĩnh Viễn Sản Phẩm Thành Công!', 'success', 'top-right');
+            toast('Xóa Vĩnh Viễn Thành Công!', 'success', 'top-right');
             return redirect()->route('categories.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());
