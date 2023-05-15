@@ -49,7 +49,7 @@
                                 <th>Tên Nhân viên</th>
                                 <th>Ảnh</th>
                                 <th>Số điện thoại</th>
-                                <th>Trao quyền</th>
+                                <th>Nhóm nhân viên </th>
                                 <th>Hành động </th>
                             </tr>
                         </thead>
