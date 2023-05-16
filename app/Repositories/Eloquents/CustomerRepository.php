@@ -17,12 +17,16 @@ class CustomerRepository extends EloquentRepository implements CustomerRepositor
     }
     public function all($request)
     {
-        $customers = $this->model->select('*');
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $customers = $customers->Search($search);
+        $query = $this->model->select('*');
+        if ( $request->address ) {
+            $query->where('address','like','%'.$request->address.'%');
         }
-
-        return $customers->orderBy('id','DESC')->paginate(3);
+        if ( $request->name ) {
+            $query->where('name','like','%'.$request->name.'%');
+        }
+        if ( $request->id ) {
+            $query->where('id',$request->id);
+        }
+        return $query->orderBy('id','DESC')->paginate(4);
     }
 }

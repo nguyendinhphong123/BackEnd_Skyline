@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChangePassWordByMailRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Jobs\SendEmail;
 use App\Models\User;
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -35,7 +37,8 @@ class UserController extends Controller
     {
         $this->authorize('viewAny', User::class);
         $items = $this->userService->all($request);
-        return view('users.index', compact('items'));
+        $groups = group::get();
+        return view('users.index', compact('items','groups'));
     }
 
     /**
@@ -54,9 +57,10 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
         $data = $request->except(['_token', '_method']);
         $this->userService->store($data);
-        alert()->success('Thêm thành công!');
+        toast('thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -74,16 +78,17 @@ class UserController extends Controller
         $this->authorize('update', User::class);
         $groups = Group::all();
         $item = $this->userService->find($id);
+        // dd($item);
         return view('users.edit', compact('item', 'groups'));
     }
 
 
     public function update(UpdateUserRequest $request, $id)
     {
-
+        // dd(123);
         $data = $request->except(['_token', '_method']);
         $this->userService->update($id, $data);
-        alert()->success('Sửa thành công!');
+        toast('sửa Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -92,46 +97,46 @@ class UserController extends Controller
     {
         $this->authorize('delete', User::class);
         $this->userService->destroy($id);
-        alert()->success('xóa thành công!');
+        toast('Xóa Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
     public function forget_password()
     {
-        return view('emails.password');
+        // dd(987654);
+        return view('emails.fogotpass');
     }
-    public function changepassmail(ChangePassWordByMailRequest $request){
-        $user = DB::table('users')->where('email', $request->emails)->first();
+    public function sendMail(Request $request){
+// dd($request->email);
+        $user = DB::table('users')->where('email', $request->email)->first();
         if(!$user){
-            toast('Email: ' . $request->emails.'<br> Không tồn tại', 'error', 'top-right');
+            toast('Email: ' . $request->email.'<br> Không tồn tại', 'error', 'top-right');
             return back()->withInput();
         }
-        if($request->emails == $user->email){
+        if($request->email == $user->email){
             try {
             $password = Str::random(6);
-            $item=User::find($user->id);
-            $item->password= bcrypt($password);
-            $item->save();
-            $params = [
+            $user = User::find($user->id);
+            $user->password= bcrypt($password);
+            $user->save();
+            $datas = [
                 'name' => $user->name,
                 'password' => $password,
             ];
-            Mail::send('shop.emails.password', compact('params'), function ($email) use($user) {
-                $email->subject('TCC-Shop');
-                $email->to($user->email, $user->name);
-            });
+            SendEmail::dispatch($datas, $user)->delay(now()->addMinute(1));
             toast('Gửi yêu cầu mật khẩu!'.'<br>'.' Thành Công', 'success', 'top-right');
             return back()->withInput();
         } catch (\Exception $e) {
             Log::error('message: ' . $e->getMessage() . 'line: ' . $e->getLine() . 'file: ' . $e->getFile());
             toast('Gửi yêu cầu mật khẩu!'.'<br>'.' Không thành Công', 'error', 'top-right');
-
             return back()->withInput();
         }
         } else{
-
             toast('Email: ' . $request->emails. '<br> Không tồn tại', 'error', 'top-right');
             return back()->withInput();
             }
     }
+
+
+
 }

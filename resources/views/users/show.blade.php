@@ -1,20 +1,70 @@
 @extends('layouts.master')
 @section('content')
-<div class="container">
-    <table class="table" >
-        <h2 style="text-align:center">Chi tiết nhân viên </h2>
-        <thead>
-            <tr> <th>Tên sản phẩm : {{$items->name}} </th></tr>
-            <tr> <th>Địa chỉ :{{($items->address)}}</th></tr>
-            <tr> <th>Số điện thoại:{{$items->phone}} </th></tr>
-            <tr> <th>Giới tính:{{$items->gender ==1 ? 'NAM': 'NỮ'}} </th></tr>
-            <tr> <th>Ngày sinh:{{$items->birthday}} </th></tr>
-            <tr> <th>Ngày tham gia :{{$items->created_at}} </th></tr>
-            <tr> <th>Chức vụ :{{$items->group->name}} </th></tr>
-            <tr> Ảnh  : <img  style="width:120px; height:100px" src="{{ $items->image }}" alt=""class="image_photo">   </tr>
-        </thead>
-        </table>
-        <a href="{{ route('users.index') }}" class="btn btn-danger">Quay lại</a>
+    <div class="page-header">
+        <h3 class="page-title">Chi tiết nhân viên </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Chi tiết nhân viên </li>
+            </ol>
+        </nav>
     </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div style=" margin-top: 24px;" class="main_image">
+                            <img src="{{ $items->image }}" id="main_product_image" height="400" width="412">
+                        </div><br>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 right-side">
+                        <div class="product-info-tabs">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>Tên</td>
+                                                <td>{{ $items->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Số điện thoại</td>
+                                                <td>{{ $items->phone }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Giới tính</td>
+                                                <td>{{ $items->gender == 1 ? 'NAM' : 'NỮ' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chức vụ</td>
+                                                <td>{{ $items->group->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Địa chỉ</td>
+                                                <td>{{ $items->address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngày sinh</td>
+                                                <td>{{ $items->birthday }} </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ngày tham gia</td>
+                                                <td>{{ $items->created_at }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <a href="{{ route('users.index') }}" class="btn btn-primary">Quay lại</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 @endsection
-

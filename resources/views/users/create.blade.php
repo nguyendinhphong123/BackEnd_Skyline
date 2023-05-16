@@ -1,110 +1,113 @@
 @extends('layouts.master')
 @section('content')
- <main class="page-content" id="main">
-    <div class="container">
-        <div class="col-12 col-lg-12 d-flex">
-            <div class="card border shadow-none w-100">
+    <div class="page-header">
+        <h3 class="page-title">Thêm Nhân Viên</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <form action="{{route('users.store')}}" method='post' enctype="multipart/form-data">
+                <li class="breadcrumb-item active" aria-current="page"> Thêm Nhân Viên </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
                 <div class="card-body">
-                    <form action="{{route('users.store')}}" method='post' enctype="multipart/form-data">
-                        <h2 style="color: black" class="offset-5">Thêm Nhân Viên </h2>
+                    <form class="forms-sample">
                         @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Tên Nhân Viên</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                        <div class="form-group">
+                            <label for="exampleInputName1">Tên nhân viên </label>
+                            <input type="text" name='name' class="form-control" id="exampleInputName1"
+                                placeholder="Name">
+                            @error('name')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
                         </div>
-                        @error('name')
-                        <div class="text text-danger ">{{ $message }}</div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Email</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                            @error('email')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword4">Mật khẩu</label>
+                            <input type="password" name='password' class="form-control" id="exampleInputPassword4" placeholder="Password">
+                            @error('password')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Trao quyền</label>
+                            <select name="group_id" id="" class="form-control">
+                                <option value="">--Vui lòng chọn--</option>
+                                @foreach ($groups as $group)
+                                    <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('group_id')
+                                <p class="alert alert-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Ảnh</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                    <input type="file" name="image" id="Inputimage"class="form-control file ">
+                                    @error('image')
+                                    <p class="text text-danger ">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputCity1">Ngày tham gia</label>
+                            <input type="date" class="form-control" name="created_at" id="exampleInputEmail1" placeholder="Location">
+                            @error('created_at')
+                            <p class="text text-danger ">{{ $message }}</p>
                         @enderror
-                        <div class="form-group col-lg-4">
-                            <label class="control-label" for="flatpickr01">Giới Tính<abbr
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Địa chỉ</label>
+                            <input type="address" class="form-control" name="address" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                                @error('address')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Ngày sinh</label>
+                            <input type="date" class="form-control" name="birthday" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                                @error('birthday')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Giới Tính<abbr
                                     name="Trường bắt buộc">*</abbr></label>
                             <select name="gender" id="" class="form-control">
                                 <option value="">--Vui lòng chọn--</option>
                                 <option value="1">Nam</option>
                                 <option value="2">Nữ</option>
                                 <option value="Khác">Khác</option>
+                                @error('gender')
+                            <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
                             </select>
-                            @error('gender')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Số điện thoại</label>
+                        <div class="form-group">
+                            <label for="exampleInputName1">Số điện thoại</label>
                             <input type="phone" class="form-control" name="phone" >
-                        </div>
                         @error('phone')
-                        <div class="text text-danger ">{{ $message }}</div>
+                        <p class="text text-danger ">{{ $message }}</p>
                         @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" >
-                        </div>
-                        @error('email')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" >
-                        </div>
-                        @error('password')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                            <input type="address" class="form-control" name="address" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        @error('address')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Ngày sinh</label>
-                            <input type="date" class="form-control" name="birthday" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        @error('birthday')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Ngày tham gia </label>
-                            <input type="date" class="form-control" name="created_at" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        @error('created_at')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-
-                        <div class="mb-3">
-                            <label class="form-label">Trao quyền</label>
-                                <select name="group_id" id="" class="form-control">
-                                    <option value="">--Vui lòng chọn--</option>
-                                @foreach ($groups as $group)
-
-                                    <option value="{{$group->id}}">{{$group->name}}</option>
-                                @endforeach
-                                </select>
-                            </select>
-                              @error('group_id')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        </div>
-                        <div class="mb-3">
-                            <label for="Inputimage" class="form-label">Ảnh</label>
-                            <input type="file" name="image"id="Inputimage"class="form-control file ">
-                        </div>
-                        @error('group_id')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
-                        <div class="d-grid">
-                            <button class="btn btn-info" type="submit">Thêm</button>
-                            <a href="{{route('users.index')}}" class="btn btn-warning">Quay lại</a>
-                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary mr-2"> Thêm </button>
+                        <a href="{{route('users.index')}}"  class="btn btn-light">Quay lại</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</main>
-
 @endsection

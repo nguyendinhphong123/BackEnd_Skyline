@@ -41,7 +41,7 @@ class GroupController extends Controller
         $this->authorize('create', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->store($data);
-        alert()->success('Thêm thành công!');
+        toast('thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('groups.index');
     }
 
@@ -67,7 +67,7 @@ class GroupController extends Controller
         $this->authorize('update', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->update($id, $data);
-        alert()->success('Sửa thành công!');
+        toast('sửa Thành Công!', 'success', 'top-right');
         return redirect()->route('groups.index');
     }
 
@@ -78,12 +78,17 @@ class GroupController extends Controller
     {
         $this->authorize('delete', Group::class);
         $this->GroupService->destroy($id);
-        alert()->success('xóa thành công!');
+        toast('xóa Thành Công!', 'success', 'top-right');
         return redirect()->route('groups.index');
     }
     public function show(string $id)
     {
         $params = $this->GroupService->showGroup($id);
+        $groups = [];
+        foreach($params['roles'] as $role ){
+            $groups[$role['group_name']][] = $role;
+        }
+        $params['all_roles'] = $groups;
         return view('groups.show', $params);
     }
 
@@ -93,7 +98,7 @@ class GroupController extends Controller
 
         try {
             $this->GroupService->updateRoles($id, $request);
-            alert()->success('Cấp quyền thành công!');
+            toast('cấp quyền Thành Công!', 'success', 'top-right');
             return redirect()->route('groups.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());

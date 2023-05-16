@@ -16,14 +16,25 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
         return $result;
     }
     public function all($request)
-    {
-        $orders = $this->model->select('*');
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $orders = $orders->Search($search);
-        }
-        return $orders->orderBy('id','DESC')->paginate(2);
+{
+    $query = $this->model
+        ->select('orders.*', 'customers.name', 'customers.address', 'customers.phone')
+        ->join('customers', 'orders.customer_id', '=', 'customers.id');
+
+    if ($request->address) {
+        $query->where('customers.address', 'like', '%' . $request->address . '%');
     }
+
+    if ($request->name) {
+        $query->where('customers.name', 'like', '%' . $request->name . '%');
+    }
+
+    if ($request->phone) {
+        $query->where('customers.phone', $request->phone);
+    }
+
+    return $query->orderBy('orders.id', 'DESC')->paginate(4);
+}
     public function store($data)
     {
         return $this->model->create($data);

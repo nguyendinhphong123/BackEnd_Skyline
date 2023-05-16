@@ -1,31 +1,35 @@
 @extends('layouts.master')
 @section('content')
- <main class="page-content" id="main">
-    <div class="container">
-        <div class="col-12 col-lg-12 d-flex">
-            <div class="card border shadow-none w-100">
+@include('sweetalert::alert')
+    <div class="page-header">
+        <h3 class="page-title">Thêm Mới Thể Loại</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Thêm Mới Thể Loại </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
                 <div class="card-body">
-                    <form action="{{route('categories.store')}}" method='post' enctype="multipart/form-data">
-                        <h2 style="color: black" class="offset-5">Thêm thể loại</h2>
+                    <form action="{{ route('categories.store') }}" method='post' enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Thêm danh mục</label>
-                            <input type="text" class="form-control" name="name" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                        <div class="form-group">
+                            <label for="exampleInputName1">Tên thể loại</label>
+                            <input name="name" type="text" class="form-control" placeholder="Nhập tên ">
+                            @error('name')
+                                <p class="text text-danger ">{{ $message }}</p>
+                            @enderror
                         </div>
-                        @error('name')
-                        <div class="text text-danger ">{{ $message }}</div>
-                        @enderror
                         <div class="d-grid">
                             <button class="btn btn-info" type="submit">Thêm</button>
-                            <a href="{{route('categories.index')}}" class="btn btn-warning">Quay lại</a>
+                            <a href="{{ route('categories.index') }}" class="btn btn-light">Quay lại</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</main>
 @endsection
-
-

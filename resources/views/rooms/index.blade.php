@@ -2,11 +2,11 @@
 @section('content')
 @include('sweetalert::alert')
 <div class="page-header">
-    <h3 class="page-title">Quản lý sản phẩm</h3>
+    <h3 class="page-title">Quản lý phòng</h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-            <li class="breadcrumb-item active" aria-current="page"> Quản lý sản phẩm </li>
+            <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Quản lý phòng </li>
         </ol>
     </nav>
 </div>
@@ -18,26 +18,29 @@
                     <div class="row mb-2">
                         <div class="col">
                             <a href="{{route('rooms.create')}}" class="btn btn-primary"> Thêm mới </a>
-                            <button type="button" class="btn btn-success "> Xuất execl </button>
+                            <a href="{{ route('rooms.export') }}" class="btn btn-warning">Xuất excel</a>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <input type="text" placeholder="Nhập ID" class="form-control">
+                            <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
                         </div>
                         <div class="col">
-                            <input type="text" placeholder="Nhập tên" class="form-control">
+                            <input type="text" placeholder="Nhập tên" class="form-control" value="{{ request()->name }}" name="name">
                         </div>
                         <div class="col">
-                            <select class="form-control">
+                            <select class="form-control" name="category_id" >
                                 <option value="">Tất cả danh mục</option>
-                                <option value="">Cá</option>
+                                @foreach ($categories as $category)
+                                        <option @selected(request()->category_id == $category->id)
+                                            value="{{ $category->id }}">{{ $category->name }} </option>
+                                    @endforeach
                             </select>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-info"> Tìm </button>
-                            <button type="button" class="btn btn-secondary "> Đặt lại </button>
+                            <button type="submit" class="btn btn-info"> Tìm </button>
+                            <a href="{{ route('rooms.index') }}" type="submit" class="btn btn-secondary">Đặt lại</a>
                         </div>
                     </div>
                 </form>
@@ -47,69 +50,38 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
                                 <th>Giá</th>
-                                <th>Ngày cập nhật</th>
+                                <th>Số lượng</th>
+                                <th>Thể loại</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($items as $key => $item)
                             <tr>
+                                <td>{{++$key}}</td>
                                 <td class="py-1">
-                                    <img src="assets/images/faces-clipart/pic-1.png"
-                                        alt="image">
+                                    <a href="{{route('rooms.show',$item['id'])}}">
+                                        <img src="{{ $item->image }}" alt="image">
+                                    </a>
                                 </td>
-                                <td>Herman Beck</td>
-                                
-                                <td>$ 77.99</td>
-                                <td>May 15, 2015</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{number_format( $item->price) }} VND</td>
+                                <td>{{$item->quantity}}</td>
+                                <td>{{$item->category ->name}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-info">Sửa</a>
-                                    <button type="button" class="btn btn-danger"> Xóa </button>
+                                    <form action="{{route('rooms.destroy',[$item->id])}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="{{route('rooms.edit',[$item->id])}}" class="btn btn-info">Sửa</a>
+                                        <button onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không?');"
+                                            class="btn btn-danger">Xóa</button>
+                                    </form>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="assets/images/faces-clipart/pic-2.png"
-                                        alt="image">
-                                </td>
-                                <td>Messsy Adam</td>
-                                
-                                <td>$245.30</td>
-                                <td>July 1, 2015</td>
-                                <td>
-                                    <a href="#" class="btn btn-info">Sửa</a>
-                                    <button type="button" class="btn btn-danger"> Xóa </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="assets/images/faces-clipart/pic-3.png"
-                                        alt="image">
-                                </td>
-                                <td>John Richards</td>
-                                
-                                <td>$138.00</td>
-                                <td>Apr 12, 2015</td>
-                                <td>
-                                    <a href="#" class="btn btn-info">Sửa</a>
-                                    <button type="button" class="btn btn-danger"> Xóa </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-1">
-                                    <img src="assets/images/faces-clipart/pic-4.png"
-                                        alt="image">
-                                </td>
-                                <td>Peter Meggik</td>
-                                
-                                <td>$ 77.99</td>
-                                <td>May 15, 2015</td>
-                                <td>
-                                    <a href="#" class="btn btn-info">Sửa</a>
-                                    <button type="button" class="btn btn-danger"> Xóa </button>
-                                </td>
+                                @endforeach
                             </tr>
                             
                         </tbody>
@@ -118,13 +90,7 @@
             </div>
             <div class="card-footer">
                 <nav class="float-right">
-                    <ul class="pagination mb-0">
-                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
+                    {{ $items->links() }}
                   </nav>
             </div>
         </div>
