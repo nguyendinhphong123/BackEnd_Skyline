@@ -17,7 +17,7 @@
                     <form action="" method="get">
                         <div class="row mb-2">
                             <div class="col">
-                                <a href="{{ route('categories.index') }}" class="btn btn-primary"> Quay lại  </a>
+                                <a href="{{ route('categories.index') }}" class="btn btn-primary"> Quay lại </a>
                             </div>
                         </div>
 
@@ -38,15 +38,24 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>
-                                                <form action="{{route('categories.deleteforever',[$item->id])}}" method="post">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <a href="{{ route('categories.restore', $item['id']) }}" class="btn btn-info">Khôi phục</a>
+                                        @if (Auth::user()->hasPermission('Category_restore') || Auth::user()->hasPermission('Category_forceDelete'))
+                                            <td>
+                                                @if (Auth::user()->hasPermission('Category_restore'))
+                                                    <form action="{{ route('categories.deleteforever', [$item->id]) }}"
+                                                        method="post">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <a href="{{ route('categories.restore', $item['id']) }}"
+                                                            class="btn btn-info">Khôi phục</a>
+                                                @endif
+                                                @if (Auth::user()->hasPermission('Category_forceDelete'))
+
                                                     <button onclick="return confirm('Bạn có muốn Xóa vĩnh viễn không?');"
                                                         class="btn btn-danger">Xóa vĩnh viễn</button>
                                                     </form>
-                                        </td>
+                                                @endif
+                                            </td>
+                                          @endif
                                     </tr>
                                 @endforeach
                             </tbody>

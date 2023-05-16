@@ -4,7 +4,7 @@
     <h3 class="page-title">Quản lý nhân viên </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
             <li class="breadcrumb-item active" aria-current="page"> Quản lý nhân viên   </li>
         </ol>
     </nav>

@@ -86,12 +86,13 @@ class CategoryController extends Controller
     }
     public function getTrashed()
     {
+        $this->authorize('viewtrash', Category::class);
         $items = $this->categoryService->getTrashed();
         return view('categories.trash', compact('items'));
     }
     public function restore($id)
     {
-        // $this->authorize('restore', Category::class);
+        $this->authorize('restore', Category::class);
         try {
             $items = $this->categoryService->restore($id);
             toast('Khôi phục Thành Công!', 'success', 'top-right');
