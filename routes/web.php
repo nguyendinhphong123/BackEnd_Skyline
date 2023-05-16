@@ -54,7 +54,7 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     // thùng rác
     Route::get('/export-rooms', [RoomController::class, 'export'])->name('rooms.export');
     // Customers
-    Route::get('/customer', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
     // Orders
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('orders.index');
