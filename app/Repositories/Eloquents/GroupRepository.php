@@ -20,14 +20,14 @@ class GroupRepository extends EloquentRepository implements GroupRepositoryInter
 
     public function all($request)
     {
-        // dd('repository');
-        $Groups = $this->model->select('*');
-
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $Groups = $Groups->Search($search);
+        $query = $this->model->select('*');
+        if ( $request->name ) {
+            $query->where('name','like','%'.$request->name.'%');
         }
-        return $Groups->orderBy('id','DESC')->paginate(5);
+        if ( $request->id ) {
+            $query->where('id',$request->id);
+        }
+        return $query->orderBy('id','DESC')->paginate(5);
     }
     public function show($id)
     {
