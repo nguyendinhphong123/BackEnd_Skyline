@@ -9,6 +9,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 // use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\CssSelector\XPath\Extension\FunctionExtension;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/checklogin', [AuthController::class, 'postLogin'])->name('admin.checklogin');
 Route::get('/forget-password', [UserController::class, 'forget_password'])->name('forget-password');
-Route::post('/changepassmail', [UserController::class, 'changepassmail'])->name('changepassmail');
+Route::post('/sendmail', [UserController::class, 'sendMail'])->name('sendmail');
 
 Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::get('admin', [AuthController::class, 'home'])->name('trangchu');

@@ -91,6 +91,7 @@ class CategoryController extends Controller
     }
     public function restore($id)
     {
+        // $this->authorize('restore', Category::class);
         try {
             $items = $this->categoryService->restore($id);
             toast('Khôi phục Thành Công!', 'success', 'top-right');
@@ -104,7 +105,7 @@ class CategoryController extends Controller
     public function deleteforever($id)
     {
 
-        // $this->authorize('deleteforever', Category::class);
+        $this->authorize('forceDelete', Category::class);
         try {
             $items = $this->categoryService->deleteforever($id);
             toast('Xóa Vĩnh Viễn Thành Công!', 'success', 'top-right');

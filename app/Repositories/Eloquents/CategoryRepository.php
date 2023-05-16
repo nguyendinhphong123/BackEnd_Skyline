@@ -11,21 +11,23 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     {
         return Category::class;
     }
-    public function paginate($data){
-        $result = $this->model->paginate();
-        return $result;
-    }
+    // public function paginate($data){
+    //     $result = $this->model->paginate();
+    //     return $result;
+    // }
 
     public function all($request)
     {
-        $categories = $this->model->select('*');
-
-        if (!empty($request->key)) {
-            $search = $request->key;
-            $categories = $categories->Search($search);
+        $query = $this->model->select('*');
+        if ( $request->name ) {
+            $query->where('name','like','%'.$request->name.'%');
         }
-        return $categories->orderBy('id','DESC')->paginate(5);
+        if ( $request->id ) {
+            $query->where('id',$request->id);
+        }
+        return $query->orderBy('id','DESC')->paginate(5);
     }
+
     public function getTrashed()
     {
         $result = $this->model->onlyTrashed()->get();
@@ -44,6 +46,7 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
             $result = $this->model->onlyTrashed()->find($id);
             $result->forceDelete();
             return $result;
-        
+
     }
+
 }
