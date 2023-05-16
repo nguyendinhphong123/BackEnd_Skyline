@@ -5,7 +5,7 @@
         <h3 class="page-title">Danh sách thể loại</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> Danh sách thể loại </li>
             </ol>
         </nav>
