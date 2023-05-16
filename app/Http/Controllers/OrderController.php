@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\OrdersExport;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Room;
@@ -53,7 +54,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
         $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);

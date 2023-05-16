@@ -55,7 +55,7 @@
                                 <th>Tên</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
-                                <th>Thể loại</th>
+                                <th>Thể loại phòng</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
