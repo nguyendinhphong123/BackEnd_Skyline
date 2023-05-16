@@ -21,8 +21,8 @@ class Category extends Model
     public function scopeSearch($query, $term)
     {
         if ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('id', 'like', '%' . $term . '%');
+            $query->where('id', 'like', '%' . $term . '%')
+                ->orWhere('name', 'like', '%' . $term . '%');
         }
         return $query;
 

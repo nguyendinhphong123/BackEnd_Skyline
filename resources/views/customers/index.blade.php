@@ -15,7 +15,6 @@
         <div class="card">
             <div class="card-header">
                 <form action="" method="get">
-
                     <div class="row">
                         <div class="col">
                             <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
@@ -56,7 +55,7 @@
                             </tr>
                         @endforeach
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>

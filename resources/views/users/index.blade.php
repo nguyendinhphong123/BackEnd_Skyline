@@ -22,20 +22,22 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="text" placeholder="Nhập ID" class="form-control">
+                            <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
                         </div>
                         <div class="col">
-                            <input type="text" placeholder="Nhập tên" class="form-control">
+                            <input type="text" placeholder="Nhập name" class="form-control" value="{{ request()->name }}" name="name">
                         </div>
                         <div class="col">
-                            <select class="form-control">
-                                <option value="">Tất cả danh mục</option>
-                                <option value="">Cá</option>
+                            <select name="group_id" id="" class="form-control">
+                                <option value="">--Vui lòng chọn--</option>
+                                @foreach ($groups as $group)
+                                    <option value="{{ $group->id }}">{{ $group->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-info"> Tìm </button>
-                            <button type="button" class="btn btn-secondary "> Đặt lại </button>
+                            <button type="submit" class="btn btn-info"> Tìm </button>
+                            <a href="{{ route('groups.index') }}" type="submit" class="btn btn-secondary">Đặt lại</a>
                         </div>
                     </div>
                 </form>
@@ -55,10 +57,8 @@
                         </thead>
                         <tbody>
                                     @foreach($items as $key => $item)
-
                                 <td>{{  ++$key }}</td>
                                 <td>{{ $item->name}}</td>
-
                                 <td><a href="{{ route('users.show', $item->id) }}"><img style="width:120px; height:100px" src="{{asset( $item->image)}}" alt=""></a></td>
                                 <td>{{ $item->phone}}</td>
                                 <td> {{ isset($item->group->name) ? $item->group->name : 'chưa phân quyền'  }}</td>

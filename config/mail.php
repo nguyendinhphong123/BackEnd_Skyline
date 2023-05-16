@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('huyentran221100@gmail.com'),
-            'password' => env('qwertyuiop'),
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'encryption' => 'tls',
+            'username' => 'huyentran221100@gmail.com',
+            'password' => 'nxyvpncpfhrlucux',
             'timeout' => null,
             'local_domain' => null,
         ],
