@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
         @include('sweetalert::alert')
         <div class="page-header">
             <h3 class="page-title">Danh sách thể loại</h3>
