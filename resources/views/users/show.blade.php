@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <div class="d-flex flex-column justify-content-center">
                         <div style=" margin-top: 24px;" class="main_image">
-                            <img src="{{ $items->image }}" id="main_product_image" height="300" width="412">
+                            <img src="{{ $items->image }}" id="main_product_image" height="400" width="412">
                         </div><br>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                                                 <td>{{ $items->created_at }}</td>
                                             </tr>
                                         </tbody>
-                                    </table> 
+                                    </table>
                                     <br>
                                     <a href="{{ route('users.index') }}" class="btn btn-primary">Quay lại</a>
                                 </div>

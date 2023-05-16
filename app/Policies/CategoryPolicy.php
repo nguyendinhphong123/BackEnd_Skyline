@@ -69,13 +69,17 @@ class CategoryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user)
-    {
-        return $user->hasPermission('Category_forceDelete');
 
-    }
     public function viewtrash(User $user)
     {
         return $user->hasPermission('Category_trash');
     }
+     /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(User $user)
+    {
+        return $user->hasPermission('Category_forceDelete');
+    }
 }
+

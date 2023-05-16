@@ -45,8 +45,8 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
     public function all($request)
     {
         $query = $this->model->select('*');
-        if ( $request->category_id ) {
-            $query->where('category_id',$request->category_id);
+        if ( $request->group_id ) {
+            $query->where('group_id',$request->group_id);
         }
         if ( $request->name ) {
             $query->where('name','like','%'.$request->name.'%');
@@ -55,13 +55,11 @@ class UserRepository extends EloquentRepository implements UserRepositoryInterfa
             $query->where('id',$request->id);
         }
         return $query->orderBy('id','DESC')->paginate(4);
-        
     }
     public function find($id)
     {
         $item = $this->model->find($id);
         $item->created = date('Y-m-d',strtotime($item->created_at));
-        // dd($item);
         return $item;
     }
 }

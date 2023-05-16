@@ -63,20 +63,14 @@
 
                         <div class="row">
                             <div class="col">
-                                <input type="text" placeholder="Nhập ID" class="form-control">
+                                <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
                             </div>
                             <div class="col">
-                                <input type="text" placeholder="Nhập tên" class="form-control">
+                                <input type="text" placeholder="Nhập name" class="form-control" value="{{ request()->name }}" name="name">
                             </div>
                             <div class="col">
-                                <select class="form-control">
-                                    <option value="">Tất cả danh mục</option>
-                                    <option value="">Cá</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <button type="button" class="btn btn-info"> Tìm </button>
-                                <button type="button" class="btn btn-secondary "> Đặt lại </button>
+                                <button type="submit" class="btn btn-info"> Tìm </button>
+                                <a href="{{ route('groups.index') }}" type="submit" class="btn btn-secondary">Đặt lại</a>
                             </div>
                         </div>
                     </form>
