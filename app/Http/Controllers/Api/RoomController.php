@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRoomRequest;
+use App\Http\Requests\UpdateRoomRequest;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Http\Resources\RoomResource;
@@ -27,7 +29,7 @@ class RoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRoomRequest $request)
     {
         $this->roomService->store($request);
         response()->json([
@@ -48,7 +50,7 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRoomRequest $request, string $id)
     {
         $this->roomService->update($request, $id);
         response()->json([
