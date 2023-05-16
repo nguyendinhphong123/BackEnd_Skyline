@@ -23,7 +23,7 @@
             <div class="main-panel">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img style="width:600px; height:600px" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/ca/38/3a/au-lac-charner-hotel.jpg?w=1200&h=-1&s=1" alt="">
+                        <img style="width:500px; height:450px" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/ca/38/3a/au-lac-charner-hotel.jpg?w=1200&h=-1&s=1" alt="">
                     </div>
                     <div class="col-lg-6">@yield('content')</div>
                 </div>
