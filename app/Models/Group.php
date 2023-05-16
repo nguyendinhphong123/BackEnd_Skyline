@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Group extends Model
 {
     use HasFactory;
-   
+
     protected $table ='groups';
     use Notifiable;
     protected $fillable = ['id','name'];
