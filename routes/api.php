@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,13 @@ Route::apiResource('groups', GroupController::class);
 Route::apiResource('orders', OrderController::class);
 
 
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
 
+], function () {
+    Route::post('/login-customer', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+});
