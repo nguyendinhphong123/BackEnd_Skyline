@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreUserRequest extends FormRequest
 {
@@ -30,6 +34,7 @@ class StoreUserRequest extends FormRequest
                 'phone' => 'required',
                 'birthday' => 'required',
                 'group_id' => 'required',
+                'image' => 'required',
         ];
     }
     public function messages()
@@ -43,6 +48,15 @@ class StoreUserRequest extends FormRequest
             'phone.required' => 'vui lòng nhập phone!',
             'birthday.required' => 'vui lòng nhập ngày sinh!',
             'group_id.required' => 'vui lòng cấp quyền!',
+            'image.required' => 'Ảnh phòng bắt buộc nhập',
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        $errors = (new ValidationException($validator))->errors();
+
+        throw new HttpResponseException(
+            response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+        );
     }
 }
