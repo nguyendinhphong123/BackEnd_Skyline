@@ -25,7 +25,8 @@ class StoreCustomerRequest extends FormRequest
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required',
-               
+                'address' => 'required',
+                'phone' => 'required'  
         ];
     }
     public function messages()
@@ -33,8 +34,9 @@ class StoreCustomerRequest extends FormRequest
         return [
             'name.required' => 'Vui lòng nhập tên!',
             'email.required' => 'vui lòng nhập email!',
-            'password.required' => 'vui lòng nhập passwoud!',
-            
+            'password.required' => 'vui lòng nhập password!',
+            'address.required' => 'vui lòng nhập password!',
+            'phone.required' => 'vui lòng nhập password!'        
         ];
     }
 }
