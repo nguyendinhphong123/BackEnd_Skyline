@@ -17,6 +17,7 @@ class RoomResource extends JsonResource
         $data = parent::toArray($request);
         $data['price_format'] = number_format($this->price);
         $data['category_name']  = $this->category->name ?? '';
+        $data['image'] = 'http://127.0.0.1:8000' . $this->image;
         return $data;
     }
 }
