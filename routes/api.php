@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\CustomerController;
 
 use App\Http\Controllers\Api\CategoryController;
-
+use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -27,5 +27,6 @@ Route::apiResource('categories',CategoryController::class);
 Route::apiResource('rooms', RoomController::class);
 Route::apiResource('users',UserController::class);
 Route::apiResource('customers', CustomerController::class);
+Route::apiResource('groups', GroupController::class);
 
 

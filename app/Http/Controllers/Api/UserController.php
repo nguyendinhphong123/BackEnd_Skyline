@@ -33,8 +33,9 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $this->userService->store($request);
-        response()->json([
+        $data = $request->except(['_token', '_method']);
+        $this->userService->store($data);
+        return response()->json([
             'success' => true,
         ]);
     }
@@ -50,8 +51,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->userService->update($request, $id);
-        response()->json([
+        $data = $request->except(['_token', '_method']);
+        $this->userService->update($data, $id);
+        return response()->json([
             'success' => true,
         ]);
     }
