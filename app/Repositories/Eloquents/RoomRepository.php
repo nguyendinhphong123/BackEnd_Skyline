@@ -34,9 +34,9 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $path = $data['image']->store('public/rooms');
             $url = Storage::url($path);
             $data['image'] = $url;
-            
+
         }
-        
+
         return $this->model->create($data);
     }
 
@@ -64,6 +64,12 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         if ( $request->id ) {
             $query->where('id',$request->id);
         }
+        if ( $request->limit ) {
+            $query->take($request->limit);
+        }
+        if ( $request->all ) {
+            return $query->orderBy('id','DESC')->get();
+        }
         return $query->orderBy('id','DESC')->paginate(4);
     }
 
@@ -89,7 +95,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
             $result = $this->model->onlyTrashed()->find($id);
             $result->forceDelete();
             return $result;
-        
+
     }
-    
+
 }

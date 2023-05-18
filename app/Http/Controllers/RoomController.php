@@ -137,4 +137,5 @@ class RoomController extends Controller
     {
         return Excel::download(new RoomsExport, 'rooms.xlsx');
     }
+
 }
