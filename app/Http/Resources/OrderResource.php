@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RoomResource extends JsonResource
+class OrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,9 @@ class RoomResource extends JsonResource
     {
         $data = parent::toArray($request);
         $data['price_format'] = number_format($this->price);
-        $data['category_name']  = $this->category->name ?? '';
-        $data['image'] = 'http://127.0.0.1:8000' . $this->image;
+        $data['total_format'] = number_format($this->total);
+        $data['room_name']  = $this->room->name ?? '';
+        $data['customer_name']  = $this->customer->name ?? '';
         return $data;
     }
 }

@@ -24,6 +24,7 @@
                             <option value="{{ $room->id }}">{{ $room->name }}</option>
                             @endforeach
                         </select>
+                        @error('room_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label>Khách hàng</label>
@@ -33,6 +34,7 @@
                             <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                             @endforeach
                         </select>
+                        @error('customer_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Giá</label>

@@ -14,7 +14,7 @@ class Order extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
-    public function products()
+    public function room()
     {
         return $this->belongsTo(Room::class, 'room_id', 'id');
     }

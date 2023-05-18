@@ -31,10 +31,12 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-        $this->roomService->store($request);
-        response()->json([
+        $data = $request->except(['_token','_method']);
+        $this->roomService->store($data);
+        return response()->json([
             'success' => true,
         ]);
+
     }
 
     /**
@@ -52,8 +54,9 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, string $id)
     {
-        $this->roomService->update($request, $id);
-        response()->json([
+        $data = $request->except(['_token','_method']);
+        $this->roomService->update($data, $id);
+        return response()->json([
             'success' => true,
         ]);
     }
