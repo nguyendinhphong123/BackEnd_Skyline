@@ -17,7 +17,9 @@
                 <form action="" method="get">
                     <div class="row mb-2">
                         <div class="col">
+                            @if (Auth::user()->hasPermission('Order_create'))
                             <a href="{{route('orders.create')}}" class="btn btn-primary"> Thêm mới </a>
+                            @endif
                             <a href="{{ route('orders.export') }}" class="btn btn-warning">Xuất excel</a>
                         </div>
                     </div>

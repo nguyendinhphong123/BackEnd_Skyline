@@ -26,6 +26,7 @@
         </a>
       </li>
       <li class="nav-item">
+        @if (Auth::user()->hasPermission('Category_viewAny'))
           <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
             aria-controls="ui-basic">
             <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -42,8 +43,10 @@
               </li>
             </ul>
           </div>
+          @endif
         </li>
       <li class="nav-item">
+        @if (Auth::user()->hasPermission('room_viewAny'))
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
           aria-controls="ui-basic">
           <i class="mdi mdi-crosshairs-gps menu-icon"></i>
@@ -56,31 +59,45 @@
               <a class="nav-link" href="{{route('rooms.index')}}">Danh sách</a>
             </li>
             <li class="nav-item">
+                @if (Auth::user()->hasPermission('room_trash'))
               <a class="nav-link" href="{{route('rooms.trash')}}">Thùng rác</a>
+              @endif
             </li>
           </ul>
         </div>
+        @endif
       </li>
       <li class="nav-item">
+        @if (Auth::user()->hasPermission('Group_viewAny'))
           <a class="nav-link" href="{{route('groups.index')}}">
             <i class="mdi mdi-contacts menu-icon"></i>
             <span class="menu-title">Quản lý phân quyền  </span>
           </a>
+          @endif
       </li>
       <li class="nav-item">
+        @if (Auth::user()->hasPermission('User_viewAny'))
         <a class="nav-link" href="{{route('users.index')}}">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">Quản lý nhân viên </span>
-        <a class="nav-link" href="{{route('customers.index')}}">
-          <i class="mdi mdi-contacts menu-icon"></i>
-          <span class="menu-title">Quản lý khách hàng</span>
         </a>
+          @endif
       </li>
       <li class="nav-item">
+        @if (Auth::user()->hasPermission('Customer_viewAny'))
+          <a class="nav-link" href="{{route('customers.index')}}">
+            <i class="mdi mdi-contacts menu-icon"></i>
+            <span class="menu-title">Quản lý khách hàng</span>
+          </a>
+          @endif
+      </li>
+      <li class="nav-item">
+        @if (Auth::user()->hasPermission('Order_viewAny'))
         <a class="nav-link" href="{{route('orders.index')}}">
           <i class="mdi mdi-contacts menu-icon"></i>
           <span class="menu-title">Quản lý đơn đặt phòng</span>
         </a>
+        @endif
       </li>
     </ul>
   </nav>

@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 use App\Models\Category;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryRepository extends EloquentRepository implements CategoryRepositoryInterface
 {
@@ -47,6 +48,31 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
             $result->forceDelete();
             return $result;
 
+    }
+    public function store($data)
+    {
+        if( isset( $data['image']) && $data['image']->isValid() ){
+            $path = $data['image']->store('public/categories');
+            $url = Storage::url($path);
+            $data['image'] = $url;
+        }
+        if( isset( $data['password'])) {
+            $data['password']=bcrypt($data['password']);
+        };
+        return $this->model->create($data);
+    }
+
+    public function update($id,$data)
+    {
+         if( isset( $data['image']) && $data['image']->isValid() ){
+            $path = $data['image']->store('public/categories');
+            $url = Storage::url($path);
+            $data['image'] = $url;
+        }
+        if( isset( $data['password'])) {
+            $data['password']=bcrypt($data['password']);
+        };
+        return $this->model->where('id',$id)->update($data);
     }
 
 }

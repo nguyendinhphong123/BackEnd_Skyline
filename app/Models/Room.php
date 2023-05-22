@@ -17,19 +17,5 @@ class Room extends Model
         return $this->belongsTo(Category::class);
     }
 
-//     public function scopeSearch($query, $term)
-// {
-//     if ($term) {
-//         $query
-//             ->join('categories', 'rooms.category_id', '=', 'categories.id')
-//             ->where('rooms.name', 'like', '%' . $term . '%')
-//             ->orWhere('rooms.price', 'like', '%' . $term . '%')
-//             ->orWhere('rooms.quantity', 'like', '%' . $term . '%')
-//             ->orWhere('rooms.id', 'like', '%' . $term . '%')
-//             ->orWhere('categories.name', 'like', '%' . $term . '%')
-//             ->select('rooms.*');
-//     }
-//     return $query;
-// }
 
 }
