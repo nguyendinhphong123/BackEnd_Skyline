@@ -25,6 +25,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputPassword1" class="form-label">Ảnh</label>
+                            <input type="file" class="form-control" name="image" value='{{$item->image}}'>
+                            <img type="hidden" width="120px" height="120px" id="blah1"
+                                                src="{{ $item->image}}" alt="" />
+                        </div>
+                        <div class="form-group">
                             <input type="submit" class="btn btn-info" value="Cập nhật" >
                             <a href="{{route('categories.index')}}" class="btn btn-light">Quay lại</a>
                         </div>

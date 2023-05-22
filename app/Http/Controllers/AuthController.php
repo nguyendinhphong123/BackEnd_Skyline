@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    
+
     public function login(){
 
         if (Auth::check()) {
-            return redirect()->route('trangchu');   
+            return redirect()->route('trangchu');
         } else {
             return view('auth.login');
         }

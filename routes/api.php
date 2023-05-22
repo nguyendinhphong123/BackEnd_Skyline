@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResource('categories',CategoryController::class);
+Route::get('/rooms/{id}/related', [RoomController::class, 'relatedItems']);
 Route::apiResource('rooms', RoomController::class);
 Route::apiResource('users',UserController::class);
 Route::apiResource('customers', CustomerController::class);

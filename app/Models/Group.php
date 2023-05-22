@@ -28,7 +28,7 @@ class Group extends Model
             $query->where('name', 'like', '%' . $term . '%')
                  ->orWhere('id', 'like', '%' . $term . '%');
         }
-        return $query;
+        return $query;  
 
     }
 }

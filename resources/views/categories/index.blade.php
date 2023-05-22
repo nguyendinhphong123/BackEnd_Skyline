@@ -47,6 +47,7 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Tên Thể loại</th>
+                                        <th>Ảnh</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -55,6 +56,9 @@
                                         <tr>
                                             <td>{{ ++$key }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td><a href="{{ route('users.show', $item->id) }}"><img
+                                                style="width:120px; height:100px" src="{{ asset($item->image) }}"
+                                                alt=""></a></td>
                                             @if (Auth::user()->hasPermission('Category_update') || Auth::user()->hasPermission('Category_delete'))
                                                 <td>
                                                     @if (Auth::user()->hasPermission('Category_update'))
@@ -88,5 +92,5 @@
                 </div>
             </div>
         </div>
-       
+
     @endsection

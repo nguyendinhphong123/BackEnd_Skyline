@@ -71,4 +71,14 @@ class RoomController extends Controller
             'success' => true,
         ]);
     }
+    public function relatedItems($id,Request $request){
+        $item=$this->roomService->find($id);
+        $request->category_id = $item->category_id;
+        $request->limit = 4;
+        $request->all = 1;
+        $request->id = 0;
+        $items = $this->roomService->all($request);
+        return RoomResource::collection($items);
+
+    }
 }

@@ -51,12 +51,12 @@ class StoreUserRequest extends FormRequest
             'image.required' => 'Ảnh phòng bắt buộc nhập',
         ];
     }
-    protected function failedValidation(Validator $validator)
-    {
-        $errors = (new ValidationException($validator))->errors();
+    // protected function failedValidation(Validator $validator)
+    // {
+    //     $errors = (new ValidationException($validator))->errors();
 
-        throw new HttpResponseException(
-            response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-        );
-    }
+    //     throw new HttpResponseException(
+    //         response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+    //     );
+    // }
 }
