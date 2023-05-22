@@ -5,15 +5,22 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\RoomResource;
 use App\Services\Interfaces\CategoryServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     protected $categoryService;
-    public function __construct(CategoryServiceInterface $categoryService)
+    protected $roomService;
+    public function __construct(
+        CategoryServiceInterface $categoryService,
+        RoomServiceInterface $roomService
+        )
     {
         $this->categoryService = $categoryService;
+        $this->roomService = $roomService;
     }
     public function index(Request $request)
     {
@@ -36,10 +43,15 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id ,Request $request)
     {
-        $items = $this->categoryService->find($id);
-        return new CategoryResource( $items);
+        $request->category_id = $id;
+        $request->id = 0;
+        $items = $this->roomService->all($request);
+        return RoomResource::collection($items);
+
+        // $items = $this->categoryService->find($id);
+        // return new CategoryResource( $items);
     }
 
     /**
