@@ -23,6 +23,16 @@
                                 <p class="text text-danger ">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Ảnh</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                    <input type="file" name="image" id="Inputimage"class="form-control file ">
+                                    @error('image')
+                                    <p class="text text-danger ">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="d-grid">
                             <button class="btn btn-info" type="submit">Thêm</button>
                             <a href="{{ route('categories.index') }}" class="btn btn-light">Quay lại</a>

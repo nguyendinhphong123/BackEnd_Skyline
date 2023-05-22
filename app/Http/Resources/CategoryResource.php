@@ -16,6 +16,7 @@ class CategoryResource extends JsonResource
     {
        $data= parent::toArray($request);
        $data['room_count'] = number_format($this->rooms()->count());
+       $data['image'] = 'http://127.0.0.1:8000' . $this->image;
         return $data;
     }
 }

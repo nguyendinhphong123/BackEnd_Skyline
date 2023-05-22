@@ -1,27 +1,51 @@
-@extends('layouts.login')
-@section( 'content')
-<form action="{{route('admin.checklogin')}}" method="post">
-    @csrf
-    <div class="form-group">
-        <label for="">Email</label>
-        <input type="text" id="userName" name="email" class="form-control input-sm chat-input"
-        placeholder="username" />
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    h1{
+        color: blue;
+        text-align: center;
+    }
+    .login-form__footer{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    @extends('layouts.login')
+    @section('content')
+        <form action="{{ route('admin.checklogin') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <h1>Đăng nhập</h1>
+                <label for="">Email</label>
+                <input type="text" id="userName" name="email" class="form-control input-sm chat-input"
+                    placeholder="username"required />
+            </div>
 
-    <div class="form-group">
-        <label for="">Password</label>
-        <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input"
-        placeholder="password" />
-    </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input"
+                    placeholder="password" required/>
+            </div>
 
-    <div class="form-group">
-        <label><input type="checkbox" name=""> Nhớ Đăng Nhập</label>
-        <a href="{{route('forget-password')}}">Quên Mật Khẩu</a>
-    </div>
-    
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-    </div>
-   
-</form>
-@endsection
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập </button>
+            </div>
+
+            <div class="form-group">
+                <p class="mt-5 login-form__footer">
+                    <a href="{{ route('forget-password') }}" class="text-primary">Quên Mật Khẩu</a>
+                </p>
+                {{--  <a href="{{route('forget-password')}}">Quên Mật Khẩu</a>  --}}
+            </div>
+
+        </form>
+    @endsection
+
+</body>
+</html>
