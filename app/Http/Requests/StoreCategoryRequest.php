@@ -23,6 +23,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:categories',
+            'image' => 'required',
         ];
     }
 
@@ -32,6 +33,7 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name.required' => 'Tên thể loại bắt buộc phải nhập!',
             'name.unique' => 'Tên thể loại đã tồn tại!',
+            'image.required' => 'Ảnh phòng bắt buộc nhập',
         ];
     }
 }
