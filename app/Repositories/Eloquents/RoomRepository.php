@@ -90,12 +90,9 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
 
     public function deleteforever($id)
     {
-        // try {
-
             $result = $this->model->onlyTrashed()->find($id);
             $result->forceDelete();
             return $result;
-
     }
 
 }
