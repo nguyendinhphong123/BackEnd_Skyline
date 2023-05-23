@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
     <div class="page-header">
         <h3 class="page-title">Thêm Mới Thể Loại</h3>
         <nav aria-label="breadcrumb">
@@ -25,13 +25,8 @@
                         </div>
                         <div class="form-group">
                             <label>Ảnh</label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                    <input type="file" name="image" id="Inputimage"class="form-control file ">
-                                    @error('image')
-                                    <p class="text text-danger ">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            <input type="file" name="image" class="form-control">
+                            @error('image')<p class="text text-danger ">{{ $message }}</p> @enderror
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-info" type="submit">Thêm</button>
