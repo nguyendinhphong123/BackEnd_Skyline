@@ -65,7 +65,7 @@ class AuthController extends Controller
             'password' => 'required||min:6',
             'phone' => 'required',
             'address' => 'required'
-           
+
         ]);
 
         if($validator->fails()){
@@ -124,7 +124,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL() * 120,
             'user' => auth()->user()
         ]);
     }

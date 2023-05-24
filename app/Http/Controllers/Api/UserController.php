@@ -32,7 +32,7 @@ class UserController extends Controller
      */
 
     public function store(StoreUserRequest $request)
-    {
+    { 
         $data = $request->except(['_token', '_method']);
         $this->userService->store($data);
         return response()->json([
