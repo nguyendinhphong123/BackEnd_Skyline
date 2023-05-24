@@ -56,6 +56,7 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
+      
         $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);
         $this->orderService->store($data);

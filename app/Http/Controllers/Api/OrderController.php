@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Resources\OrderResource;
+use App\Jobs\SendEmail;
+use App\Models\Room;
+use App\Models\User;
 use App\Services\Interfaces\OrderServiceInterface;
 use Illuminate\Http\Request;
 
@@ -25,11 +28,12 @@ class OrderController extends Controller
 
     }
 
-   
+
     public function store(StoreOrderRequest $request)
     {
         $data = $request->except(['_token','_method']);
         $this->orderService->store($data);
+        
         return response()->json([
             'success' => true,
         ]);
@@ -44,6 +48,6 @@ class OrderController extends Controller
         return new OrderResource($item);
     }
 
-  
-  
+
+
 }
