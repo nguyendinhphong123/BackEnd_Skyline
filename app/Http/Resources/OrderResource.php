@@ -19,6 +19,7 @@ class OrderResource extends JsonResource
         $data['total_format'] = number_format($this->total);
         $data['room_name']  = $this->room->name ?? '';
         $data['customer_name']  = $this->customer->name ?? '';
+        
         return $data;
     }
 }

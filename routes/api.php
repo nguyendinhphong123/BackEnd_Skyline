@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CheckoutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,8 @@ Route::apiResource('rooms', RoomController::class);
 Route::apiResource('users',UserController::class);
 Route::apiResource('customers', CustomerController::class);
 Route::apiResource('groups', GroupController::class);
-Route::apiResource('orders', OrderController::class);
+// Route::apiResource('orders', OrderController::class);
+Route::post('/orders', [CheckoutController::class, 'checkout']);
 
 
 Route::group([

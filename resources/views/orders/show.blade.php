@@ -33,7 +33,7 @@
                                         </tr>
                                         <tr>
                                             <td>Số lượng ngày đặt</td>
-                                            <td>{{$numberOfDays}} vnd</td>
+                                            <td>{{$numberOfDays}} ngày</td>
                                         </tr>
                                         <tr>
                                             <td>Giá 1 ngày</td>
