@@ -25,14 +25,15 @@
                 <label for="">Email</label>
                 <input type="text" id="userName" name="email" class="form-control input-sm chat-input"
                     placeholder="username"required />
+                   
             </div>
-
+            @error('email')<p class="text text-danger ">{{ $message }}</p> @enderror
             <div class="form-group">
                 <label for="">Password</label>
                 <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input"
                     placeholder="password" required/>
             </div>
-
+            @error('password')<p class="text text-danger ">{{ $message }}</p> @enderror
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập </button>
             </div>
