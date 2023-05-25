@@ -1,8 +1,8 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
-      <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset('assets/images/logo.svg')}}"
+      <a class="sidebar-brand brand-logo" href="{{route('login')}}"><img src="{{asset('assets/images/sky-logo.png')}}"
           alt="logo" /></a>
-      <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img
+      <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href=""><img
           src="{{asset('assets/images/logo-mini.svg')}}" alt="logo" /></a>
     </div>
     <ul class="nav">
@@ -20,7 +20,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('login')}}">
           <i class="mdi mdi-home menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
