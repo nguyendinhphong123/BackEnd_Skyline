@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Config;
 use Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -47,7 +48,7 @@ class AuthController extends Controller
             'customer' => $request->email,
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api'),
+            'expires_in' => Config::get('jwt.ttl'),
             'user' => auth('api')->user()
         ]);
     }
