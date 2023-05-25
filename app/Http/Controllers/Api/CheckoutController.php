@@ -18,6 +18,7 @@ class CheckoutController extends Controller
             'customer_id' => 'required',
             'checkin' => 'required',
             'checkout' => 'required',
+            'total' => 'required',
            
 
             // 'total' => 'required',
