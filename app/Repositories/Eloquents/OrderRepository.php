@@ -38,5 +38,6 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
     public function store($data)
     {
         return $this->model->create($data);
+
     }
 }
