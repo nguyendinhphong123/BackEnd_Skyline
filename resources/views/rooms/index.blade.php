@@ -56,9 +56,9 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Hình ảnh</th>
-                                    <th>Tên</th>
+                                    <th>Mã phòng</th>
                                     <th>Giá</th>
-                                    <th>Số lượng</th>
+                                    <th>Tình trạng</th>
                                     <th>Thể loại phòng</th>
                                     <th>Hành động</th>
                                 </tr>
@@ -74,13 +74,13 @@
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ number_format($item->price) }} VND</td>
-                                        <td>{{ $item->quantity }}</td>
+                                        <td>{{ $item->quantity == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
                                         <td>{{ $item->category->name }}</td>
                                         @if (Auth::user()->hasPermission('room_update') || Auth::user()->hasPermission('room_delete'))
                                             <td>
                                                 @if (Auth::user()->hasPermission('room_update'))
                                                 <form action="{{ route('rooms.destroy', [$item->id]) }}" method="post">
-
+                                                    @method('DELETE')
                                                     @csrf
                                                     <a href="{{ route('rooms.edit', [$item->id]) }}"
                                                         class="btn btn-info">Sửa</a>
