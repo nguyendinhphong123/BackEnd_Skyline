@@ -26,8 +26,11 @@
                       <input type="text" class="form-control" name="price" value='{{$items->price}}'>
                   </div>
                   <div class="form-group">
-                      <label for="exampleInputPassword4">Số lượng</label>
-                      <input type="text" class="form-control" name="quantity" value='{{$items->quantity}}'>
+                      <label for="exampleInputPassword4">Tình trạng</label>
+                      <select name="quantity" id="" class="form-control">
+                        <option value="1" @selected($items->quantity == 1)>Còn phòng</option>
+                        <option value="2" @selected($items->quantity == 2)>Hết phòng</option>
+                      </select>
                   </div>
                   <div class="form-group">
                       <label for="exampleSelectGender">Thể loại</label>
