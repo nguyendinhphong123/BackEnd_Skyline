@@ -22,7 +22,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{route('login')}}">
           <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">Trang chủ</span>
         </a>
       </li>
       <li class="nav-item">
