@@ -80,6 +80,7 @@
                                         @else
                                             Thể loại không tồn tại
                                         @endif</td>
+                                        <td>{{ $item->category->name}}</td>
                                         @if (Auth::user()->hasPermission('room_update') || Auth::user()->hasPermission('room_delete'))
                                             <td>
                                                 @if (Auth::user()->hasPermission('room_update'))
