@@ -75,7 +75,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ number_format($item->price) }} VND</td>
                                         <td>{{ $item->quantity == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
-                                        <td>{{ $item->category->name }}</td>
+                                        <td>{{ $item->category->name}}</td>
                                         @if (Auth::user()->hasPermission('room_update') || Auth::user()->hasPermission('room_delete'))
                                             <td>
                                                 @if (Auth::user()->hasPermission('room_update'))

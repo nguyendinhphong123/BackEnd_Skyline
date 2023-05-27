@@ -30,7 +30,7 @@
                                     <ul class="list-group">
                                         <li class="list-group-item active text-uppercase">
                                             <input type="checkbox" class="checker" value="{{ $group_name }}" >
-                                            {{ $group_name }}
+                                          {{ trans($group_name) }}
                                         </li>
                                         @foreach( $roles as $key => $role )
                                         <?php
@@ -44,7 +44,7 @@
                                             >
 
                                             <span class="ml-4">
-                                                {{ $role->name }}
+                                               {{ trans($role->name ) }}
                                             </span>
                                         </li>
                                         @endforeach

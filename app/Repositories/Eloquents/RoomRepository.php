@@ -43,7 +43,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
 
     public function all($request)
     {
-        $query = $this->model->select('*');
+        $query = $this->model->select('*')->whereNull('deleted_at');
         if ( $request->category_id ) {
             $query->where('category_id',$request->category_id);
         }
@@ -59,7 +59,8 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         if ( $request->all ) {
             return $query->orderBy('id','DESC')->get();
         }
-        return $query->orderBy('id','DESC')->paginate(4);
+        $roomList = $query->orderBy('id','DESC')->paginate(4);
+        return $roomList->appends(['id' => $request->id, 'name' => $request->name, 'category_id' => $request->category_id]);
     }
 
     public function delete($id)
