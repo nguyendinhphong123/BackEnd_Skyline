@@ -32,6 +32,14 @@
                                             <td>{{ $data->room_name }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Ngày nhận phòng</td>
+                                            <td>{{ $data->checkin }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày trả phòng</td>
+                                            <td>{{ $data->checkout }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Số lượng ngày đặt</td>
                                             <td>{{$numberOfDays}} ngày</td>
                                         </tr>

@@ -38,17 +38,17 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Giá</label>
-                        <input type="text" class="form-control" name="price" placeholder="0">
+                        <input type="text" class="form-control" name="price" placeholder="0" value="{{ old('price') }}">
                         @error('price')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Checkin</label>
-                        <input type="date" class="form-control" name="checkin" placeholder="0">
+                        <input type="date" class="form-control" name="checkin" placeholder="0" value="{{ old('checkin') }}">
                         @error('checkin')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Checkout</label>
-                        <input type="date" class="form-control" name="checkout" placeholder="0">
+                        <input type="date" class="form-control" name="checkout" placeholder="0" value="{{ old('checkout') }}">
                         @error('checkout')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mr-2"> Thêm </button>

@@ -62,7 +62,7 @@
             </div>
             <div class="card-footer">
                 <nav class="float-right">
-                    {{ $items->links() }}
+                    {{ $items->appends(request()->all())->links() }}
                   </nav>
             </div>
         </div>

@@ -75,7 +75,11 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ number_format($item->price) }} VND</td>
                                         <td>{{ $item->quantity == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
-                                        <td>{{ $item->category->name }}</td>
+                                        <td> @if ($item->category)
+                                            {{ $item->category->name }}
+                                        @else
+                                            Thể loại không tồn tại
+                                        @endif</td>
                                         @if (Auth::user()->hasPermission('room_update') || Auth::user()->hasPermission('room_delete'))
                                             <td>
                                                 @if (Auth::user()->hasPermission('room_update'))
@@ -102,7 +106,7 @@
                 </div>
                 <div class="card-footer">
                     <nav class="float-right">
-                        {{ $items->links() }}
+                        {{ $items->appends(request()->all())->links() }}
                     </nav>
                 </div>
             </div>
