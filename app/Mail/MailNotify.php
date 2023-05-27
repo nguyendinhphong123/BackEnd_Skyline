@@ -38,12 +38,12 @@ class MailNotify extends Mailable
         if($this->data['check'] == 'changepassword'){
             return $this->from('huyentran221100@gmail.com')
             ->view('emails.mail-notify')
-            ->subject('Cấp lại mật khẩu');
+            ->subject('[Cấp lại mật khẩu - SkylineAdimin]');
         }
         else if($this->data['check'] == 'confirmroom'){
             return $this->from('huyentran221100@gmail.com')
             ->view('emails.SendMail')
-            ->subject('Thư cảm ơn');
+            ->subject('[Thư cảm ơn-Chi tiết đơn đặt phòng-Skyline]');
         }
 
    }

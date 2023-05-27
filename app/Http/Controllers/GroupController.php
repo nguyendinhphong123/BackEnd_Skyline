@@ -41,7 +41,7 @@ class GroupController extends Controller
         $this->authorize('create', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->store($data);
-        toast('thêm Thành Công!', 'success', 'top-right');
+        toast('Thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('groups.index');
     }
 
@@ -67,7 +67,7 @@ class GroupController extends Controller
         $this->authorize('update', Group::class);
         $data = $request->except(['_token', '_method']);
         $this->GroupService->update($id, $data);
-        toast('sửa Thành Công!', 'success', 'top-right');
+        toast('Sửa Thành Công!', 'success', 'top-right');
         return redirect()->route('groups.index');
     }
 
@@ -98,7 +98,7 @@ class GroupController extends Controller
 
         try {
             $this->GroupService->updateRoles($id, $request);
-            toast('cấp quyền Thành Công!', 'success', 'top-right');
+            toast('Cấp Quyền Thành Công!', 'success', 'top-right');
             return redirect()->route('groups.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());

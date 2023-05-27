@@ -33,6 +33,7 @@ class CheckoutController extends Controller
         $datas = [
             'checkin' => $request->checkin,
             'checkout' => $request->checkout,
+            'total' => $request->total,
             'price' => $request->price,
             'user' =>$user,
             'room' =>$room,
