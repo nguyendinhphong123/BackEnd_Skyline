@@ -18,14 +18,14 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputName1">Tên thể loại</label>
-                            <input name="name" type="text" class="form-control" placeholder="Nhập tên ">
+                            <input name="name" type="text" class="form-control" placeholder="Nhập tên " value="{{ old('name') }}">
                             @error('name')
                                 <p class="text text-danger ">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Ảnh</label>
-                            <input type="file" name="image" class="form-control">
+                            <input type="file" name="image" class="form-control" value="{{ old('image') }}">
                             @error('image')<p class="text text-danger ">{{ $message }}</p> @enderror
                         </div>
                         <div class="d-grid">

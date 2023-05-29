@@ -73,6 +73,7 @@ class RoomController extends Controller
         $this->authorize('update', Room::class);
         $items = $this->roomService->find($id);
         $categories = Category::all();
+        // dd($items);
         $room = $this->roomService->find($id);
         return view('rooms.edit', compact('items', 'categories', 'room'));
     }
