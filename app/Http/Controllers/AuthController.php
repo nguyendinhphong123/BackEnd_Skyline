@@ -24,12 +24,15 @@ class AuthController extends Controller
      public function postLogin(Request $request)
     {
         $messages = [
-            "email.exists" => "Email không đúng",
-            "password.exists" => "Mật khẩu không đúng",
+            'email.exists' => 'Email không đúng',
+        'password.exists' => 'Mật khẩu không đúng',
+        'email.required' => 'Vui lòng nhập email',
+        'password.required' => 'Vui lòng nhập mật khẩu',
+            
         ];
         $validator = Validator::make($request->all(), [
-            'email' => 'exists:users,email',
-            'password' => 'exists:users,password',
+            'email' => 'required|exists:users,email',
+            'password' => 'required|exists:users,password',
         ], $messages);
         $data = $request->only('email', 'password');
         if (Auth::attempt($data)) {

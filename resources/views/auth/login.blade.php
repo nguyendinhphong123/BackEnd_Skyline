@@ -24,14 +24,14 @@
                 <h1>Đăng nhập</h1>
                 <label for="">Email</label>
                 <input type="text" id="userName" name="email" class="form-control input-sm chat-input"
-                    placeholder="Nhập email"required />
+                    placeholder="Nhập email" />
                    
             </div>
             @error('email')<p class="text text-danger ">{{ $message }}</p> @enderror
             <div class="form-group">
                 <label for="">Mật khẩu</label>
                 <input type="password" id="userPassword" name="password" class="form-control input-sm chat-input"
-                    placeholder="Nhập mật khẩu" required/>
+                    placeholder="Nhập mật khẩu" />
             </div>
             @error('password')<p class="text text-danger ">{{ $message }}</p> @enderror
             <div class="form-group">
