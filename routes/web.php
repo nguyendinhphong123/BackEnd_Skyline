@@ -21,6 +21,7 @@ use Symfony\Component\CssSelector\XPath\Extension\FunctionExtension;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 //Login
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/checklogin', [AuthController::class, 'postLogin'])->name('admin.checklogin');

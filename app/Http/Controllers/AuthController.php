@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -41,6 +44,16 @@ public function logout()
     return redirect()->route('login');
 }
 public function home(){
-    return view('home');
+         $totalPrice  =  Order::pluck('total')->sum();
+        $totalOrders  =  Order::pluck('id')->count();
+        $totalCustomer  =  Customer::pluck('id')->count();
+        $totalRoom = Room::pluck('id')->count();
+        $params = [
+            'totalPrice' => $totalPrice,
+            'totalOrders' => $totalOrders,
+            'totalCustomer' => $totalCustomer,
+            'totalRoom' => $totalRoom,
+        ];
+    return view('home',$params);
 }
 }
