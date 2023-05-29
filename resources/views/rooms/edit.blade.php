@@ -29,9 +29,9 @@
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword4">Tình trạng</label>
-                      <select name="quantity" class="form-control">
-                        <option value="1" {{ $items->quantity == 1 ? 'selected' : '' }}>Còn phòng</option>
-                        <option value="2" {{ $items->quantity == 2 ? 'selected' : '' }}>Hết phòng</option>
+                      <select name="status" class="form-control">
+                        <option value="1" {{ $items->status == 1 ? 'selected' : '' }}>Còn phòng</option>
+                        <option value="2" {{ $items->status == 2 ? 'selected' : '' }}>Hết phòng</option>
                     </select>
                   </div>
                   <div class="form-group">

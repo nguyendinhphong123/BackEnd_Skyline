@@ -49,7 +49,7 @@
         @if (Auth::user()->hasPermission('room_viewAny'))
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
           aria-controls="ui-basic">
-          <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <i class="mdi mdi-table-large menu-icon"></i>
           <span class="menu-title">Quản lý phòng</span>
           <i class="menu-arrow"></i>
         </a>
@@ -94,7 +94,7 @@
       <li class="nav-item">
         @if (Auth::user()->hasPermission('Order_viewAny'))
         <a class="nav-link" href="{{route('orders.index')}}">
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-chart-bar menu-icon"></i>
           <span class="menu-title">Quản lý đơn đặt phòng</span>
         </a>
         @endif

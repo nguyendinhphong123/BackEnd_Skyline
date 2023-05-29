@@ -11,7 +11,7 @@ class Room extends Model
 
      use HasFactory,SoftDeletes;
     protected $table ='rooms';
-    protected $fillable = ['id','name','price','quantity','description','category_id','image'];
+    protected $fillable = ['id','name','price','status','description','category_id','image'];
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -2,7 +2,7 @@
 @section('content')
     @include('sweetalert::alert')
     <div class="page-header">
-        <h3 class="page-title">Quản lý phòng</h3>
+        <h3 class="page-title">Danh sách phòng</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
@@ -74,7 +74,7 @@
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ number_format($item->price) }} VND</td>
-                                        <td>{{ $item->quantity == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
+                                        <td>{{ $item->status == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
                                         <td> @if ($item->category)
                                             {{ $item->category->name }}
                                         @else

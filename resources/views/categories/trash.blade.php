@@ -2,11 +2,11 @@
 @section('content')
     @include('sweetalert::alert')
     <div class="page-header">
-        <h3 class="page-title">Danh sách thể loại</h3>
+        <h3 class="page-title">Thùng rác</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page"> Danh sách thể loại </li>
+                <li class="breadcrumb-item active" aria-current="page"> Thùng rác thể loại </li>
             </ol>
         </nav>
     </div>

@@ -27,7 +27,7 @@ class StoreRoomRequest extends FormRequest
         return [
             'name' => 'required|unique:rooms',
             'category_id' => 'required',
-            'quantity' => 'required',
+            'status' => 'required',
             'price' => 'required',
             'description' => 'required',
             // 'image' => 'required',
@@ -40,7 +40,7 @@ class StoreRoomRequest extends FormRequest
             'name.required' => 'Tên phòng bắt buộc phải nhập!',
             'name.unique' => 'Tên phòng đã tồn tại!',
             'category_id.required' => 'Loại phòng bắt buộc phải nhập!',
-            'quantity.required' => 'Tình trạng bắt buộc nhập',
+            'status.required' => 'Tình trạng phòng bắt buộc nhập',
             'price.required' => 'Giá phòng bắt buộc nhập',
             'description.required' => 'Mô tả phòng bắt buộc nhập',
             // 'image.required' => 'Ảnh phòng bắt buộc nhập',
