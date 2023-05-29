@@ -31,7 +31,7 @@
                             <option value="">--Vui lòng chọn--</option>
                             <option value="1">Còn phòng</option>
                             <option value="2">Hết phòng</option>
-                        @error('quantity')<p class="text text-danger ">{{ $message }}</p> @enderror
+                        @error('quantity')<p class="text text-danger ">{{ $message }}</p> @enderror 
                         </select>
                     </div>
                     <div class="form-group">

@@ -27,7 +27,7 @@ class UpdateRoomRequest extends FormRequest
             'quantity' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
         ];
     }
 
@@ -39,7 +39,7 @@ class UpdateRoomRequest extends FormRequest
             'quantity.required' => 'Tình trạng bắt buộc nhập',
             'price.required' => 'Giá Phòng bắt buộc nhập',
             'description.required' => 'Mô Tả phòng bắt buộc nhập',
-            'image.required' => 'Ảnh phòng bắt buộc nhập',
+            // 'image.required' => 'Ảnh phòng bắt buộc nhập',
         ];
     }
 }
