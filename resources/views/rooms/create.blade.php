@@ -27,19 +27,19 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Tình trạng</label>
-                        <select name="quantity" id="" class="form-control" value="{{ old('quantity') }}">
+                        <select name="status" id="" class="form-control">
                             <option value="">--Vui lòng chọn--</option>
-                            <option value="1">Còn phòng</option>
-                            <option value="2">Hết phòng</option>
-                        @error('quantity')<p class="text text-danger ">{{ $message }}</p> @enderror
+                            <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Còn phòng</option>
+                            <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>Hết phòng</option>
                         </select>
+                        @error('status')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleSelectGender">Thể loại</label>
-                        <select class="form-control" name="category_id" value="{{ old('category_id') }}">
+                        <select class="form-control" name="category_id">
                             <option value="">--Vui lòng chọn--</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('category_id')<p class="text text-danger ">{{ $message }}</p> @enderror

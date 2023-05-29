@@ -21,7 +21,7 @@
                         <select name="room_id" id="" class="form-control">
                             <option value="">--Vui lòng chọn--</option>
                             @foreach ($rooms as $room)
-                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                            <option value="{{ $room->id }}" {{ old('room_id') == $room->id ? 'selected' : '' }}>{{ $room->name }}</option>
                             @endforeach
                         </select>
                         @error('room_id')<p class="text text-danger ">{{ $message }}</p> @enderror

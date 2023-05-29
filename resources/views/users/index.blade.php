@@ -27,7 +27,7 @@
                                     name="id">
                             </div>
                             <div class="col">
-                                <input type="text" placeholder="Nhập name" class="form-control"
+                                <input type="text" placeholder="Nhập tên" class="form-control"
                                     value="{{ request()->name }}" name="name">
                             </div>
                             <div class="col">

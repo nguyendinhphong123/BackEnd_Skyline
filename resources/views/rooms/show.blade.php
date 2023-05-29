@@ -15,7 +15,7 @@
             <div class="col-md-6">
                 <div class="d-flex flex-column justify-content-center">
                     <div style=" margin-top: 24px;" class="main_image">
-                        <img src="{{ $items->image }}" id="main_product_image" height="300" width="412">
+                        <img src="{{ $items->image }}" id="main_product_image" height="360" width="462">
                     </div><br>
                 </div>
             </div>
@@ -39,12 +39,13 @@
                                             <td>{{number_format($items->price)}} vnd</td>
                                         </tr>
                                         <tr>
-                                            <td>Số lượng</td>
-                                            <td>{{ $items->quantity }}</td>
+                                            <td>Tình trạng</td>
+                                            <td>{{ $items->status == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
                                         </tr>
                                         <tr>
                                             <td>Mô tả</td>
-                                            <td>{!!$items->description!!}</td>
+                                            <td>{!! wordwrap($items->description, 70, "<br>", true) !!}</td>
+
                                         </tr>
                                     </tbody>
                                 </table> 
