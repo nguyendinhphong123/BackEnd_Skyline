@@ -17,9 +17,9 @@
                 <form class="forms-sample" action="{{ route('orders.store') }}" method='post'>
                     @csrf
                     <div class="form-group">
-                        <label for="exampleSelectGender">Tên Phòng</label>
+                        <label>Tên Phòng</label>
                         <select name="room_id" id="" class="form-control">
-                            <option value="room_id">--Vui lòng chọn--</option>
+                            <option value="">--Vui lòng chọn--</option>
                             @foreach ($rooms as $room)
                             <option value="{{ $room->id }}" {{ old('room_id') == $room->id ? 'selected' : '' }}>{{ $room->name }}</option>
                             @endforeach
@@ -28,7 +28,12 @@
                     </div>
                     <div class="form-group">
                         <label>Khách hàng</label>
-                        <input type="text" class="form-control" name="customer_id" placeholder="Tên" value="{{ old('customer_id') }}">
+                        <select name="customer_id" id="" class="form-control">
+                            <option value="">--Vui lòng chọn--</option>
+                            @foreach ($customers as $customer)
+                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected' : '' }}>{{ $customer->name }}</option>
+                            @endforeach
+                        </select>
                         @error('customer_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
