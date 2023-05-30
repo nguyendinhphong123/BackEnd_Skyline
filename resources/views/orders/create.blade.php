@@ -38,7 +38,13 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Giá</label>
-                        <input type="text" class="form-control" name="price" placeholder="0" value="{{ old('price') }}">
+                        {{--  <input type="text" class="form-control" name="price" placeholder="0" value="{{ old('price') }}">  --}}
+                        <select name="price" id="" class="form-control">
+                            <option value="">--Vui lòng chọn--</option>
+                            @foreach ($rooms as $room)
+                            <option value="{{ $room->id }}" {{ old('price') == $room->id ? 'selected' : '' }}>{{ $room->price }}</option>
+                            @endforeach
+                        </select>
                         @error('price')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">

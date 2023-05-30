@@ -9,14 +9,18 @@ use App\Jobs\SendEmail;
 use App\Models\Room;
 use App\Models\User;
 use App\Services\Interfaces\OrderServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     private $orderService;
-    public function __construct(OrderServiceInterface $orderService)
+    private $roomService;
+    public function __construct(OrderServiceInterface $orderService
+    , RoomServiceInterface  $roomService )
     {
         $this->orderService = $orderService;
+        $this->roomService = $roomService;
     }
     /**
      * Display a listing of the resource.
@@ -33,7 +37,8 @@ class OrderController extends Controller
     {
         $data = $request->except(['_token','_method']);
         $this->orderService->store($data);
-        
+        $this->roomService->update($data['room_id'],['status' => 0]);
+        // dd($request);
         return response()->json([
             'success' => true,
         ]);
@@ -47,7 +52,5 @@ class OrderController extends Controller
         $item = $this->orderService->find($id);
         return new OrderResource($item);
     }
-
-
 
 }
