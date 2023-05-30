@@ -4,7 +4,7 @@
         <h3 class="page-title">Thêm Nhân Viên</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ /</a></li>
                 <form action="{{ route('users.store') }}" method='post' enctype="multipart/form-data">
                     <li class="breadcrumb-item active" aria-current="page"> Thêm Nhân Viên </li>
             </ol>

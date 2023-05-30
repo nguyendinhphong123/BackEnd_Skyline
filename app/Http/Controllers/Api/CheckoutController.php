@@ -8,11 +8,17 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Room;
 use App\Models\User;
+use App\Services\Interfaces\RoomServiceInterface;
 use DateTime;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
+    private $roomService;
+    public function __construct( RoomServiceInterface  $roomService )
+    {
+        $this->roomService = $roomService;
+    }
     public function checkout(Request $request)
     {
         $checkin = new DateTime($request->checkin);
@@ -41,6 +47,7 @@ class CheckoutController extends Controller
             'check' =>'confirmroom',
         ];
         SendEmail::dispatch($datas)->delay(now()->addMinute(1));
+        $this->roomService->update($data['room_id'],['status' => 0]);
         return response()->json([
             'success' => true,
             'order' => $order,

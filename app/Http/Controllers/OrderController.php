@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Room;
 use App\Services\Interfaces\OrderServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -16,9 +17,14 @@ use Maatwebsite\Excel\Facades\Excel;
 class OrderController extends Controller
 {
      private $orderService;
-    public function __construct(OrderServiceInterface $orderService)
+     private $roomService;
+    public function __construct(
+        OrderServiceInterface $orderService,
+        RoomServiceInterface  $roomService
+        )
     {
         $this->orderService = $orderService;
+        $this->roomService = $roomService;
     }
     public function index(Request $request){
         $this->authorize('viewAny', Order::class);
@@ -56,11 +62,13 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-      
         $this->authorize('create', Room::class);
         $data = $request->except(['_token','_method']);
         $this->orderService->store($data);
+        $this->roomService->update($data['room_id'],['status' => 0]);
         toast('Thêm đơn đặt phòng thành công', 'success', 'top-right');
         return redirect()->route('orders.index');
     }
+
+
 }
