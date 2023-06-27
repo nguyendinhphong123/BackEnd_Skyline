@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    public function login(){
+    public function login()
+    {
 
         if (Auth::check()) {
             return redirect()->route('trangchu');
@@ -21,14 +22,14 @@ class AuthController extends Controller
             return view('auth.login');
         }
     }
-     public function postLogin(Request $request)
+    public function postLogin(Request $request)
     {
         $messages = [
             'email.exists' => 'Email không đúng',
-        'password.exists' => 'Mật khẩu không đúng',
-        'email.required' => 'Vui lòng nhập email',
-        'password.required' => 'Vui lòng nhập mật khẩu',
-            
+            'password.exists' => 'Mật khẩu không đúng',
+            'email.required' => 'Vui lòng nhập email',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+
         ];
         $validator = Validator::make($request->all(), [
             'email' => 'required|exists:users,email',
@@ -41,13 +42,14 @@ class AuthController extends Controller
             return back()->withErrors($validator)->withInput();
         }
     }
-public function logout()
-{
-    Auth::logout();
-    return redirect()->route('login');
-}
-public function home(){
-         $totalPrice  =  Order::pluck('total')->sum();
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+    public function home()
+    {
+        $totalPrice  =  Order::pluck('total')->sum();
         $totalOrders  =  Order::pluck('id')->count();
         $totalCustomer  =  Customer::pluck('id')->count();
         $totalRoom = Room::pluck('id')->count();
@@ -57,6 +59,6 @@ public function home(){
             'totalCustomer' => $totalCustomer,
             'totalRoom' => $totalRoom,
         ];
-    return view('home',$params);
-}
+        return view('home', $params);
+    }
 }
