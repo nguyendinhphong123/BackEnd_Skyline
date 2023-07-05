@@ -13,10 +13,10 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         return Room::class;
     }
 
-    public function paginate($request){
-        $result = $this->model->paginate();
-        return $result;
-    }
+    // public function paginate($request){
+    //     $result = $this->model->paginate();
+    //     return $result;
+    // }
     public function store($data)
     {
         if( isset( $data['image']) && $data['image']->isValid() ){

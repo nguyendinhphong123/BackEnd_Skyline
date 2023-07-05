@@ -23,14 +23,14 @@ class UpdateCategoryRequest extends FormRequest
     {
         // dd($this->category);
         return [
-            'name' => 'required|unique:categories,id,'.$this->category,
+            'name' => 'required:categories,id,'.$this->category,
         ];
     }
     public function messages()
     {
         return [
             'name.required' => 'Tên thể loại bắt buộc phải nhập!',
-            'name.unique' => 'Tên thể loại đã tồn tại!',
+            // 'name.unique' => 'Tên thể loại đã tồn tại!',
         ];
     }
 }

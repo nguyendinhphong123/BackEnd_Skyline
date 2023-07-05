@@ -57,7 +57,7 @@
                                             <td>{{ ++$key }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td><img
-                                                style="width:120px; height:100px" src="{{ asset($item->image) }}"
+                                                style="width:120px; height:100px" src="{{ $item->image }}"
                                                 alt=""></a></td>
                                             @if (Auth::user()->hasPermission('Category_update') || Auth::user()->hasPermission('Category_delete'))
                                                 <td>
