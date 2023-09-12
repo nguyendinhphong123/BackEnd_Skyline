@@ -17,7 +17,9 @@
                 <form action="" method="get">
                     <div class="row mb-2">
                         <div class="col">
+                            @if (Auth::user()->hasPermission('Order_create'))
                             <a href="{{route('orders.create')}}" class="btn btn-primary"> Thêm mới </a>
+                            @endif
                             <a href="{{ route('orders.export') }}" class="btn btn-warning">Xuất excel</a>
                         </div>
                     </div>
@@ -49,8 +51,6 @@
                                 <th>Địa Chỉ</th>
                                 <th>Email</th>
                                 <th>SĐT</th>
-                                <th>Ngày Đặt Phòng</th>
-                                <th>Ngày Trả Phòng</th>
                                 <th>Tùy chọn</th>
                             </tr>
                         </thead>
@@ -62,9 +62,6 @@
                                 <td>{{ $item->customer->address }}</td>
                                 <td>{{ $item->customer->email }}</td>
                                 <td>{{ $item->customer->phone }}</td>
-                                <td>{{ $item->checkin }}</td>
-                                <td>{{ $item->checkout }}</td>
-
                                 <td>
                                     <a href="{{ route('orders.detail', [$item->id]) }}" class="btn btn-info">Chi
                                         tiết</a>
@@ -79,7 +76,7 @@
             </div>
             <div class="card-footer">
                 <nav class="float-right">
-                    {{ $items->links() }}
+                    {{ $items->appends(request()->all())->links() }}
                 </nav>
             </div>
         </div>

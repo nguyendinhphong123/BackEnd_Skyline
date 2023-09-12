@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Group extends Model
 {
     use HasFactory;
-   
+
     protected $table ='groups';
     use Notifiable;
     protected $fillable = ['id','name'];
@@ -28,7 +28,7 @@ class Group extends Model
             $query->where('name', 'like', '%' . $term . '%')
                  ->orWhere('id', 'like', '%' . $term . '%');
         }
-        return $query;
+        return $query;  
 
     }
 }

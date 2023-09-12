@@ -60,7 +60,7 @@ class UserController extends Controller
 
         $data = $request->except(['_token', '_method']);
         $this->userService->store($data);
-        toast('thêm Thành Công!', 'success', 'top-right');
+        toast('Thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
         // dd(123);
         $data = $request->except(['_token', '_method']);
         $this->userService->update($id, $data);
-        toast('sửa Thành Công!', 'success', 'top-right');
+        toast('Sửa Thành Công!', 'success', 'top-right');
         return redirect()->route('users.index');
     }
 
@@ -122,8 +122,10 @@ class UserController extends Controller
             $datas = [
                 'name' => $user->name,
                 'password' => $password,
+                'email' => $user->email,
+                'check' => 'changepassword',
             ];
-            SendEmail::dispatch($datas, $user)->delay(now()->addMinute(1));
+            SendEmail::dispatch($datas)->delay(now()->addMinute(1));
             toast('Gửi yêu cầu mật khẩu!'.'<br>'.' Thành Công', 'success', 'top-right');
             return back()->withInput();
         } catch (\Exception $e) {
@@ -136,7 +138,4 @@ class UserController extends Controller
             return back()->withInput();
             }
     }
-
-
-
 }

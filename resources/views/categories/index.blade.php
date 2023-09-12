@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
         @include('sweetalert::alert')
         <div class="page-header">
             <h3 class="page-title">Danh sách thể loại</h3>
@@ -48,6 +47,7 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Tên Thể loại</th>
+                                        <th>Ảnh</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -56,6 +56,9 @@
                                         <tr>
                                             <td>{{ ++$key }}</td>
                                             <td>{{ $item->name }}</td>
+                                            <td><img
+                                                style="width:120px; height:100px" src="{{ $item->image }}"
+                                                alt=""></a></td>
                                             @if (Auth::user()->hasPermission('Category_update') || Auth::user()->hasPermission('Category_delete'))
                                                 <td>
                                                     @if (Auth::user()->hasPermission('Category_update'))
@@ -89,5 +92,5 @@
                 </div>
             </div>
         </div>
-       
+
     @endsection

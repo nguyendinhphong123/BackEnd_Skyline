@@ -8,4 +8,6 @@ interface ServiceInterface
     public function store($request);
     public function update($id, $data);
     public function destroy($id);
+    
+
 }

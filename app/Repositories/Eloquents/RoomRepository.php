@@ -13,30 +13,19 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         return Room::class;
     }
 
-    /*
-    - Do PostRepository đã kế thừa EloquentRepository nên không cần triển khai
-    các phương thức trừu tượng của PostRepositoryInterface
-    - Có thể ghi đè phương thức ở đây
-    - Nếu muốn thêm phương thức mới cần:
-        + Khai báo thêm ở PostRepositoryInterface
-        + Triển khai lại ở đây
-    - Ví dụ: paginate() không có sẵn trong RepositoryInterface, để thêm chúng ta thêm:
-        + Khai báo paginate() ở PostRepositoryInterface
-        + Triển khai lại ở PostRepository
-    */
-    public function paginate($request){
-        $result = $this->model->paginate();
-        return $result;
-    }
+    // public function paginate($request){
+    //     $result = $this->model->paginate();
+    //     return $result;
+    // }
     public function store($data)
     {
         if( isset( $data['image']) && $data['image']->isValid() ){
             $path = $data['image']->store('public/rooms');
             $url = Storage::url($path);
             $data['image'] = $url;
-            
+
         }
-        
+
         return $this->model->create($data);
     }
 
@@ -54,7 +43,7 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
 
     public function all($request)
     {
-        $query = $this->model->select('*');
+        $query = $this->model->select('*')->whereNull('deleted_at');
         if ( $request->category_id ) {
             $query->where('category_id',$request->category_id);
         }
@@ -64,7 +53,14 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
         if ( $request->id ) {
             $query->where('id',$request->id);
         }
-        return $query->orderBy('id','DESC')->paginate(4);
+        if ( $request->limit ) {
+            $query->take($request->limit);
+        }
+        if ( $request->all ) {
+            return $query->orderBy('id','DESC')->get();
+        }
+        $roomList = $query->orderBy('id','DESC')->paginate(4);
+        return $roomList->appends(['id' => $request->id, 'name' => $request->name, 'category_id' => $request->category_id]);
     }
 
     public function delete($id)
@@ -84,12 +80,9 @@ class RoomRepository extends EloquentRepository implements RoomRepositoryInterfa
 
     public function deleteforever($id)
     {
-        // try {
-
             $result = $this->model->onlyTrashed()->find($id);
             $result->forceDelete();
             return $result;
-        
     }
-    
+
 }

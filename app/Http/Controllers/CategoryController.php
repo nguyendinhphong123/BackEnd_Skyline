@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $this->authorize('create', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->store($data);
-        toast('thêm Thành Công!', 'success', 'top-right');
+        toast('Thêm Thành Công!', 'success', 'top-right');
         return redirect()->route('categories.index');
     }
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
         $this->authorize('update', Category::class);
         $data = $request->except(['_token','_method']);
         $this->categoryService->update($id,$data);
-        toast('sửa Thành Công!', 'success', 'top-right');
+        toast('Sửa Thành Công!', 'success', 'top-right');
             return redirect()->route('categories.index');
     }
 
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         $this->authorize('restore', Category::class);
         try {
             $items = $this->categoryService->restore($id);
-            toast('Khôi phục Thành Công!', 'success', 'top-right');
+            toast('Khôi Phục Thành Công!', 'success', 'top-right');
             return redirect()->route('categories.index');
         } catch (\exception $e) {
             Log::error($e->getMessage());

@@ -2,32 +2,57 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Customer extends Model
+class Customer extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
-    protected $table ='customers';
+
+    use HasFactory, Notifiable;
     protected $fillable = [
         'name',
         'email',
         'password',
-        'address',
         'phone',
-
+        'address',
     ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims() {
+        return [];
+    }
     public function orders()
     {
         return $this->hasMany(Order::class, 'customer_id', 'id');
     }
-    public function scopeSearch($query, $term)
-    {
-        if ($term) {
-            $query->where('name', 'like', '%' . $term . '%')
-                ->orWhere('id', 'like', '%' . $term . '%');
-        }
-        return $query;
 
-    }
 }

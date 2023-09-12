@@ -12,7 +12,7 @@ class Category extends Model
     use HasFactory;
     protected $table ='categories';
     use HasFactory,SoftDeletes;
-    protected $fillable = ['id','name'];
+    protected $fillable = ['id','name','image'];
 
     public function rooms()
     {

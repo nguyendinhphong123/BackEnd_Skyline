@@ -16,7 +16,7 @@ class RoomsExport implements FromCollection, WithHeadings
             ->select(
                 'rooms.name',
                 'rooms.price',
-                'rooms.quantity',
+                'rooms.status',
                 'categories.name as cateName',
                 'rooms.created_at',
                 'rooms.updated_at',
@@ -24,6 +24,6 @@ class RoomsExport implements FromCollection, WithHeadings
     }
     public function headings(): array
     {
-        return ["Tên Sản Phẩm", "Giá(VND)", "Số Lượng", "Danh Mục", "Ngày Nhập", "Ngày Sửa"];
+        return ["Tên Phòng", "Giá(VND)", "Tình trạng", "Danh Mục", "Ngày Nhập", "Ngày Sửa"];
     }
 }

@@ -29,7 +29,7 @@
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
                                 <th>Giá</th>
-                                <th>Số lượng</th>
+                                <th>Tình trạng</th>
                                 <th>Thể loại</th>
                                 <th>Hành động</th>
                             </tr>
@@ -45,7 +45,7 @@
                                 </td>
                                 <td>{{$item->name}}</td>
                                 <td>{{number_format( $item->price) }} VND</td>
-                                <td>{{$item->quantity}}</td>
+                                <td>{{ $item->status == 1 ? 'Còn phòng' : 'Hết phòng' }}</td>
                                 <td>{{$item->category ->name}}</td>
                                 <td>
                                     <form action="{{route('rooms.deleteforever',[$item->id])}}" method="post">

@@ -20,14 +20,19 @@
                   <div class="form-group">
                       <label for="exampleInputName1">Tên phòng</label>
                       <input type="text" class="form-control" name="name" value='{{$items->name}}'>
+                      @error('name')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <div class="form-group">
                       <label for="exampleInputEmail3">Giá</label>
                       <input type="text" class="form-control" name="price" value='{{$items->price}}'>
+                      @error('price')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <div class="form-group">
-                      <label for="exampleInputPassword4">Số lượng</label>
-                      <input type="text" class="form-control" name="quantity" value='{{$items->quantity}}'>
+                      <label for="exampleInputPassword4">Tình trạng</label>
+                      <select name="status" class="form-control">
+                        <option value="1" {{ $items->status == 1 ? 'selected' : '' }}>Còn phòng</option>
+                        <option value="2" {{ $items->status == 2 ? 'selected' : '' }}>Hết phòng</option>
+                    </select>
                   </div>
                   <div class="form-group">
                       <label for="exampleSelectGender">Thể loại</label>
@@ -48,6 +53,7 @@
                   <div class="form-group">
                       <label for="exampleTextarea1">Mô tả</label>
                       <textarea class="form-control" rows="4" name="description">{{$items->description}}</textarea>
+                      @error('description')<p class="text text-danger ">{{ $message }}</p> @enderror
                   </div>
                   <input type="submit" value="Cập nhật" class="btn btn-primary">
                   <a href="{{route('rooms.index')}}" class="btn btn-warning">Quay lại</a>

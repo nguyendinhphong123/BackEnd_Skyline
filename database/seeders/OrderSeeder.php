@@ -19,8 +19,8 @@ class OrderSeeder extends Seeder
                 'checkin' => '2022-12-25',
                 'checkout' => '2022-12-27',
                 'price' => 322214,
-                'room_id' => 2,
-                'customer_id' => 3,
+                'room_id' => 1,
+                'customer_id' => 1,
                 'created_at'=>'2022-1-27'
             ],
         ]);

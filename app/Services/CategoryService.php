@@ -40,4 +40,6 @@ class CategoryService implements CategoryServiceInterface
     public function deleteforever($id){
         return $this->CategoryRepository->deleteforever($id);
     }
+    
+
 }

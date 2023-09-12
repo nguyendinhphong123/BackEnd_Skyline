@@ -14,7 +14,7 @@
                 </a>
                 <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="{{route('logout')}}">
-                        <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                        <i class="mdi mdi-logout mr-2 text-primary"></i> Đăng xuất </a>
                 </div>
             </li>
         </ul>

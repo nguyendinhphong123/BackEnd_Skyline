@@ -1,12 +1,11 @@
-
 @extends('layouts.master')
 @section('content')
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
     <div class="page-header">
         <h3 class="page-title">Danh sách nhóm quyền</h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('trangchu')}}">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('trangchu') }}">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page"> Danh sách nhóm quyền </li>
             </ol>
         </nav>
@@ -18,16 +17,21 @@
                     <form action="" method="get">
                         <div class="row mb-2">
                             <div class="col">
-                                <a href="{{ route('groups.create') }}" class="btn btn-primary"> Thêm mới </a>
+                                @if (Auth::user()->hasPermission('Group_create'))
+                                    <a href="{{ route('groups.create') }}" class="btn btn-primary"> Thêm mới </a>
+                                @endif
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}" name="id">
+
+                                <input type="text" placeholder="Nhập ID" class="form-control" value="{{ request()->id }}"
+                                    name="id">
                             </div>
                             <div class="col">
-                                <input type="text" placeholder="Nhập name" class="form-control" value="{{ request()->name }}" name="name">
+                                <input type="text" placeholder="Nhập name" class="form-control"
+                                    value="{{ request()->name }}" name="name">
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-info"> Tìm </button>
@@ -50,18 +54,26 @@
                             <tbody>
                                 @foreach ($items as $key => $item)
                                     <tr>
-                                        <td>{{++$key}}</td>
-                                        <td>{{$item->name}}</td>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>Hiện có {{ count($item->users) }} người</td>
                                         <td>
-                                            <form action="{{route('groups.destroy',[$item->id])}}" method="post">
-                                                @method('DELETE')
-                                                @csrf
-                                                    <a href="{{ route('groups.edit',$item['id']) }}" class="btn btn-info">Sửa</a>
-                                                    <a class="btn btn-primary " href="{{route('groups.show', $item->id)}}">Trao Quyền</a>
-                                                        <button onclick="return confirm('Bạn có muốn xóa  này không?');"
-                                                        class="btn btn-danger">Xóa</button>
-                                                    </form>
+                                            @if (Auth::user()->hasPermission('Group_update'))
+                                                <form action="{{ route('groups.destroy', [$item->id]) }}" method="post">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <a href="{{ route('groups.edit', $item['id']) }}"
+                                                        class="btn btn-info">Sửa</a>
+                                            @endif
+                                            @if (Auth::user()->hasPermission('Group_restore'))
+                                            <a class="btn btn-primary " href="{{ route('groups.show', $item->id) }}">Trao
+                                                Quyền</a>
+                                                @endif
+                                                @if (Auth::user()->hasPermission('Group_delete'))
+                                            <button onclick="return confirm('Bạn có muốn xóa  này không?');"
+                                                class="btn btn-danger">Xóa</button>
+                                                @endif
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -72,7 +84,7 @@
                 <div class="card-footer">
                     <nav class="float-right">
                         {{ $items->links() }}
-                      </nav>
+                    </nav>
                 </div>
             </div>
         </div>

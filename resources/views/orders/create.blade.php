@@ -17,36 +17,44 @@
                 <form class="forms-sample" action="{{ route('orders.store') }}" method='post'>
                     @csrf
                     <div class="form-group">
-                        <label for="exampleSelectGender">Tên Phòng</label>
+                        <label>Tên Phòng</label>
                         <select name="room_id" id="" class="form-control">
                             <option value="">--Vui lòng chọn--</option>
                             @foreach ($rooms as $room)
-                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                            <option value="{{ $room->id }}" {{ old('room_id') == $room->id ? 'selected' : '' }}>{{ $room->name }}</option>
                             @endforeach
                         </select>
+                        @error('room_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label>Khách hàng</label>
                         <select name="customer_id" id="" class="form-control">
                             <option value="">--Vui lòng chọn--</option>
                             @foreach ($customers as $customer)
-                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected' : '' }}>{{ $customer->name }}</option>
                             @endforeach
                         </select>
+                        @error('customer_id')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Giá</label>
-                        <input type="text" class="form-control" name="price" placeholder="0">
+                        {{--  <input type="text" class="form-control" name="price" placeholder="0" value="{{ old('price') }}">  --}}
+                        <select name="price" id="" class="form-control">
+                            <option value="">--Vui lòng chọn--</option>
+                            @foreach ($rooms as $room)
+                            <option value="{{ $room->id }}" {{ old('price') == $room->id ? 'selected' : '' }}>{{ $room->price }}</option>
+                            @endforeach
+                        </select>
                         @error('price')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Checkin</label>
-                        <input type="date" class="form-control" name="checkin" placeholder="0">
+                        <input type="date" class="form-control" name="checkin" placeholder="0" value="{{ old('checkin') }}">
                         @error('checkin')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Checkout</label>
-                        <input type="date" class="form-control" name="checkout" placeholder="0">
+                        <input type="date" class="form-control" name="checkout" placeholder="0" value="{{ old('checkout') }}">
                         @error('checkout')<p class="text text-danger ">{{ $message }}</p> @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mr-2"> Thêm </button>

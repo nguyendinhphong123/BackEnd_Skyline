@@ -9,12 +9,12 @@ class Order extends Model
 {
     use HasFactory;
     protected $table ='orders';
-    protected $fillable = ['price','checkin','checkout','room_id','customer_id'];   
+    protected $fillable = ['price','checkin','checkout','room_id','customer_id','total'];
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }
-    public function products()
+    public function room()
     {
         return $this->belongsTo(Room::class, 'room_id', 'id');
     }

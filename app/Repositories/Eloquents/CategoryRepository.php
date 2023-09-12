@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Repositories\Eloquents;
 
 use App\Models\Category;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Route;
 
 class CategoryRepository extends EloquentRepository implements CategoryRepositoryInterface
 {
@@ -11,22 +14,27 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
     {
         return Category::class;
     }
-    // public function paginate($data){
-    //     $result = $this->model->paginate();
-    //     return $result;
-    // }
-
-    public function all($request)
+    public function all( $request)
     {
         $query = $this->model->select('*');
-        if ( $request->name ) {
-            $query->where('name','like','%'.$request->name.'%');
+
+        if ($request->name) {
+            $query->where('name', 'like', '%' . $request->name . '%');
         }
-        if ( $request->id ) {
-            $query->where('id',$request->id);
+
+        if ($request->id) {
+            $query->where('id', $request->id);
         }
-        return $query->orderBy('id','DESC')->paginate(5);
+
+        if ($request->is('api/*')) {
+            // Sử dụng get() cho Route::apiResource
+            return $query->orderBy('id', 'desc')->paginate(6);
+        } else {
+            // Sử dụng paginate() cho Route::resource
+            return $query->orderBy('id', 'desc')->paginate(4);
+        }
     }
+
 
     public function getTrashed()
     {
@@ -41,12 +49,30 @@ class CategoryRepository extends EloquentRepository implements CategoryRepositor
 
     public function deleteforever($id)
     {
-        // try {
-
-            $result = $this->model->onlyTrashed()->find($id);
-            $result->forceDelete();
-            return $result;
-
+        $result = $this->model->onlyTrashed()->find($id);
+        $result->forceDelete();
+        return $result;
+    }
+    public function store($data)
+    {
+        if (isset($data['image']) && $data['image']->isValid()) {
+            $path = $data['image']->store('public/categories');
+            $url = Storage::url($path);
+            $data['image'] = $url;
+        }
+        return $this->model->create($data);
     }
 
+    public function update($id, $data)
+    {
+        if (isset($data['image']) && $data['image']->isValid()) {
+            $path = $data['image']->store('public/categories');
+            $url = Storage::url($path);
+            $data['image'] = $url;
+        }
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        };
+        return $this->model->where('id', $id)->update($data);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 use App\Models\Order;
 use App\Repositories\Interfaces\OrderRepositoryInterface;
 use App\Repositories\Eloquents\EloquentRepository;
+use Carbon\Carbon;
 
 class OrderRepository extends EloquentRepository implements OrderRepositoryInterface
 {
@@ -37,6 +38,11 @@ class OrderRepository extends EloquentRepository implements OrderRepositoryInter
 }
     public function store($data)
     {
+        // dd($data);
+        $checkin = Carbon::parse($data['checkin']);
+        $checkout = Carbon::parse($data['checkout']);
+        $numberOfDays = $checkout->diffInDays($checkin);
+        $data['total'] = $numberOfDays * $data['price'];
         return $this->model->create($data);
     }
 }

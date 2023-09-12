@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
 
         $item = new User();
         $item->name = "Trần thị huyền";
-        $item->email = "huyen@gmail.com";
+        $item->email = "huyentran221100@gmail.com";
         $item->password = Hash::make('123456');
         $item->address = 'Quảng Trị';
         $item->phone  = "0392292507";
